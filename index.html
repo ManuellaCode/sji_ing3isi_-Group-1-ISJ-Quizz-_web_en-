@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat with PeerJS</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.peerjs.com/1.3.2/peerjs.min.js"></script>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Peer-to-Peer Chat</h1>
+  </header>
+
+  <!-- Main Content Section -->
+  <main>
+    <section id="home">
+      <h2>Start Chat</h2>
+
+      <div>
+        <label for="peerId">Your Peer ID:</label>
+        <input type="text" id="peerId" disabled />
+        <button onclick="generatePeerId()">Generate ID</button>
+      </div>
+
+      <div id="generatedPeerIdDisplay" style="margin-top: 10px;"></div>
+
+      <div>
+        <label for="otherPeerId">Enter the Peer ID to connect:</label>
+        <input type="text" id="otherPeerId" placeholder="Enter Peer ID" />
+        <button onclick="connectToPeer()">Connect</button>
+      </div>
+
+      <div id="chatArea" style="display:none;">
+        <div id="chatMessages" style="height: 300px; overflow-y: scroll;"></div>
+        <textarea id="messageInput" placeholder="Type a message"></textarea>
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Peer-to-Peer Chat</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
