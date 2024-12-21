@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #chat-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 90%;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        #messages {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            height: 300px;
+            overflow-y: scroll;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fafafa;
+        }
+        #message, #partnerId {
+            width: calc(70% - 10px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+        #send {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #send:hover {
+            background-color: #218838;
+        }
+        p {
+            margin: 5px 0;
+        }
+        .you {
+            text-align: right;
+            color: #007bff;
+        }
+        .partner {
+            text-align: left;
+            color: #dc3545;
+        }
+        #playerList {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Peer Chat</h1>
+    <div id="chat-container">
+        <input id="peerId" placeholder="Your Peer ID" readonly>
+        <input id="partnerId" placeholder="Enter Partner's Peer ID">
+        <div id="messages"></div>
+        <input id="message" placeholder="Type a message">
+        <button id="send" disabled>Send</button>
+    </div>
+    <div id="playerList"></div> <!-- Div to display players -->
+
+    <script>
+        const peer = new Peer(); // Create a new Peer instance
+        const messagesDiv = document.getElementById('messages');
+        const messageInput = document.getElementById('message');
+        const sendButton = document.getElementById('send');
+        const partnerIdInput = document.getElementById('partnerId');
+        const playerListDiv = document.getElementById('playerList');
+        const connections = {};
+        var connectedPlayers = []
+        var serverId;
+
+        let currentUser = prompt("Enter your username:") || "Anonymous"; // Prompt for username on load
+
+        // Player object to store user information
+        const player = {
+            username: currentUser,
+            level: "Mougou", // Default level
+            peerId: '' // To be set later
+        };
+
+        // Display your Peer ID
+        peer.on('open', id => {
+            player.peerId = id; // Set the player's Peer ID
+            document.getElementById('peerId').value = id;
+
+            // Prompt for partner's Peer ID to send player data
+            serverId = prompt("Enter the Peer ID of the peer you want to connect to:");
+            if (serverId) {
+                sendPlayerInfoToPeer(partnerId, player);
+            }
+        });
+
+
+        // Function to send player info to a specific peer
+        function sendPlayerInfoToPeer(partnerId, player) {
+            const conn = peer.connect(partnerId);
+            conn.on('open', () => {
+                conn.send(JSON.stringify(player)); // Send player object as JSON
+                console.log(`Player info sent to ${partnerId}:`, player);
+            });
+
+            conn.on('data', data => {
+                const messageObj = JSON.parse(data);
+                if(messageObj.type == "peerList"){
+                    connectedPlayers = connectedPlayers + messageObj.peers
+                }
+                else{
+                    messagesDiv.innerHTML += `<p class="partner">${messageObj.username} (Level: ${messageObj.level}): Connected!</p>`;
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto scroll
+                }
+            });
+
+            conn.on('error', err => alert('Connection failed: ' + err.message));
+        }
+
+        // Handle incoming connections
+        peer.on('connection', incomingConn => {
+            connections[incomingConn.peer] = incomingConn;
+            incomingConn.on('data', data => {
+                const messageObj = JSON.parse(data);
+                if(messageObj.type == "peerList"){
+                    connectedPlayers.push(messageObj.peers);
+                    console.log(connectedPlayers)
+                }
+                else{
+                    messagesDiv.innerHTML += `<p class="partner">${messageObj.username} (Level: ${messageObj.level}): Connected!</p>`;
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto scroll
+                }
+            });
+        });
+
+        // Handle connection errors
+        peer.on('error', err => {
+            console.error(err);
+            alert('Connection error: ' + err.message);
+        });
+
+        // Send message
+        sendButton.onclick = () => {
+            const partnerId = partnerIdInput.value;
+            let conn = connections[partnerId];
+
+            if (!conn) {
+                conn = peer.connect(partnerId);
+                connections[partnerId] = conn;
+
+                conn.on('open', () => sendMessage(conn));
+                conn.on('data', data => {
+                    const messageObj = JSON.parse(data);
+                    messagesDiv.innerHTML += `<p class="partner">${messageObj.username} (Level: ${messageObj.level}): ${messageObj.message}</p>`;
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto scroll
+                });
+                conn.on('error', err => alert('Connection failed: ' + err.message));
+            } else {
+                sendMessage(conn);
+            }
+        };
+
+        const sendMessage = (conn) => {
+            const message = messageInput.value;
+            if (message) {
+                const messageObj = {
+                    username: player.username,
+                    level: player.level,
+                    message: message
+                };
+                conn.send(JSON.stringify(messageObj)); // Send as JSON string
+                messagesDiv.innerHTML += `<p class="you">You: ${message}</p>`;
+                messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto scroll
+                messageInput.value = '';
+            }
+        };
+
+        // Enable send button when partner ID is entered
+        partnerIdInput.oninput = () => {
+            sendButton.disabled = !partnerIdInput.value;
+        };
+    </script>
+</body>
+</html>
