@@ -30,6 +30,9 @@
     .player {
       padding: 10px;
       border-bottom: 1px solid #444;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       transition: background-color 0.3s;
     }
     .player:hover {
@@ -41,9 +44,51 @@
       border-radius: 5px;
       text-align: center;
     }
+    .challenge-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .challenge-button:hover {
+      background-color: #0056b3;
+    }
+    .notification-button {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .notification-button:hover {
+      background-color: #218838;
+    }
+    #notifications {
+      position: absolute;
+      right: 20px;
+      top: 70px;
+      background-color: #2a2a3e;
+      border-radius: 5px;
+      padding: 10px;
+      display: none;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
+  <button class="notification-button" onclick="toggleNotifications()">Notifications</button>
+  <div id="notifications"></div>
+
   <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
     <div class="row w-100 shadow-lg" style="max-width: 800px;">
       <div class="col-12 bg-dark p-5">
@@ -61,6 +106,7 @@
     const peer = new Peer();
     const playerListDiv = document.getElementById('playerList');
     const usernameDisplay = document.getElementById('usernameDisplay');
+    const notificationsDiv = document.getElementById('notifications');
     const players = {};
 
     peer.on('open', id => {
@@ -77,13 +123,11 @@
 
       conn.on('open', () => {
         const playerInfo = { username, peerId };
-        console.log("player info sent")
         conn.send(JSON.stringify(playerInfo));
       });
 
       conn.on('data', data => {
         const playerList = JSON.parse(data);
-        console.log("player list received")
         updatePlayerList(playerList);
       });
     }
@@ -96,11 +140,52 @@
         playerList.forEach(player => {
           const playerDiv = document.createElement('div');
           playerDiv.className = 'player';
-          playerDiv.textContent = `${player.username} (Peer ID: ${player.peerId})`;
+          playerDiv.innerHTML = `
+            <span>${player.username} (Peer ID: ${player.peerId})</span>
+            <button class="challenge-button" onclick="challengeUser('${player.peerId}', '${player.username}')">Challenge</button>
+          `;
           playerListDiv.appendChild(playerDiv);
         });
       }
     }
+
+    function challengeUser(peerId, username) {
+      const challengerName = usernameDisplay.textContent.split(': ')[1];
+      const message = `${challengerName} has challenged you!`;
+      sendChallengeMessage(peerId, message, challengerName);
+      addNotification(message);
+    }
+
+    function sendChallengeMessage(peerId, message, challengerName) {
+      const conn = peer.connect(peerId);
+      conn.on('open', () => {
+        conn.send(JSON.stringify({ type: 'challenge', message, challengerName }));
+      });
+    }
+
+    function addNotification(message) {
+      const notification = document.createElement('div');
+      notification.textContent = message;
+      notificationsDiv.appendChild(notification);
+      notificationsDiv.style.display = 'block';
+    }
+
+    function toggleNotifications() {
+      notificationsDiv.style.display = notificationsDiv.style.display === 'none' || notificationsDiv.style.display === '' ? 'block' : 'none';
+    }
+
+    //handle challenge messages
+    peer.on('connection', conn => {
+        console.log("conected to somebody")
+      conn.on('data', data => {
+        console.log("received something")
+        const message = JSON.parse(data)
+        if (message.type === 'challenge') {
+          addNotification(`${message.challengerName} has challenged you!`);
+          console.log(`${message.challengerName} has challenged you!`)
+        }
+      });
+    });
 
     peer.on('error', err => {
       console.error(err);
