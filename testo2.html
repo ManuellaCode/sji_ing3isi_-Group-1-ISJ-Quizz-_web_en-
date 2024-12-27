@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peer Chat</title>
+    <title>Player</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js"></script>
     <style>
         body {
@@ -19,149 +19,109 @@
             color: #333;
             margin-bottom: 20px;
         }
-        #chat-container {
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            max-width: 90%;
-            padding: 20px;
+        #peerIdDisplay {
             margin-top: 20px;
-        }
-        #messages {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            height: 300px;
-            overflow-y: auto;
+            font-weight: bold;
             padding: 10px;
-            margin-bottom: 10px;
-            background-color: #fafafa;
-        }
-        #message, #partnerId {
-            width: calc(70% - 10px);
-            padding: 10px;
-            border: 1px solid #ccc;
+            border: 2px solid #007BFF;
             border-radius: 5px;
-            margin-right: 5px;
-        }
-        #send {
-            padding: 10px 15px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .you {
-            text-align: right;
-            color: #007bff;
-        }
-        .partner {
-            text-align: left;
-            color: #dc3545;
+            background-color: #E7F0FF;
+            text-align: center;
+            width: 300px;
         }
         #playerList {
             margin-top: 20px;
-            padding: 10px;
             border: 1px solid #ccc;
-            background-color: #fff;
             border-radius: 5px;
-            width: 100%;
+            width: 300px;
+            padding: 10px;
+            background-color: #ffffff;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .player {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .player:hover {
+            background-color: #f1f1f1;
+            transform: translateY(-1px);
+        }
+        .player:last-child {
+            border-bottom: none;
+        }
+        .username {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        .peerId {
+            color: #888;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <h1>Peer Chat</h1>
-    <div id="chat-container">
-        <input id="peerId" placeholder="Your Peer ID" readonly>
-        <input id="partnerId" placeholder="Enter Partner's Peer ID">
-        <div id="messages"></div>
-        <input id="message" placeholder="Type a message">
-        <button id="send" disabled>Send</button>
-    </div>
-    <div id="playerList">Players</div> <!-- Div to display players -->
+    <h1>Player</h1>
+    <div id="peerIdDisplay">Generating Peer ID...</div>
+
+    <h2>Available Players</h2>
+    <div id="playerList">No players connected yet.</div>
 
     <script>
         const peer = new Peer(); // Create a new Peer instance
-        const messagesDiv = document.getElementById('messages');
-        const messageInput = document.getElementById('message');
-        const sendButton = document.getElementById('send');
-        const partnerIdInput = document.getElementById('partnerId');
         const playerListDiv = document.getElementById('playerList');
-        const connections = {};
-        let currentUser = prompt("Enter your username:") || "Anonymous"; // Prompt for username on load
+        const players = {}; // Object to store player information
 
-        // Display your Peer ID and send player info to the second code
+        // Display the Peer ID when it's generated
         peer.on('open', id => {
-            document.getElementById('peerId').value = id;
-            sendPlayerInfo(id, currentUser);
+            document.getElementById('peerIdDisplay').textContent = `Your Peer ID: ${id}`;
+            sendPlayerInfo(id, prompt("Enter your username:") || "Anonymous");
         });
 
-        // Function to send player info to the second code
+        // Function to send player info to the server
         function sendPlayerInfo(peerId, username) {
-            const serverId = prompt("Enter the serverId")
-            const conn = peer.connect(serverId); // Replace with actual Peer ID of the second code
-            console.log("server Id entered")
-            console.log(serverId)
+            const serverId = prompt("Enter the server Peer ID:");
+            const conn = peer.connect(serverId);
+
             conn.on('open', () => {
-                console.log("connection established")
                 const playerInfo = { username, peerId };
                 conn.send(JSON.stringify(playerInfo)); // Send player info
-                console.log("sent player info")
             });
 
             conn.on('data', data => {
                 const playerList = JSON.parse(data);
-                console.log("Received player info")
-                updatePlayerList(playerList); // Update player list from the second code
+                updatePlayerList(playerList);
             });
         }
 
         // Update the player list UI
         function updatePlayerList(playerList) {
             playerListDiv.innerHTML = ''; // Clear existing list
-            playerList.forEach(player => {
-                const playerDiv = document.createElement('div');
-                playerDiv.textContent = `User: ${player.username} (Peer ID: ${player.peerId})`;
-                playerListDiv.appendChild(playerDiv);
-            });
+            if (playerList.length === 0) {
+                playerListDiv.textContent = 'No players connected yet.';
+            } else {
+                playerList.forEach(player => {
+                    const playerDiv = document.createElement('div');
+                    playerDiv.className = 'player';
+                    playerDiv.innerHTML = `
+                        <span class="username">${player.username}</span>
+                        <span class="peerId">${player.peerId}</span>
+                    `;
+                    playerListDiv.appendChild(playerDiv);
+                });
+            }
         }
 
-        // Handle message sending
-        sendButton.onclick = () => {
-            const partnerId = partnerIdInput.value;
-            let conn = connections[partnerId];
-
-            if (!conn) {
-                conn = peer.connect(partnerId);
-                connections[partnerId] = conn;
-
-                conn.on('open', () => sendMessage(conn));
-                conn.on('data', data => {
-                    const messageObj = JSON.parse(data);
-                    messagesDiv.innerHTML += `<p class="partner">${messageObj.username}: ${messageObj.message}</p>`;
-                    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto scroll
-                });
-            } else {
-                sendMessage(conn);
-            }
-        };
-
-        const sendMessage = (conn) => {
-            const message = messageInput.value;
-            if (message) {
-                const messageObj = { username: currentUser, message };
-                conn.send(JSON.stringify(messageObj)); // Send message as JSON
-                messagesDiv.innerHTML += `<p class="you">You: ${message}</p>`;
-                messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto scroll
-                messageInput.value = '';
-            }
-        };
-
-        // Enable send button when partner ID is entered
-        partnerIdInput.oninput = () => {
-            sendButton.disabled = !partnerIdInput.value;
-        };
+        // Handle errors
+        peer.on('error', err => {
+            console.error(err);
+            alert('Error: ' + err);
+        });
     </script>
 </body>
 </html>

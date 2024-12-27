@@ -29,6 +29,12 @@
             text-align: center;
             width: 300px;
         }
+        #usernameDisplay {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #007BFF;
+            font-size: 1.2em;
+        }
         #playerList {
             margin-top: 20px;
             border: 1px solid #ccc;
@@ -68,6 +74,7 @@
 <body>
     <h1>Player</h1>
     <div id="peerIdDisplay">Generating Peer ID...</div>
+    <div id="usernameDisplay" style="display: none;"></div>
 
     <h2>Available Players</h2>
     <div id="playerList">No players connected yet.</div>
@@ -75,12 +82,16 @@
     <script>
         const peer = new Peer(); // Create a new Peer instance
         const playerListDiv = document.getElementById('playerList');
+        const usernameDisplay = document.getElementById('usernameDisplay');
         const players = {}; // Object to store player information
 
         // Display the Peer ID when it's generated
         peer.on('open', id => {
             document.getElementById('peerIdDisplay').textContent = `Your Peer ID: ${id}`;
-            sendPlayerInfo(id, prompt("Enter your username:") || "Anonymous");
+            const username = prompt("Enter your username:") || "Anonymous";
+            usernameDisplay.textContent = `Welcome to the game ${username}`;
+            usernameDisplay.style.display = 'block'; // Show the username
+            sendPlayerInfo(id, username);
         });
 
         // Function to send player info to other peers
