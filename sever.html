@@ -1,110 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f8ff;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        h1 {
-            color: #333;
-        }
-        #peerIdDisplay {
-            margin-top: 20px;
-            font-weight: bold;
-            padding: 10px;
-            border: 2px solid #007BFF;
-            border-radius: 5px;
-            background-color: #E7F0FF;
-            width: 300px;
-            text-align: center;
-        }
-        #connectedPeers {
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 300px;
-            max-width: 90%;
-            padding: 10px;
-            background-color: #ffffff;
-            overflow-y: auto;
-            max-height: 200px;
-        }
-        .peer {
-            padding: 8px;
-            border-bottom: 1px solid #eee;
-            transition: background-color 0.3s;
-        }
-        .peer:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server</title>
+  <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
+  <style>
+    body {
+      background-color: #1c1c2e;
+      color: white;
+      font-family: 'Arial', sans-serif;
+    }
+    .container {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    h2, h4 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #connectedPeers {
+      max-height: 400px;
+      overflow-y: auto;
+      background-color: #2a2a3e;
+      border-radius: 10px;
+      padding: 15px;
+    }
+    .peer {
+      padding: 10px;
+      border-bottom: 1px solid #444;
+      transition: background-color 0.3s;
+    }
+    .peer:hover {
+      background-color: #3a3a5c;
+    }
+    #peerIdDisplay {
+      background-color: #3a3a5c;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-    <h1>Server</h1>
-    <div id="peerIdDisplay">Generating Peer ID...</div>
+  <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
+    <div class="row w-100 shadow-lg" style="max-width: 800px;">
+      <div class="col-12 bg-dark p-5">
+        <h2 class="mb-4">Server</h2>
+        <div id="peerIdDisplay" class="mb-3">Generating Peer ID...</div>
+        <h4>Connected Players</h4>
+        <div id="connectedPeers">No peers connected yet.</div>
+      </div>
+    </div>
+  </div>
 
-    <h2>Connected Players</h2>
-    <div id="connectedPeers">No peers connected yet.</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js"></script>
+  <script>
+    const peer = new Peer();
+    const connectedPeersDiv = document.getElementById('connectedPeers');
+    const peers = {};
 
-    <script>
-        const peer = new Peer(); // Create a new Peer instance
-        const connectedPeersDiv = document.getElementById('connectedPeers');
-        const peers = {}; // Object to store connected peer information
+    peer.on('open', id => {
+      document.getElementById('peerIdDisplay').textContent = `Your Peer ID: ${id}`;
+    });
 
-        // Display the Peer ID when it's generated
-        peer.on('open', id => {
-            document.getElementById('peerIdDisplay').textContent = `Your Peer ID: ${id}`;
+    peer.on('connection', conn => {
+      conn.on('data', data => {
+        const playerInfo = JSON.parse(data);
+        peers[playerInfo.peerId] = playerInfo.username;
+        updateConnectedPeers();
+
+        const playerList = Object.keys(peers).map(peerId => ({ peerId, username: peers[peerId] }));
+        Object.keys(peer.connections).forEach(peerId => {
+          peer.connections[peerId].forEach(c => c.send(JSON.stringify(playerList)));
         });
+      });
 
-        // Handle incoming connections
-        peer.on('connection', conn => {
-            conn.on('data', data => {
-                const playerInfo = JSON.parse(data);
-                peers[playerInfo.peerId] = playerInfo.username;
-                console.log("received player info") // Store player info
-                updateConnectedPeers();
+      conn.on('close', () => {
+        delete peers[conn.peer];
+        updateConnectedPeers();
+      });
+    });
 
-                // Send the updated player list back to the sender
-                const playerList = Object.keys(peers).map(peerId => ({ peerId, username: peers[peerId] }));
-                conn.send(JSON.stringify(playerList)); // Send complete player list back
-                console.log("player list sent")
-            });
-
-            conn.on('close', () => {
-                delete peers[conn.peer]; // Remove peer from list
-                updateConnectedPeers(); // Update display
-            });
+    function updateConnectedPeers() {
+      connectedPeersDiv.innerHTML = '';
+      if (Object.keys(peers).length === 0) {
+        connectedPeersDiv.textContent = 'No peers connected yet.';
+      } else {
+        Object.keys(peers).forEach(peerId => {
+          const peerDiv = document.createElement('div');
+          peerDiv.className = 'peer';
+          peerDiv.textContent = `User: ${peers[peerId]} (Peer ID: ${peerId})`;
+          connectedPeersDiv.appendChild(peerDiv);
         });
+      }
+    }
 
-        // Update the display of connected peers
-        function updateConnectedPeers() {
-            connectedPeersDiv.innerHTML = ''; // Clear current list
-            if (Object.keys(peers).length === 0) {
-                connectedPeersDiv.textContent = 'No peers connected yet.';
-            } else {
-                Object.keys(peers).forEach(peerId => {
-                    const peerDiv = document.createElement('div');
-                    peerDiv.textContent = `User: ${peers[peerId]} (Peer ID: ${peerId})`;
-                    connectedPeersDiv.appendChild(peerDiv);
-                });
-            }
-        }
-
-        // Handle general errors
-        peer.on('error', err => {
-            console.error(err);
-            document.getElementById('peerIdDisplay').textContent = 'Error generating Peer ID';
-        });
-    </script>
+    peer.on('error', err => {
+      console.error(err);
+      document.getElementById('peerIdDisplay').textContent = 'Error generating Peer ID';
+    });
+  </script>
 </body>
 </html>
