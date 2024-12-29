@@ -44,7 +44,7 @@
       border-radius: 5px;
       text-align: center;
     }
-    .challenge-button {
+    .challenge-button, .accept-button {
       background-color: #007bff;
       color: white;
       border: none;
@@ -53,7 +53,7 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
-    .challenge-button:hover {
+    .challenge-button:hover, .accept-button:hover {
       background-color: #0056b3;
     }
     .notification-button {
@@ -71,31 +71,52 @@
     .notification-button:hover {
       background-color: #218838;
     }
-    .offcanvas-body {
-      background-color: #2a2a3e;
-      border-radius: 10px;
-    }
-    .notification-item {
-      margin-bottom: 10px;
+    .avatar-list {
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .avatar {
+      cursor: pointer;
+      border: 3px solid transparent;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .avatar:hover {
+      border-color: #007bff;
+    }
+    .selected-avatar {
+      border-color: #007bff;
+    }
+    #userDisplay {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
       align-items: center;
-    }
-    .accept-button {
-      background-color: #17a2b8;
-      color: white;
-      border: none;
+      background-color: rgba(58, 58, 92, 0.8);
+      padding: 10px;
       border-radius: 5px;
-      padding: 5px 10px;
     }
-    .accept-button:hover {
-      background-color: #138496;
+    #userDisplay img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
     }
   </style>
 </head>
 <body>
+  <!-- User Display -->
+  <div id="userDisplay" style="display: none;">
+    <img id="userAvatar" src="" alt="User Avatar">
+    <span id="userName"></span>
+  </div>
+
   <!-- Notification Button with Badge -->
-  <button class="notification-button" onclick="toggleOffcanvas()">
+  <button class="notification-button" aria-label="Open notifications" onclick="toggleOffcanvas()">
     Notifications <span class="badge bg-danger" id="notificationCount">0</span>
   </button>
 
@@ -103,13 +124,72 @@
   <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasNotificationsLabel">Notifications</h5>
-      <button type="button" class="btn-close btn-close-white" onclick="toggleOffcanvas()"></button>
+      <button type="button" class="btn-close btn-close-white" aria-label="Close notifications" onclick="toggleOffcanvas()"></button>
     </div>
     <div class="offcanvas-body" id="notificationList"></div>
   </div>
 
   <!-- Toast Container -->
   <div id="toastContainer" style="position: absolute; top: 20px; right: 20px; z-index: 1050;"></div>
+
+  <!-- Sound Effect -->
+  <audio id="challengeSound" src="./notification_sound.mp3" preload="auto"></audio>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <h2 id="loadingMessage"></h2>
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Modal for Username -->
+  <div class="modal fade" id="usernameModal" tabindex="-1" aria-labelledby="usernameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="usernameModalLabel">Enter Your Username</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="usernameInput" class="form-control" placeholder="Username" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="setUsername()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Avatar Selection -->
+  <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="avatarModalLabel">Choose Your Avatar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="avatar-list">
+            <img src="Avatars/A.jpeg" alt="Avatar 1" class="avatar" onclick="selectAvatar('Avatars/A.jpeg')">
+            <img src="Avatars/B.jpeg" alt="Avatar 2" class="avatar" onclick="selectAvatar('Avatars/B.jpeg')">
+            <img src="Avatars/C.jpeg" alt="Avatar 3" class="avatar" onclick="selectAvatar('Avatars/C.jpeg')">
+            <img src="Avatars/D.jpeg" alt="Avatar 4" class="avatar" onclick="selectAvatar('Avatars/D.jpeg')">
+            <img src="Avatars/E.jpeg" alt="Avatar 1" class="avatar" onclick="selectAvatar('Avatars/E.jpeg')">
+            <img src="Avatars/G.jpeg" alt="Avatar 1" class="avatar" onclick="selectAvatar('Avatars/G.jpeg')">
+            <img src="Avatars/H.jpeg" alt="Avatar 1" class="avatar" onclick="selectAvatar('Avatars/H.jpeg')">
+            <img src="Avatars/I.jpeg" alt="Avatar 1" class="avatar" onclick="selectAvatar('Avatars/I.jpeg')">
+            <img src="Avatars/J.jpeg" alt="Avatar 1" class="avatar" onclick="selectAvatar('Avatars/J.jpeg')">
+            <img src="Avatars/M.jpeg" alt="Avatar 1" class="avatar" onclick="selectAvatar('Avatars/M.jpeg')">
+            <!-- Add more avatars as needed -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="setAvatar()">Confirm Avatar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
     <div class="row w-100 shadow-lg" style="max-width: 800px;">
@@ -131,29 +211,66 @@
     const usernameDisplay = document.getElementById('usernameDisplay');
     const notificationList = document.getElementById('notificationList');
     const notificationCount = document.getElementById('notificationCount');
+    const challengeSound = document.getElementById('challengeSound');
+    const userAvatarImg = document.getElementById('userAvatar');
+    const userNameSpan = document.getElementById('userName');
     let messageCount = 0;
-    var username;
+    let username;
+    let selectedAvatar;
+    const challengers = []; // Array to store peer IDs of challengers
 
     peer.on('open', id => {
       document.getElementById('peerIdDisplay').textContent = `Your Peer ID: ${id}`;
-      username = prompt("Enter your username:") || "Anonymous";
-      usernameDisplay.textContent = `You are: ${username}`;
-      usernameDisplay.style.display = 'block';
-      sendPlayerInfo(id, username);
+      const usernameModal = new bootstrap.Modal(document.getElementById('usernameModal'));
+      usernameModal.show();
     });
+
+    function setUsername() {
+      username = document.getElementById('usernameInput').value || 'Anonymous';
+      usernameDisplay.textContent = username;
+      usernameDisplay.style.display = 'block';
+      document.getElementById('usernameModal').modal('hide'); // Hide modal after setting username
+
+      // Show avatar selection modal
+      const avatarModal = new bootstrap.Modal(document.getElementById('avatarModal'));
+      avatarModal.show();
+    }
+
+    function selectAvatar(avatar) {
+      const avatars = document.querySelectorAll('.avatar');
+      avatars.forEach((img) => img.classList.remove('selected-avatar'));
+      selectedAvatar = avatar;
+      document.querySelector(`img[src="${avatar}"]`).classList.add('selected-avatar');
+    }
+
+    function setAvatar() {
+      if (selectedAvatar) {
+        userAvatarImg.src = selectedAvatar;
+        userNameSpan.textContent = username;
+        document.getElementById('userDisplay').style.display = 'flex'; // Show user display
+        document.getElementById('avatarModal').modal('hide'); // Hide modal after selecting avatar
+        sendPlayerInfo(peer.id, username);
+      } else {
+        alert('Please select an avatar.');
+      }
+    }
 
     function sendPlayerInfo(peerId, username) {
       const serverId = prompt("Enter the server Peer ID:");
       const conn = peer.connect(serverId);
 
       conn.on('open', () => {
-        const playerInfo = { username, peerId };
+        const playerInfo = { username, peerId, avatar: selectedAvatar };
         conn.send(JSON.stringify(playerInfo));
       });
 
       conn.on('data', data => {
         const playerList = JSON.parse(data);
         updatePlayerList(playerList);
+      });
+
+      conn.on('error', err => {
+        alert('Connection error: ' + err);
       });
     }
 
@@ -162,59 +279,97 @@
       if (playerList.length === 0) {
         playerListDiv.textContent = 'No players connected yet.';
       } else {
-          playerList.forEach(player => {
-            if(player.username != username){
-                const playerDiv = document.createElement('div');
-                playerDiv.className = 'player';
-                playerDiv.innerHTML = `
-                <span>${player.username} (Peer ID: ${player.peerId})</span>
-                <button class="challenge-button" onclick="challengeUser('${player.peerId}', '${player.username}')">Challenge</button>
-                `;
+        playerList.forEach(player => {
+          if (player.username !== username) {
+            const playerDiv = document.createElement('div');
+            playerDiv.className = 'player';
+            playerDiv.innerHTML = `
+              <span>${player.username} (Peer ID: ${player.peerId})</span>
+              <img src="${player.avatar}" alt="${player.username}" style="width: 30px; border-radius: 50%;">
+              <button class="challenge-button" aria-label="Challenge ${player.username}" onclick="challengeUser('${player.peerId}', '${player.username}')">Challenge</button>
+            `;
             playerListDiv.appendChild(playerDiv);
-            }
+          }
         });
       }
     }
 
-    function challengeUser(peerId, username) {
-      const challengerName = usernameDisplay.textContent.split(': ')[1];
-      const message = `${challengerName} has challenged you!`;
-      sendChallengeMessage(peerId, message, challengerName);
-      addNotification(challengerName, message);
+    function challengeUser(peerId, challengeeName) {
+      const message = `You have challenged ${challengeeName}`;
+      sendChallengeMessage(peerId, username, peer.id); // Send challenger’s peer ID
+      addNotification(challengeeName, message, "send");
     }
 
-    function sendChallengeMessage(peerId, message, challengerName) {
+    function sendChallengeMessage(peerId, challengerName, challengerPeerId) {
+      const chamessage = `${challengerName} has challenged you`;
       const conn = peer.connect(peerId);
       conn.on('open', () => {
-        conn.send(JSON.stringify({ type: 'challenge', message, challengerName }));
+        conn.send(JSON.stringify({ type: 'challenge', chamessage, challengerName, challengerPeerId })); // Send challenger peer ID
       });
     }
 
-    function addNotification(challengerName, message) {
-      const timestamp = new Date();
+    function addNotification(challengerName, message, type, challengerPeerId = "") {
       const notificationItem = document.createElement('div');
+      const timestamp = new Date().toLocaleTimeString();
       notificationItem.className = 'notification-item';
-      notificationItem.innerHTML = `
-        <span>${challengerName}: ${message}</span>
-        <button class="accept-button" onclick="acceptChallenge('${challengerName}')">Accept</button>
-      `;
+      if (type === "received") {
+        notificationItem.innerHTML = `
+          <span>${message} at ${timestamp}</span>
+          <button class="accept-button" aria-label="Accept challenge from ${challengerName}" onclick="acceptChallenge('${challengerName}', '${challengerPeerId}')">Accept</button>
+        `;
+      } else if (type === "send") {
+        notificationItem.innerHTML = `
+          <span>${message} at ${timestamp}</span>
+        `;
+      }
       notificationList.appendChild(notificationItem);
 
-      // Update Notification Count
       messageCount++;
       notificationCount.textContent = messageCount;
     }
 
-    function acceptChallenge(challengerName) {
-      // Handle the acceptance of the challenge
-      alert(`Challenge accepted from ${challengerName}!`);
-      // Additional logic for accepting the challenge can go here
+    function showChallengeToast(challengerName) {
+      const toastContainer = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      const timestamp = new Date().toLocaleTimeString();
+      toast.className = 'toast align-items-center text-bg-danger border-0';
+      toast.innerHTML = `
+        <div class="d-flex">
+          <div class="toast-body">
+            Challenge received from ${challengerName} at ${timestamp}
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      `;
+      toastContainer.appendChild(toast);
+      const toastInstance = new bootstrap.Toast(toast);
+      toastInstance.show();
+
+      setTimeout(() => {
+        toast.remove();
+      }, 5000);
     }
 
-    function getTimeDiff(timestamp) {
-      const now = new Date().getTime();
-      const diffMinutes = Math.floor((now - timestamp.getTime()) / 60000);
-      return `${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
+    function acceptChallenge(challengerName, challengerPeerId) {
+      showLoadingOverlay(`You have accepted the challenge from ${challengerName}`, `Loading game...`);
+      const message = `${username} has accepted your challenge`;
+      sendChallengeAcceptance(challengerPeerId, message);
+    }
+
+    function showLoadingOverlay(mainMessage, loadingMessage) {
+      const overlay = document.getElementById('loadingOverlay');
+      overlay.style.display = 'flex';
+      document.getElementById('loadingMessage').textContent = mainMessage;
+      setTimeout(() => {
+        overlay.style.display = 'none'; // Hide after loading is done; update as necessary
+      }, 10000); // Example: 10 seconds
+    }
+
+    function sendChallengeAcceptance(challengerPeerId, message) {
+      const conn = peer.connect(challengerPeerId);
+      conn.on('open', () => {
+        conn.send(JSON.stringify({ type: 'acceptance', message, challengerName: username }));
+      });
     }
 
     function toggleOffcanvas() {
@@ -224,9 +379,14 @@
 
     peer.on('connection', conn => {
       conn.on('data', data => {
-        const message = JSON.parse(data)
+        const message = JSON.parse(data);
         if (message.type === 'challenge') {
-          addNotification(message.challengerName, message.message);
+          challengers.push(message.challengerPeerId);
+          addNotification(message.challengerName, message.chamessage, "received", message.challengerPeerId);
+          showChallengeToast(message.challengerName);
+          challengeSound.play();
+        } else if (message.type === 'acceptance') {
+          showLoadingOverlay(`${message.challengerName} has accepted your challenge`, `Loading game...`);
         }
       });
     });

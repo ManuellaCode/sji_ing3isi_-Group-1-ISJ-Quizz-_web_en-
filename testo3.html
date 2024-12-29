@@ -44,7 +44,7 @@
       border-radius: 5px;
       text-align: center;
     }
-    .challenge-button {
+    .challenge-button, .accept-button {
       background-color: #007bff;
       color: white;
       border: none;
@@ -53,7 +53,7 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
-    .challenge-button:hover {
+    .challenge-button:hover, .accept-button:hover {
       background-color: #0056b3;
     }
     .notification-button {
@@ -80,22 +80,36 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #444;
     }
-    .accept-button {
-      background-color: #17a2b8;
+    .notification-item:last-child {
+      border-bottom: none;
+    }
+    /* Loading Overlay Styles */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
       color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 5px 10px;
+      display: none; /* Hidden by default */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1050;
     }
-    .accept-button:hover {
-      background-color: #138496;
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
     }
   </style>
 </head>
 <body>
   <!-- Notification Button with Badge -->
-  <button class="notification-button" onclick="toggleOffcanvas()">
+  <button class="notification-button" aria-label="Open notifications" onclick="toggleOffcanvas()">
     Notifications <span class="badge bg-danger" id="notificationCount">0</span>
   </button>
 
@@ -103,13 +117,24 @@
   <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasNotificationsLabel">Notifications</h5>
-      <button type="button" class="btn-close btn-close-white" onclick="toggleOffcanvas()"></button>
+      <button type="button" class="btn-close btn-close-white" aria-label="Close notifications" onclick="toggleOffcanvas()"></button>
     </div>
     <div class="offcanvas-body" id="notificationList"></div>
   </div>
 
   <!-- Toast Container -->
   <div id="toastContainer" style="position: absolute; top: 20px; right: 20px; z-index: 1050;"></div>
+
+  <!-- Sound Effect -->
+  <audio id="challengeSound" src="./notification_sound.mp3" preload="auto"></audio>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <h2 id="loadingMessage"></h2>
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 
   <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
     <div class="row w-100 shadow-lg" style="max-width: 800px;">
@@ -131,8 +156,10 @@
     const usernameDisplay = document.getElementById('usernameDisplay');
     const notificationList = document.getElementById('notificationList');
     const notificationCount = document.getElementById('notificationCount');
+    const challengeSound = document.getElementById('challengeSound');
     let messageCount = 0;
     let username;
+    const challengers = []; // Array to store peer IDs of challengers
 
     peer.on('open', id => {
       document.getElementById('peerIdDisplay').textContent = `Your Peer ID: ${id}`;
@@ -155,6 +182,10 @@
         const playerList = JSON.parse(data);
         updatePlayerList(playerList);
       });
+
+      conn.on('error', err => {
+        alert('Connection error: ' + err);
+      });
     }
 
     function updatePlayerList(playerList) {
@@ -168,7 +199,7 @@
             playerDiv.className = 'player';
             playerDiv.innerHTML = `
               <span>${player.username} (Peer ID: ${player.peerId})</span>
-              <button class="challenge-button" onclick="challengeUser('${player.peerId}', '${player.username}')">Challenge</button>
+              <button class="challenge-button" aria-label="Challenge ${player.username}" onclick="challengeUser('${player.peerId}', '${player.username}')">Challenge</button>
             `;
             playerListDiv.appendChild(playerDiv);
           }
@@ -176,38 +207,88 @@
       }
     }
 
-    function challengeUser(peerId, username) {
-      const challengerName = usernameDisplay.textContent;
-      const challengeemessage = `${challengerName} has challenged you!`;
-      const challengermessage = `You have challenged ${username}!`;
-      sendChallengeMessage(peerId, challengeemessage, challengerName);
-      addNotification(username, challengermessage);
+    function challengeUser(peerId, challengeeName) {
+      const message = `You have challenged ${challengeeName}`;
+      sendChallengeMessage(peerId, username, peer.id); // Send challenger’s peer ID
+      addNotification(challengeeName, message, "send");
     }
 
-    function sendChallengeMessage(peerId, message, challengerName) {
+    function sendChallengeMessage(peerId, challengerName, challengerPeerId) {
+      const chamessage = `${challengerName} has challenged you`;
       const conn = peer.connect(peerId);
       conn.on('open', () => {
-        conn.send(JSON.stringify({ type: 'challenge', message, challengerName }));
+        conn.send(JSON.stringify({ type: 'challenge', chamessage, challengerName, challengerPeerId })); // Send challenger peer ID
       });
     }
 
-    function addNotification(challengerName, message) {
+    function addNotification(challengerName, message, type, challengerPeerId = "") {
       const notificationItem = document.createElement('div');
+      const timestamp = new Date().toLocaleTimeString();
       notificationItem.className = 'notification-item';
-      notificationItem.innerHTML = `
-        <span>${challengerName}: ${message}</span>
-        <button class="accept-button" onclick="acceptChallenge('${challengerName}')">Accept</button>
-      `;
+      if (type === "received") {
+        notificationItem.innerHTML = `
+          <span>${message} at ${timestamp}</span>
+          <button class="accept-button" aria-label="Accept challenge from ${challengerName}" onclick="acceptChallenge('${challengerName}', '${challengerPeerId}')">Accept</button>
+        `;
+      } else if (type === "send") {
+        notificationItem.innerHTML = `
+          <span>${message} at ${timestamp}</span>
+        `;
+      }
       notificationList.appendChild(notificationItem);
 
-      // Update Notification Count
       messageCount++;
       notificationCount.textContent = messageCount;
     }
 
-    function acceptChallenge(challengerName) {
-      alert(`Challenge accepted from ${challengerName}!`);
-      // Logic for accepting the challenge can be added here
+    function showChallengeToast(challengerName) {
+      const toastContainer = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      const timestamp = new Date().toLocaleTimeString();
+      toast.className = 'toast align-items-center text-bg-danger border-0';
+      toast.innerHTML = `
+        <div class="d-flex">
+          <div class="toast-body">
+            Challenge received from ${challengerName} at ${timestamp}
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      `;
+      toastContainer.appendChild(toast);
+      const toastInstance = new bootstrap.Toast(toast);
+      toastInstance.show();
+
+      setTimeout(() => {
+        toast.remove();
+      }, 5000);
+    }
+
+    function acceptChallenge(challengerName, challengerPeerId) {
+      // Show loading overlay for the user accepting the challenge
+      showLoadingOverlay(`You have accepted the challenge from ${challengerName}`, `Loading game...`);
+
+      // Notify the challenger that their challenge has been accepted
+      const message = `${username} has accepted your challenge`;
+      sendChallengeAcceptance(challengerPeerId, message);
+
+      // Optionally, you can also have logic to transition to the game screen here
+    }
+
+    function showLoadingOverlay(mainMessage, loadingMessage) {
+      const overlay = document.getElementById('loadingOverlay');
+      overlay.style.display = 'flex';
+      document.getElementById('loadingMessage').textContent = mainMessage;
+      // Set a timer for the loading message; here it can be handled as per game loading logic
+      setTimeout(() => {
+        overlay.style.display = 'none'; // Hide after loading is done; update as necessary
+      }, 10000); // Example: 3 seconds
+    }
+
+    function sendChallengeAcceptance(challengerPeerId, message) {
+      const conn = peer.connect(challengerPeerId);
+      conn.on('open', () => {
+        conn.send(JSON.stringify({ type: 'acceptance', message, challengerName: username }));
+      });
     }
 
     function toggleOffcanvas() {
@@ -219,7 +300,13 @@
       conn.on('data', data => {
         const message = JSON.parse(data);
         if (message.type === 'challenge') {
-          addNotification(message.challengerName, message.message);
+          challengers.push(message.challengerPeerId); // Store the challenger's peer ID
+          addNotification(message.challengerName, message.chamessage, "received", message.challengerPeerId   );
+          showChallengeToast(message.challengerName);
+          challengeSound.play();
+        } else if (message.type === 'acceptance') {
+          // Display message to the challenger
+          showLoadingOverlay(`${message.challengerName} has accepted your challenge`, `Loading game...`);
         }
       });
     });
