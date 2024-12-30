@@ -15,6 +15,7 @@
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: relative; /* Add position relative for absolute positioning of usernameDisplay */
     }
     h2, h4 {
       text-align: center;
@@ -43,6 +44,13 @@
       padding: 10px;
       border-radius: 5px;
       text-align: center;
+    }
+    #usernameDisplay {
+      position: absolute; /* Position it absolutely within the container */
+      top: 20px;
+      left: 20px;
+      font-size: 1.5rem; /* Larger font size */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Text shadow */
     }
     .challenge-button, .accept-button {
       background-color: #007bff;
@@ -139,9 +147,9 @@
   <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
     <div class="row w-100 shadow-lg" style="max-width: 800px;">
       <div class="col-12 bg-dark p-5">
+        <div id="usernameDisplay" style="display: none;"></div> <!-- Moved to the top left -->
         <h2 class="mb-4">Player</h2>
         <div id="peerIdDisplay" class="mb-3">Generating Peer ID...</div>
-        <div id="usernameDisplay" style="display: none;"></div>
         <h4>Available Players</h4>
         <div id="playerList">No players connected yet.</div>
       </div>
@@ -159,28 +167,34 @@
     const challengeSound = document.getElementById('challengeSound');
     let messageCount = 0;
     let username;
+    let level;
+    let serverId;
     const challengers = []; // Array to store peer IDs of challengers
 
     peer.on('open', id => {
       document.getElementById('peerIdDisplay').textContent = `Your Peer ID: ${id}`;
       username = prompt("Enter your username:") || "Anonymous";
-      usernameDisplay.textContent = username;
+      level = prompt("Enter your level:") || "1"; // New prompt for level
+      usernameDisplay.textContent = `${username} (Level: ${level})`; // Display username and level
       usernameDisplay.style.display = 'block';
-      sendPlayerInfo(id, username);
+      sendPlayerInfo(id, username, level); // Pass level to the function
     });
 
-    function sendPlayerInfo(peerId, username) {
-      const serverId = prompt("Enter the server Peer ID:");
+    function sendPlayerInfo(peerId, username, level) {
+      serverId = prompt("Enter the server Peer ID:");
       const conn = peer.connect(serverId);
 
+      console.log("okay")
       conn.on('open', () => {
-        const playerInfo = { username, peerId };
+        const playerInfo = { username, peerId, level };
         conn.send(JSON.stringify(playerInfo));
+        console.log("Info sent")
       });
 
       conn.on('data', data => {
         const playerList = JSON.parse(data);
         updatePlayerList(playerList);
+        console.log("Players list received")
       });
 
       conn.on('error', err => {
@@ -194,11 +208,11 @@
         playerListDiv.textContent = 'No players connected yet.';
       } else {
         playerList.forEach(player => {
-          if (player.username !== username) {
+          if (player.username !== username && player.level === level) {
             const playerDiv = document.createElement('div');
             playerDiv.className = 'player';
             playerDiv.innerHTML = `
-              <span>${player.username} (Peer ID: ${player.peerId})</span>
+              <span>${player.username} (Level: ${player.level}, Peer ID: ${player.peerId})</span>
               <button class="challenge-button" aria-label="Challenge ${player.username}" onclick="challengeUser('${player.peerId}', '${player.username}')">Challenge</button>
             `;
             playerListDiv.appendChild(playerDiv);
@@ -265,29 +279,41 @@
 
     function acceptChallenge(challengerName, challengerPeerId) {
       // Show loading overlay for the user accepting the challenge
-      showLoadingOverlay(`You have accepted the challenge from ${challengerName}`, `Loading game...`);
+      showLoadingOverlay(`You have accepted the challenge from ${challengerName}. Loading game...`);
 
+      // Generate game code to help them connect later to actually play the game
+      const game_code = `Game-${challengerName}-${username}`;
+      // This object stores all the information needed during the actual game play
+      const gameInfo = {
+        challengerName: username,
+        serverId: serverId,
+        level: level,
+        game_code: game_code
+      };
       // Notify the challenger that their challenge has been accepted
       const message = `${username} has accepted your challenge`;
-      sendChallengeAcceptance(challengerPeerId, message);
+      sendChallengeAcceptance(challengerPeerId, message, game_code);
 
-      // Optionally, you can also have logic to transition to the game screen here
+      console.log(game_code);
+      // Store the game info to be used later in the local storage
+      localStorage.setItem('game-party', JSON.stringify(gameInfo));
     }
 
-    function showLoadingOverlay(mainMessage, loadingMessage) {
+    function showLoadingOverlay(mainMessage) {
       const overlay = document.getElementById('loadingOverlay');
       overlay.style.display = 'flex';
       document.getElementById('loadingMessage').textContent = mainMessage;
       // Set a timer for the loading message; here it can be handled as per game loading logic
       setTimeout(() => {
         overlay.style.display = 'none'; // Hide after loading is done; update as necessary
-      }, 10000); // Example: 3 seconds
+        window.location.href = 'game.html'; // Redirect to game.html
+      }, 10000); // Example: 10 seconds
     }
 
-    function sendChallengeAcceptance(challengerPeerId, message) {
+    function sendChallengeAcceptance(challengerPeerId, message, game_code) {
       const conn = peer.connect(challengerPeerId);
       conn.on('open', () => {
-        conn.send(JSON.stringify({ type: 'acceptance', message, challengerName: username }));
+        conn.send(JSON.stringify({ type: 'acceptance', message, challengerName: username, game_code }));
       });
     }
 
@@ -301,12 +327,22 @@
         const message = JSON.parse(data);
         if (message.type === 'challenge') {
           challengers.push(message.challengerPeerId); // Store the challenger's peer ID
-          addNotification(message.challengerName, message.chamessage, "received", message.challengerPeerId   );
+          addNotification(message.challengerName, message.chamessage, "received", message.challengerPeerId);
           showChallengeToast(message.challengerName);
           challengeSound.play();
         } else if (message.type === 'acceptance') {
+          // Info to be used during game play
+          const gameInfo = {
+            challengerName: username,
+            serverId: serverId,
+            level: level,
+            game_code: message.game_code
+          };
+          console.log(message.game_code);
+          // Store the game info to be used later in the local storage
+          localStorage.setItem('game-party', JSON.stringify(gameInfo));
           // Display message to the challenger
-          showLoadingOverlay(`${message.challengerName} has accepted your challenge`, `Loading game...`);
+          showLoadingOverlay(`${message.challengerName} has accepted your challenge. Loading game...`);
         }
       });
     });

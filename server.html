@@ -68,15 +68,18 @@
     peer.on('connection', conn => {
       conn.on('data', data => {
         const playerInfo = JSON.parse(data);
-        peers[playerInfo.peerId] = playerInfo.username;
+        peers[playerInfo.peerId] = { username: playerInfo.username, level: playerInfo.level }; // Store level
         updateConnectedPeers();
 
-        const playerList = Object.keys(peers).map(peerId => ({ peerId, username: peers[peerId] }));
+        // Send updated player list to all connected peers
+        const playerList = Object.keys(peers).map(peerId => ({
+          peerId,
+          username: peers[peerId].username,
+          level: peers[peerId].level // Include level
+        }));
         Object.keys(peer.connections).forEach(peerId => {
           peer.connections[peerId].forEach(c => c.send(JSON.stringify(playerList)));
         });
-
-
       });
 
       conn.on('close', () => {
@@ -93,7 +96,7 @@
         Object.keys(peers).forEach(peerId => {
           const peerDiv = document.createElement('div');
           peerDiv.className = 'peer';
-          peerDiv.textContent = `User: ${peers[peerId]} (Peer ID: ${peerId})`;
+          peerDiv.textContent = `User: ${peers[peerId].username} (Level: ${peers[peerId].level}, Peer ID: ${peerId})`;
           connectedPeersDiv.appendChild(peerDiv);
         });
       }
