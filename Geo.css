@@ -1,0 +1,273 @@
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #1b3e74;
+  color: #ffffff;
+}
+
+/* Quiz Container Styling */
+.quiz-container {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 600px;
+  background: #36609c;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(50, 118, 183, 0.5);
+  text-align: center;
+}
+
+
+/* Question Number Styling */
+.question-number {
+  font-size: 1.2rem;
+  color: #58a6ff;
+  margin-bottom: 10px;
+}
+
+/* Question Text Styling */
+.question {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Options Grid */
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* Option Button Styling */
+.option {
+  padding: 10px;
+  border: 2px solid #58a6ff;
+  border-radius: 10px;
+  background: #1b2f4d;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+}
+
+.option:hover {
+  background: #58a6ff;
+  color: #1b2e4a;
+}
+
+/* Timer Styling */
+.timer {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #f85149;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #0f0d0d;
+}
+
+#categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.category-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category-button:hover {
+  background-color: #0056b3;
+}
+
+#question {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #eadbdb;
+}
+
+#options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Popup overlay styles */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  width: 80%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.popup-box p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.popup-box button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup-box button:hover {
+  background-color: #0056b3;
+}
+
+.message-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f9f9f9;
+  color: #060505;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 1000;
+}
+
+.message-modal h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.message-modal p {
+  font-size: 1.2rem;
+}
+
+.quiz-container {
+  position: relative;
+}
+#timer {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ff6347; /* Timer text color */
+}
+
+#score {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #32cd32; /* Score text color */
+  margin-top: 5px;
+}
+
+:root {
+  --primary-bg: #1b3e74;
+  --secondary-bg: #36609c;
+  --text-color: #ffffff;
+  --highlight: #58a6ff;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.fade-out {
+  animation: fadeOut 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.button-hover {
+  transition: transform 0.2s ease-in-out;
+}
+
+.button-hover:hover {
+  transform: scale(1.1);
+}
+
+/* Timer Progress */
+.timer-bar {
+  width: 100%;
+  height: 5px;
+  background-color: #ccc;
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.timer-bar-progress {
+  width: 100%;
+  height: 100%;
+  background-color: #f85149;
+  animation: timerProgress linear forwards;
+}
+
+@keyframes timerProgress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+
+
+
+

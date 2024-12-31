@@ -1,0 +1,35 @@
+{
+  "categories": [
+    {
+      "category": "Geography",
+      "levels": [
+        {
+          "level": 1,
+          "questions": [
+            {
+              "question": "What is the capital of France?",
+              "options": ["Berlin", "Madrid", "Paris", "Rome"],
+              "answer": "Paris"
+            },
+            {
+              "question": "Which country is known as the Land of the Rising Sun?",
+              "options": ["Japan", "China", "India", "Thailand"],
+              "answer": "Japan"
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "questions": [
+            {
+              "question": "What is the largest country by land area?",
+              "options": ["USA", "Russia", "Canada", "China"],
+              "answer": "Russia"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

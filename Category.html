@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Category</title>
+  <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./Home.css">
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <!-- Greeting Section -->
+        <div class="player-info">
+            <div class="greeting">Hello, <span id="player-name">Player</span>!</div>
+            <div class="username">Username: <span id="player-username">Unknown</span></div>
+            <div class="difficulty-level">Difficulty Level: <span id="difficulty-level">Normal</span></div>
+          </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="#" onclick="selectCategory('Football')">"Football"</a></li>
+                <li><a class="dropdown-item" href="#" onclick="selectCategory('Culture')">Culture</a></li>
+                <li><a class="dropdown-item" href="#" onclick="selectCategory('Music')">Music</a></li>
+                <li><a class="dropdown-item" href="#" onclick="selectCategory('Economics')">Economics</a></li>
+                <li><a class="dropdown-item" href="#" onclick="selectCategory('Geo')">Geography</a></li>
+                <li><a class="dropdown-item" href="#" onclick="selectCategory('ComputerScience')">Computer Science</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content" style="padding-top: 150px;">
+    <h1 class="text-center">Select Your Quiz Category</h1>
+    <div class="row row-cols-1 row-cols-md-6 g-4">
+      <div class="col">
+        <div class="card">
+          <img src="./images/football1.JPG" class="card-img-top" alt="Football">
+          <div class="card-body">
+            <h5 class="card-title">Football</h5>
+            <button class="btn btn-primary" onclick="selectCategory('Football')">Start Quiz</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="./images/culture.JPG" class="card-img-top" alt="Culture">
+          <div class="card-body">
+            <h5 class="card-title">Culture</h5>
+            <button class="btn btn-primary" onclick="selectCategory('Culture')">Start Quiz</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="./images/black-model-posing-with-headphones.jpg" class="card-img-top" alt="Music">
+          <div class="card-body">
+            <h5 class="card-title">Music</h5>
+            <button class="btn btn-primary" onclick="selectCategory('Music')">Start Quiz</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="./images/forex-stock-crisis-venture.jpg" class="card-img-top" alt="Economics">
+          <div class="card-body">
+            <h5 class="card-title">Economics</h5>
+            <button class="btn btn-primary" onclick="selectCategory('Economics')">Start Quiz</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="./images/binoculars-magnifying-glass-map.jpg" class="card-img-top" alt="Geography">
+          <div class="card-body">
+            <h5 class="card-title">Geography</h5>
+            <button class="btn btn-primary" onclick="selectCategory('Geography')">Start Quiz</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="./images/international-day-education-futuristic-style.jpg" class="card-img-top" alt="Computer Science">
+          <div class="card-body">
+            <h5 class="card-title">Computer Science</h5>
+            <button class="btn btn-primary" onclick="selectCategory('ComputerScience')">Start Quiz</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+     // Dynamic Player Information
+     const username = localStorage.getItem("username") || "Player";
+    const difficulty = localStorage.getItem("difficultyLevel") || "Normal";
+
+    document.getElementById("player-name").textContent = username;
+    document.getElementById("player-username").textContent = username;
+    document.getElementById("difficulty-level").textContent = difficulty;
+    function selectCategory(category) {
+    try {
+      // Save selected category to localStorage
+      localStorage.setItem("selectedCategory", category);
+
+      // Redirect to the appropriate page based on the category
+      switch (category) {
+        case "Football":
+          window.location.href = "Football.html";
+          break;
+        case "Culture":
+          window.location.href = "culture.html";
+          break;
+        case "Music":
+          window.location.href = "music.html";
+          break;
+        case "Economics":
+          window.location.href = "economics.html";
+          break;
+        case "Geography":
+          window.location.href = "Geo.html";
+          break;
+        case "ComputerScience":
+          window.location.href = "computer_science.html";
+          break;
+        default:
+          alert("Category not found!");
+      }
+    } catch (error) {
+      alert("An error occurred. Please try again.");
+    }
+  }
+  </script>
+ <script src="Home.js"></script>
+ <script src="./bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
+</body>
+</html>

@@ -3,20 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <!-- <link rel="stylesheet" href="./index.css"> -->
+  <title>Home</title>
   <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
-  <!-- <link rel="stylesheet" href="./Home.css"> -->
+  <link rel="stylesheet" href="./Home.css">
 </head>
 <body>
   <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <!-- Greeting Section --> <!-- Header Section (Player Info) -->
         <div class="player-info">
-          <div class="greeting">Hello, Player!</div> <!-- Dynamic greeting based on time -->
-          <div class="username">Username: JohnDoe</div> <!-- Dynamically insert username -->
-          <div class="difficulty-level">Difficulty Level: Hard</div> <!-- Dynamically insert difficulty level -->
+          <div class="greeting">Hello, Player!</div>
+          <div class="username">Username: JohnDoe</div>
         </div>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
@@ -30,95 +27,64 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="./Home.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="./Category.html">Start Quiz</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#">Football</a></li>
-                <li><a class="dropdown-item" href="#">Culture</a></li>
-                <li><a class="dropdown-item" href="#">Music</a></li>
-                <li><a class="dropdown-item" href="#">Economics</a></li>
-                <li><a class="dropdown-item" href="#">Geography</a></li>
-                <li><a class="dropdown-item" href="#">Computer science</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Contact us</a></li>
-              </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Leaderboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Settings</a>
             </li>
           </ul>
-          <form class="d-flex mt-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
-          </form>
         </div>
       </div>
     </div>
   </nav>
- <div class="content" style="padding-top: 150px;">
-  <div class="row row-cols-1 row-cols-md-6 g-4">
-    <div class="col">
-      <div class="card" h-150>
-        <img src="./images/football1.JPG" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-      </div>
+
+  <header class="hero-section text-center text-white" style="background-color: #333; padding: 100px 0;">
+    <!-- <div class="container"> -->
+    <div class="home-container">
+      <h1>Welcome to the Quiz Platform!</h1>
+      <p>Test your knowledge in various categories and earn points!</p>
+      <a href="./Category.html" class="btn btn-primary btn-lg">Start Quiz</a>
     </div>
-    <div class="col">
-      <div class="card">
-        <img src="./images/culture.JPG" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
+  </header>
+
+  <div class="container my-5">
+    <h2 class="text-center">How It Works</h2>
+    <div class="row text-center my-4">
+      <div class="col-md-4">
+        <img src="./images/choose-category.jpg" alt="Choose Category" class="img-fluid" style="max-height: 150px;">
+        <h5>Choose a Category</h5>
+        <p>Select from a wide range of topics.</p>
       </div>
-    </div>
-    <div class="col">
-      <div class="card" h-150>
-        <img src="./images/black-model-posing-with-headphones.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-        </div>
+      <div class="col-md-4">
+        <img src="./images/answer-questions.jpg" alt="Answer Questions" class="img-fluid" style="max-height: 150px;">
+        <h5>Answer Questions</h5>
+        <p>Test your knowledge with exciting questions.</p>
       </div>
-    </div>
-    <div class="col">
-      <div class="card" h-150>
-        <img src="./images/forex-stock-crisis-venture.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <a href="#" class="btn btn-primary"><p class="card-text">Economics</p></a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card" h-150>
-        <img src="./images/binoculars-magnifying-glass-map.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <a href="#" class="btn btn-primary">Geography</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card" h-150>
-        <img src="./images/international-day-education-futuristic-style.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Computer science</h5>
-          <a href="#" class="btn btn-primary">Computer science</a>
-        </div>
+      <div class="col-md-4">
+        <img src="./images/earn-rewards.jpg" alt="Earn Rewards" class="img-fluid" style="max-height: 150px;">
+        <h5>Earn Rewards</h5>
+        <p>Gain points and climb the leaderboard!</p>
       </div>
     </div>
   </div>
- </div>
+
+  <footer class="text-center text-white py-4" style="background-color: #333;">
+    <p>&copy; 2024 Quiz Platform. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="./Home.html" class="text-white mx-2">Home</a>
+      <a href="./Category.html" class="text-white mx-2">Start Quiz</a>
+      <a href="#" class="text-white mx-2">Leaderboard</a>
+      <a href="#" class="text-white mx-2">Settings</a>
+      <a href="#" class="text-white mx-2">Contact us</a>
+    </div>
+  </footer>
 
   <script src="./bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
-  <!-- <script src="./index.js"></script> -->
 </body>
 </html>

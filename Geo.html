@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./Geo.css">
+</head>
+<body>
+  <div class="quiz-container">
+    <!-- Header Section -->
+    <nav class="navbar bg-dark text-white">
+      <div class="container-fluid justify-content-between">
+        <div class="player-info">
+          <!-- <h5 id="username">Player: Guest</h5>
+          <h5 id="difficulty">Difficulty: Normal</h5> -->
+          <p id="greeting"></p>
+          <p id="username"></p>
+          <p id="difficulty"></p>
+        </div>
+        <h5 id="score" class="score-display">Score: 0</h5>
+      </div>
+    </nav>
+
+    <!-- Quiz Section -->
+    <div class="quiz-box mt-5">
+      <h2 id="category-title" class="category-title text-center" aria-live="polite">Category: Geography</h2>
+      <div id="question-section" class="question-section">
+        <h3 id="question" class="question text-center">Loading question...</h3>
+        <div id="options" class="options d-flex flex-column align-items-center" role="list" aria-live="assertive">
+          <!-- Options will be dynamically generated here -->
+        </div>
+        <div id="timer" aria-live="polite">Time left: 10 seconds</div>
+      </div>
+      <button id="next-btn" class="btn btn-primary mt-3 d-none" onclick="nextQuestion()">Next</button>
+    </div>
+  </div>
+
+  <script src="./Geo.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+/* Body Styling */
+body {
+  background-color: #262121; /* Dark background for contrast */
+  font-family: 'Arial', sans-serif; /* Clean, modern font */
+  margin: 0;
+  padding: 0;
+  color: #ffffff; /* Default text color for contrast */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Points Card (Home Page) */
+.points-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff; /* Light background for readability */
+  border-radius: 15px; /* Smooth rounded corners */
+  padding: 15px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+  max-width: 350px; /* Wider for better content fit */
+  margin: 20px auto; /* Center horizontally and add spacing */
+  border: 1px solid #e0e0e0; /* Subtle border for elegance */
+  color: #343a40; /* Darker text */
+}
+
+/* Sections within Points Card */
+.points-section, .rewards-section {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
+  flex: 1; /* Equal width for both sections */
+}
+
+/* Icons */
+.icon {
+  width: 40px; /* Larger icons for better visibility */
+  height: 40px;
+  border-radius: 50%; /* Circular icons */
+  background-color: #ececec; /* Light gray placeholder */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px; /* Icon size */
+  color: #6c757d; /* Subtle gray */
+}
+
+/* Text Styling for Points Card */
+.text p {
+  margin: 0;
+  font-size: 14px; /* Subtle label text */
+  color: #6c757d; /* Secondary gray text */
+}
+
+.text h4 {
+  margin: 0;
+  font-size: 18px; /* Larger value text */
+  color: #343a40; /* Darker text for emphasis */
+  font-weight: bold;
+}
+
+/* Highlight for Titles */
+h5 {
+  text-decoration: underline;
+  text-decoration-color: aquamarine;
+  color: aquamarine; /* Bright and noticeable */
+  font-size: 1.2rem; /* Larger title */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Category Page Styling */
+.category-container {
+  max-width: 600px;
+  margin: 20px auto; /* Center the container */
+  background-color: #343a40; /* Slightly lighter than the body background */
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Depth effect */
+  text-align: center;
+}
+
+.category-container h1 {
+  font-size: 1.8rem;
+  color: aquamarine; /* Bright and engaging title color */
+  margin-bottom: 20px;
+}
+
+.category-button {
+  display: inline-block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 15px;
+  background-color: #ffffff; /* White for contrast */
+  color: #343a40; /* Dark text for readability */
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Depth effect */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.category-button:hover {
+  background-color: aquamarine; /* Engaging hover effect */
+  color: #ffffff; /* White text for contrast */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .points-card, .category-container {
+    padding: 15px;
+    max-width: 90%; /* Use most of the screen width */
+  }
+
+  .points-card {
+    flex-direction: column; /* Stack sections vertically */
+    text-align: center; /* Center-align text */
+  }
+
+  .points-section, .rewards-section {
+    justify-content: center; /* Center content on small screens */
+    margin-bottom: 10px; /* Add spacing between stacked sections */
+  }
+
+  .category-button {
+    font-size: 1rem; /* Adjust button size for smaller screens */
+  }
+}
+
+/* General Text Styling for Home Page */
+.home-container {
+  color: #000; /* Set text color to black */
+}
+
+/* Adjust heading and paragraph colors */
+.home-container h1, .home-container h2, .home-container p {
+  color: #000 !important; /* Ensure headings and paragraphs use black */
+}
+
+/* Adjust link colors */
+.home-container a {
+  color: #007bff; /* A contrasting blue for links */
+}
+
+.home-container a:hover {
+  color: #0056b3; /* Darker blue for hover state */
+}
+
+/* Button text color */
+.home-container .btn {
+  color: #fff; /* Ensure button text is always white */
+}
+
