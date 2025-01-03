@@ -1,0 +1,31 @@
+{
+    "Mogou": {
+        "Football": [
+            {
+                "question": "What is the maximum number of players allowed on a football team?",
+                "options": ["11", "12", "13", "14"],
+                "answer": "11"
+            },
+            {
+                "question": "Which country won the FIFA World Cup in 2018?",
+                "options": ["Germany", "Brazil", "France", "Argentina"],
+                "answer": "France"
+            },
+            {
+                "question": "What is the length of a football field?",
+                "options": ["100 meters", "110 meters", "120 meters", "90 meters"],
+                "answer": "100 meters"
+            },
+            {
+                "question": "Who is known as the 'King of Football'?",
+                "options": ["Pele", "Maradona", "Messi", "Ronaldo"],
+                "answer": "Pele"
+            },
+            {
+                "question": "Which team has the most Premier League titles?",
+                "options": ["Liverpool", "Manchester United", "Chelsea", "Arsenal"],
+                "answer": "Manchester United"
+            }
+        ]
+    }
+}

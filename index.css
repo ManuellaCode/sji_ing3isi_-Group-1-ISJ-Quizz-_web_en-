@@ -1,0 +1,105 @@
+header{
+    background-color: blueviolet;
+    text-align: center;
+    background-size: cover;
+    color: white;
+    border-radius: 30px 30px 30px 30px;
+    height: 100px;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    /* display: flex; */
+    height: 100vh;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #1c1c2e;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    color: rgb(25, 15, 15);
+    max-width: 900px;
+    height: 600px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: #3a3a5c;
+    color: white;
+    font-size: 16px;
+}
+
+.checkbox {
+    margin: 10px 0;
+}
+
+.checkbox label {
+    font-size: 14px;
+}
+.form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tabs button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tabs .active {
+    background-color: #1f251f;
+    color: white;
+    border-radius: 5px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+label, input, button {
+    margin: 10px auto;
+    width: 80%;
+}
+
+button {
+    background-color: #931560;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+
