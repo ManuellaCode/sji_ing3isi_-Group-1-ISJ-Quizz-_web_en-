@@ -31,60 +31,98 @@
       background-color: #0056b3; /* Darker shade on hover */
       transform: scale(1.1); /* Scale up button on hover */
     }
+
+    body {
+      background-color: #1c1c2e; /* Match the background color */
+      color: white;
+      font-family: 'Roboto', sans-serif; /* Changed font style */
+    }
+    header {
+      background-color: #2a2a3e; /* Darker header background */
+      padding: 20px;
+      display: flex; /* Use flexbox for horizontal alignment */
+      align-items: center; /* Center items vertically */
+      border-bottom: 5px solid #ffc107; /* Yellow border */
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+    .logo {
+      width: 150px; /* Increased width of the logo */
+      height: auto; /* Maintain aspect ratio */
+      margin-right: 40px; /* Increased space between logo and profile section */
+      transition: transform 0.3s ease; /* Smooth transition for hover effect */
+    }
+    .logo:hover {
+      transform: scale(1.1) rotate(5deg); /* Scale and rotate on hover */
+    }
+    .profile-container {
+      display: flex;
+      align-items: center;
+    }
+    .profile-picture {
+      border-radius: 50%;
+      width: 100px; /* Profile picture size */
+      height: 100px; /* Profile picture size */
+      border: 3px solid #ffc107; /* Yellow border around profile picture */
+      margin-right: 20px; /* Space between image and text */
+    }
+    .user-info {
+      display: flex; /* Use flexbox for horizontal layout */
+      align-items: flex-start; /* Align items to the start */
+      text-align: left;
+    }
+    .user-info .username {
+      margin-right: 30px; /* Space between username and level/category */
+      margin-top: 22px; /* Adjusted margin to center with profile picture */
+    }
+    .user-info .level-category {
+      display: flex;
+      flex-direction: column; /* Stack level and category vertically */
+    }
+    .user-info .level-category p {
+      margin-bottom: 15px; /* Increased space between level and category */
+    }
+    .user-info div {
+      transition: transform 0.3s, color 0.3s; /* Transition for smooth animation */
+    }
+    .user-info div:hover {
+      transform: scale(1.05); /* Scale up slightly on hover */
+      color: #ffc107; /* Change color on hover */
+    }
+    .user-info h4 {
+      font-size: 24px; /* Increased font size */
+      margin: 0; /* Remove default margin */
+    }
+    .user-info p {
+      font-size: 18px; /* Increased font size */
+      margin: 0; /* Remove default margin */
+    }
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 40px; /* Increased font size */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <div class="player-info">
-          <div class="greeting">Hello, Player!</div>
-          <div class="username">Username: JohnDoe</div>
-          <div class="difficulty-level">Difficulty Level: Hard</div>
+  <header>
+    <img src="./logo.png" alt="Logo" class="logo"> <!-- Replace with your logo path -->
+
+    <div class="profile-container">
+      <img src="./Avatars/M.jpeg" alt="Profile Picture" class="profile-picture"> <!-- Replace with user's profile picture path -->
+      <div class="user-info">
+        <div class="username">
+          <h4 id="user">Username: N/A</h4>
         </div>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#">Football</a></li>
-                <li><a class="dropdown-item" href="#">Culture</a></li>
-                <li><a class="dropdown-item" href="#">Music</a></li>
-                <li><a class="dropdown-item" href="#">Economics</a></li>
-                <li><a class="dropdown-item" href="#">Geography</a></li>
-                <li><a class="dropdown-item" href="#">Computer science</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Contact us</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form class="d-flex mt-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
-          </form>
+        <div class="level-category">
+          <p id="user-level">Level: N/A</p>
+          <p id="user-category">Category: N/A</p>
         </div>
       </div>
     </div>
-  </nav>
+  </header>
 
   <div class="content" style="padding-top: 150px;">
     <div class="row row-cols-1 row-cols-md-3 g-4">

@@ -27,9 +27,6 @@
       margin-right: 40px; /* Increased space between logo and profile section */
       transition: transform 0.3s ease; /* Smooth transition for hover effect */
     }
-    .logo:hover {
-      transform: scale(1.1) rotate(5deg); /* Scale and rotate on hover */
-    }
     .profile-container {
       display: flex;
       align-items: center;
@@ -40,37 +37,6 @@
       height: 100px; /* Profile picture size */
       border: 3px solid #ffc107; /* Yellow border around profile picture */
       margin-right: 20px; /* Space between image and text */
-    }
-    .user-info {
-      display: flex; /* Use flexbox for horizontal layout */
-      align-items: flex-start; /* Align items to the start */
-      text-align: left;
-    }
-    .user-info .username {
-      margin-right: 30px; /* Space between username and level/category */
-      margin-top: 22px; /* Adjusted margin to center with profile picture */
-    }
-    .user-info .level-category {
-      display: flex;
-      flex-direction: column; /* Stack level and category vertically */
-    }
-    .user-info .level-category p {
-      margin-bottom: 15px; /* Increased space between level and category */
-    }
-    .user-info div {
-      transition: transform 0.3s, color 0.3s; /* Transition for smooth animation */
-    }
-    .user-info div:hover {
-      transform: scale(1.05); /* Scale up slightly on hover */
-      color: #ffc107; /* Change color on hover */
-    }
-    .user-info h4 {
-      font-size: 24px; /* Increased font size */
-      margin: 0; /* Remove default margin */
-    }
-    .user-info p {
-      font-size: 18px; /* Increased font size */
-      margin: 0; /* Remove default margin */
     }
     h2 {
       text-align: center;
@@ -83,7 +49,6 @@
 <body>
   <header>
     <img src="./logo.png" alt="Logo" class="logo"> <!-- Replace with your logo path -->
-
     <div class="profile-container">
       <img src="./Avatars/M.jpeg" alt="Profile Picture" class="profile-picture"> <!-- Replace with user's profile picture path -->
       <div class="user-info">
@@ -103,10 +68,11 @@
     <p>Enjoy your gaming experience!</p>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js"></script>
   <script>
     // Fetch the gameInfo object from local storage
     const gameInfo = JSON.parse(localStorage.getItem("game-party"));
-    console.log(gameInfo)
+    console.log(gameInfo);
 
     // Check if gameInfo exists and populate the header
     if (gameInfo) {
@@ -116,6 +82,49 @@
     } else {
       console.log("No gameInfo found in local storage.");
     }
+
+    const peer = new Peer();
+    peer.on('open', id => {
+      const username = gameInfo.username || "Anonymous";
+      const level = gameInfo.level || "1"; // Default level
+      const gameCode = gameInfo.game_code || "N/A"; // Assuming category is used as game code
+
+      // Create the object to send to the server
+      const playerInfo = {
+        username: username,
+        peerId: id,
+        gameCode: gameCode,
+        type: 'game' // Set the type to game
+      };
+
+      // Connect to the server
+      const conn = peer.connect(gameInfo.serverId);
+      //send the list game data
+      if(gameInfo.me == "receiver"){
+        conn.on('open', () => {
+          conn.send(JSON.stringify(playerInfo)); // Send player info to the server
+        });
+      }
+      else if(gameInfo.me == "challenger"){
+        //ask for list of games
+        conn.on('open', () => {
+          conn.send(JSON.stringify({type: "send-me-game-data"})); // Send player info to the server
+          console.log("send me the games data")
+        });
+        //receive the list of games
+        conn.on('data', data =>{
+          const rec_games = JSON.parse(data)
+          console.log("received games")
+          console.log(rec_games)
+        })
+      }
+
+
+    });
+
+    peer.on('error', err => {
+      console.error(err);
+    });
   </script>
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>

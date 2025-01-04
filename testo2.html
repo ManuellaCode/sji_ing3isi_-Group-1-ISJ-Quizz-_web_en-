@@ -3,345 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Player</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <title>Game Info Display</title>
+  <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Fonts -->
   <style>
     body {
-      background-color: #1c1c2e;
+      background-color: #1c1c2e; /* Match the background color */
       color: white;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Roboto', sans-serif; /* Changed font style */
     }
-    .container {
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    h2, h4 {
-      text-align: center;
+    header {
+      background-color: #2a2a3e; /* Darker header background */
+      padding: 20px;
+      display: flex; /* Use flexbox for horizontal alignment */
+      align-items: center; /* Center items vertically */
+      border-bottom: 5px solid #ffc107; /* Yellow border */
       margin-bottom: 20px;
-    }
-    #playerList {
-      max-height: 400px;
-      overflow-y: auto;
-      background-color: #2a2a3e;
       border-radius: 10px;
-      padding: 15px;
     }
-    .player {
-      padding: 10px;
-      border-bottom: 1px solid #444;
+    .logo {
+      width: 150px; /* Increased width of the logo */
+      height: auto; /* Maintain aspect ratio */
+      margin-right: 40px; /* Increased space between logo and profile section */
+      transition: transform 0.3s ease; /* Smooth transition for hover effect */
+    }
+    .profile-container {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      transition: background-color 0.3s;
     }
-    .player:hover {
-      background-color: #3a3a5c;
+    .profile-picture {
+      border-radius: 50%;
+      width: 100px; /* Profile picture size */
+      height: 100px; /* Profile picture size */
+      border: 3px solid #ffc107; /* Yellow border around profile picture */
+      margin-right: 20px; /* Space between image and text */
     }
-    #peerIdDisplay {
-      background-color: #3a3a5c;
-      padding: 10px;
-      border-radius: 5px;
+    h2 {
       text-align: center;
-    }
-    .challenge-button, .accept-button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 5px 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .challenge-button:hover, .accept-button:hover {
-      background-color: #0056b3;
-    }
-    .notification-button {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .notification-button:hover {
-      background-color: #218838;
-    }
-    .offcanvas-body {
-      background-color: #2a2a3e;
-      border-radius: 10px;
-    }
-    .notification-item {
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid #444;
-    }
-    .notification-item:last-child {
-      border-bottom: none;
-    }
-    /* Loading Overlay Styles */
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      display: none; /* Hidden by default */
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 1050;
-    }
-    .spinner-border {
-      width: 3rem;
-      height: 3rem;
+      margin-top: 20px;
+      font-size: 40px; /* Increased font size */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
   </style>
 </head>
 <body>
-  <!-- Notification Button with Badge -->
-  <button class="notification-button" aria-label="Open notifications" onclick="toggleOffcanvas()">
-    Notifications <span class="badge bg-danger" id="notificationCount">0</span>
-  </button>
-
-  <!-- Offcanvas for Notifications -->
-  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasNotificationsLabel">Notifications</h5>
-      <button type="button" class="btn-close btn-close-white" aria-label="Close notifications" onclick="toggleOffcanvas()"></button>
-    </div>
-    <div class="offcanvas-body" id="notificationList"></div>
-  </div>
-
-  <!-- Toast Container -->
-  <div id="toastContainer" style="position: absolute; top: 20px; right: 20px; z-index: 1050;"></div>
-
-  <!-- Sound Effect -->
-  <audio id="challengeSound" src="./notification_sound.mp3" preload="auto"></audio>
-
-  <!-- Loading Overlay -->
-  <div id="loadingOverlay" class="loading-overlay">
-    <h2 id="loadingMessage"></h2>
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
-
-  <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
-    <div class="row w-100 shadow-lg" style="max-width: 800px;">
-      <div class="col-12 bg-dark p-5">
-        <h2 class="mb-4">Player</h2>
-        <div id="peerIdDisplay" class="mb-3">Generating Peer ID...</div>
-        <div id="usernameDisplay" style="display: none;"></div>
-        <h4>Available Players</h4>
-        <div id="playerList">No players connected yet.</div>
+  <header>
+    <img src="./logo.png" alt="Logo" class="logo"> <!-- Replace with your logo path -->
+    <div class="profile-container">
+      <img src="./Avatars/M.jpeg" alt="Profile Picture" class="profile-picture"> <!-- Replace with user's profile picture path -->
+      <div class="user-info">
+        <div class="username">
+          <h4 id="user">Username: N/A</h4>
+        </div>
+        <div class="level-category">
+          <p id="user-level">Level: N/A</p>
+          <p id="user-category">Category: N/A</p>
+        </div>
       </div>
     </div>
+  </header>
+
+  <div class="container mt-5">
+    <h2>Welcome to the Game!</h2>
+    <p>Enjoy your gaming experience!</p>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script>
-    const peer = new Peer();
-    const playerListDiv = document.getElementById('playerList');
-    const usernameDisplay = document.getElementById('usernameDisplay');
-    const notificationList = document.getElementById('notificationList');
-    const notificationCount = document.getElementById('notificationCount');
-    const challengeSound = document.getElementById('challengeSound');
-    let messageCount = 0;
-    let username;
-    let level;
-    let serverId;
-    const challengers = []; // Array to store peer IDs of challengers
+    // Fetch the gameInfo object from local storage
+    const gameInfo = JSON.parse(localStorage.getItem("game-party"));
+    console.log(gameInfo);
 
-    peer.on('open', id => {
-      document.getElementById('peerIdDisplay').textContent = `Your Peer ID: ${id}`;
-      username = prompt("Enter your username:") || "Anonymous";
-      level = prompt("Enter your level:") || "1"; // New prompt for level
-      usernameDisplay.textContent = `${username} (Level: ${level})`; // Display username and level
-      usernameDisplay.style.display = 'block';
-      sendPlayerInfo(id, username, level); // Pass level to the function
-    });
-
-    function sendPlayerInfo(peerId, username, level) {
-      serverId = prompt("Enter the server Peer ID:");
-      const conn = peer.connect(serverId);
-
-      console.log("okay")
-      conn.on('open', () => {
-        const playerInfo = { username, peerId, level };
-        conn.send(JSON.stringify(playerInfo));
-        console.log("Info sent")
-      });
-
-      conn.on('data', data => {
-        const playerList = JSON.parse(data);
-        updatePlayerList(playerList);
-        console.log("Players list recieved")
-      });
-
-      conn.on('error', err => {
-        alert('Connection error: ' + err);
-      });
+    // Check if gameInfo exists and populate the header
+    if (gameInfo) {
+      document.getElementById("user").textContent = `Username: ${gameInfo.username || "N/A"}`;
+      document.getElementById("user-level").textContent = `Level: ${gameInfo.level || "N/A"}`;
+      document.getElementById("user-category").textContent = `Category: ${gameInfo.category || "N/A"}`;
+    } else {
+      console.log("No gameInfo found in local storage.");
     }
 
-    function updatePlayerList(playerList) {
-      playerListDiv.innerHTML = '';
-      if (playerList.length === 0) {
-        playerListDiv.textContent = 'No players connected yet.';
-      } else {
-        playerList.forEach(player => {
-          if (player.username !== username && player.level === level) {
-            const playerDiv = document.createElement('div');
-            playerDiv.className = 'player';
-            playerDiv.innerHTML = `
-              <span>${player.username} (Level: ${player.level}, Peer ID: ${player.peerId})</span>
-              <button class="challenge-button" aria-label="Challenge ${player.username}" onclick="challengeUser('${player.peerId}', '${player.username}')">Challenge</button>
-            `;
-            playerListDiv.appendChild(playerDiv);
-          }
+    const peer = new Peer();
+    peer.on('open', id => {
+      const username = gameInfo.username || "Anonymous";
+      const level = gameInfo.level || "1"; // Default level
+      const gameCode = gameInfo.game_code || "N/A"; // Assuming category is used as game code
+
+      // Create the object to send to the server
+      const playerInfo = {
+        username: username,
+        peerId: id,
+        gameCode: gameCode,
+        type: 'game' // Set the type to game
+      };
+
+      // Connect to the server
+      const conn = peer.connect(gameInfo.serverId);
+      //send the list game data
+      if(gameInfo.me == "receiver"){
+        conn.on('open', () => {
+          conn.send(JSON.stringify(playerInfo)); // Send player info to the server
         });
       }
-    }
-
-    function challengeUser(peerId, challengeeName) {
-      const message = `You have challenged ${challengeeName}`;
-      sendChallengeMessage(peerId, username, peer.id); // Send challenger’s peer ID
-      addNotification(challengeeName, message, "send");
-    }
-
-    function sendChallengeMessage(peerId, challengerName, challengerPeerId) {
-      const chamessage = `${challengerName} has challenged you`;
-      const conn = peer.connect(peerId);
-      conn.on('open', () => {
-        conn.send(JSON.stringify({ type: 'challenge', chamessage, challengerName, challengerPeerId })); // Send challenger peer ID
-      });
-    }
-
-    function addNotification(challengerName, message, type, challengerPeerId = "") {
-      const notificationItem = document.createElement('div');
-      const timestamp = new Date().toLocaleTimeString();
-      notificationItem.className = 'notification-item';
-      if (type === "received") {
-        notificationItem.innerHTML = `
-          <span>${message} at ${timestamp}</span>
-          <button class="accept-button" aria-label="Accept challenge from ${challengerName}" onclick="acceptChallenge('${challengerName}', '${challengerPeerId}')">Accept</button>
-        `;
-      } else if (type === "send") {
-        notificationItem.innerHTML = `
-          <span>${message} at ${timestamp}</span>
-        `;
+      else if(gameInfo.me == "challenger"){
+        //ask for list of games
+        conn.on('open', () => {
+          conn.send(JSON.stringify({type: "send-me-game-data"})); // Send player info to the server
+          console.log("send me the games data")
+        });
+        //receive the list of games
+        conn.on('data', data =>{
+          const rec_games = JSON.parse(data)
+          console.log("received games")
+          console.log(rec_games)
+        })
       }
-      notificationList.appendChild(notificationItem);
 
-      messageCount++;
-      notificationCount.textContent = messageCount;
-    }
 
-    function showChallengeToast(challengerName) {
-      const toastContainer = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      const timestamp = new Date().toLocaleTimeString();
-      toast.className = 'toast align-items-center text-bg-danger border-0';
-      toast.innerHTML = `
-        <div class="d-flex">
-          <div class="toast-body">
-            Challenge received from ${challengerName} at ${timestamp}
-          </div>
-          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-      `;
-      toastContainer.appendChild(toast);
-      const toastInstance = new bootstrap.Toast(toast);
-      toastInstance.show();
-
-      setTimeout(() => {
-        toast.remove();
-      }, 5000);
-    }
-
-    function acceptChallenge(challengerName, challengerPeerId) {
-      // Show loading overlay for the user accepting the challenge
-      showLoadingOverlay(`You have accepted the challenge from ${challengerName}`, `Loading game...`);
-
-      //Generate game code to help them connect later to actually play the game
-      const game_code = `Game-${challengerName}-${username}`
-      //this object stores all the information needed during the actual game play
-      const gameInfo = {
-        challengerName: username,
-        serverId: serverId,
-        level: level,
-        game_code: game_code
-      };
-      // Notify the challenger that their challenge has been accepted
-      const message = `${username} has accepted your challenge`;
-      sendChallengeAcceptance(challengerPeerId, message, game_code);
-
-      console.log(game_code)
-      //store the game info to be used later in the local storage
-      localStorage.setItem('game-party', JSON.stringify(gameInfo))
-    }
-
-    function showLoadingOverlay(mainMessage, loadingMessage) {
-      const overlay = document.getElementById('loadingOverlay');
-      overlay.style.display = 'flex';
-      document.getElementById('loadingMessage').textContent = mainMessage;
-      // Set a timer for the loading message; here it can be handled as per game loading logic
-      setTimeout(() => {
-        overlay.style.display = 'none'; // Hide after loading is done; update as necessary
-      }, 10000); // Example: 3 seconds
-    }
-
-    function sendChallengeAcceptance(challengerPeerId, message, game_code) {
-      const conn = peer.connect(challengerPeerId);
-      conn.on('open', () => {
-        conn.send(JSON.stringify({ type: 'acceptance', message, challengerName: username, game_code}));
-      });
-    }
-
-    function toggleOffcanvas() {
-      const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasNotifications'));
-      offcanvas.toggle();
-    }
-
-    peer.on('connection', conn => {
-      conn.on('data', data => {
-        const message = JSON.parse(data);
-        if (message.type === 'challenge') {
-          challengers.push(message.challengerPeerId); // Store the challenger's peer ID
-          addNotification(message.challengerName, message.chamessage, "received", message.challengerPeerId   );
-          showChallengeToast(message.challengerName);
-          challengeSound.play();
-        } else if (message.type === 'acceptance') {
-          // Display message to the challenger
-          showLoadingOverlay(`${message.challengerName} has accepted your challenge`, `Loading game...`);
-          //info to be used during game play
-          const gameInfo = {
-            challengerName: username,
-            serverId: serverId,
-            level: level,
-            game_code: message.game_code
-          };
-          console.log(message.game_code)
-          //store the game info to be used later in the local storage
-          localStorage.setItem('game-party', JSON.stringify(gameInfo))
-        }
-      });
     });
 
     peer.on('error', err => {
       console.error(err);
-      alert('Error: ' + err);
     });
   </script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

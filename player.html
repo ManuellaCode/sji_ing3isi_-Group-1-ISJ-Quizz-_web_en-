@@ -287,6 +287,7 @@
       const game_code = `Game-${challengerName}-${username}`;
       // This object stores all the information needed during the actual game play
       const gameInfo = {
+            me: "receiver",
             serverId: serverId,
             game_code: game_code,
             username: myInfo.username,
@@ -297,6 +298,7 @@
       // Notify the challenger that their challenge has been accepted
       const message = `${username} has accepted your challenge`;
       console.log(gameInfo)
+      console.log("Challenge accepted")
       sendChallengeAcceptance(challengerPeerId, message, game_code);
 
       console.log(game_code);
@@ -312,7 +314,7 @@
       // Set a timer for the loading message; here it can be handled as per game loading logic
       setTimeout(() => {
         overlay.style.display = 'none'; // Hide after loading is done; update as necessary
-        window.location.href = 'game.html'; // Redirect to game.html
+        window.location.href = 'testo2.html'; // Redirect to game.html
       }, 10000); // Example: 10 seconds
     }
 
@@ -320,6 +322,7 @@
       const conn = peer.connect(challengerPeerId);
       conn.on('open', () => {
         conn.send(JSON.stringify({ type: 'acceptance', message, challengerName: username, game_code }));
+        console.log("send challenge acceptance")
       });
     }
 
@@ -339,13 +342,15 @@
         } else if (message.type === 'acceptance') {
           // Info to be used during game play
           const gameInfo = {
+            me: "challenger",
             serverId: serverId,
-            game_code: game_code,
+            game_code: message.game_code,
             username: myInfo.username,
             password: myInfo.password,
             level: myInfo.level,
             category: myInfo.category
           };
+          console.log("recived challenge acceptance")
           console.log(gameInfo)
           console.log(message.game_code);
           // Store the game info to be used later in the local storage

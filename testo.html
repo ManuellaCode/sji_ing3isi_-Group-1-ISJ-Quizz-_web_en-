@@ -60,6 +60,7 @@
     const peer = new Peer();
     const connectedPeersDiv = document.getElementById('connectedPeers');
     const peers = {};
+    const games = []; // New variable to store game info
 
     peer.on('open', id => {
       document.getElementById('peerIdDisplay').textContent = `Your Peer ID: ${id}`;
@@ -68,15 +69,36 @@
     peer.on('connection', conn => {
       conn.on('data', data => {
         const playerInfo = JSON.parse(data);
-        peers[playerInfo.peerId] = playerInfo.username;
+
+        // Check the type and store in games if type is 'game'
+        if (playerInfo.type === 'game') {
+          games.push({
+            username: playerInfo.username,
+            peerId: playerInfo.peerId,
+            gameCode: playerInfo.gameCode
+          });
+        }
+        else if(playerInfo.type === 'send-me-game-data'){
+          console.log("sending games data")
+          conn.send(JSON.stringify(games))
+        }
+        else{
+          // Store player info in peers object
+          peers[playerInfo.peerId] = { username: playerInfo.username, level: playerInfo.level };
+        }
+        console.log("hello")
+        console.log(games)
         updateConnectedPeers();
 
-        const playerList = Object.keys(peers).map(peerId => ({ peerId, username: peers[peerId] }));
+        // Send updated player list to all connected peers
+        const playerList = Object.keys(peers).map(peerId => ({
+          peerId,
+          username: peers[peerId].username,
+          level: peers[peerId].level
+        }));
         Object.keys(peer.connections).forEach(peerId => {
           peer.connections[peerId].forEach(c => c.send(JSON.stringify(playerList)));
         });
-
-
       });
 
       conn.on('close', () => {
@@ -93,7 +115,7 @@
         Object.keys(peers).forEach(peerId => {
           const peerDiv = document.createElement('div');
           peerDiv.className = 'peer';
-          peerDiv.textContent = `User: ${peers[peerId]} (Peer ID: ${peerId})`;
+          peerDiv.textContent = `User: ${peers[peerId].username} (Level: ${peers[peerId].level}, Peer ID: ${peerId})`;
           connectedPeersDiv.appendChild(peerDiv);
         });
       }
