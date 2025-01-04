@@ -159,6 +159,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script>
+    let myInfo = JSON.parse(localStorage.getItem("player"));
+    console.log(myInfo)
     const peer = new Peer();
     const playerListDiv = document.getElementById('playerList');
     const usernameDisplay = document.getElementById('usernameDisplay');
@@ -285,17 +287,21 @@
       const game_code = `Game-${challengerName}-${username}`;
       // This object stores all the information needed during the actual game play
       const gameInfo = {
-        challengerName: username,
-        serverId: serverId,
-        level: level,
-        game_code: game_code
-      };
+            serverId: serverId,
+            game_code: game_code,
+            username: myInfo.username,
+            password: myInfo.password,
+            level: myInfo.level,
+            category: myInfo.category
+          };
       // Notify the challenger that their challenge has been accepted
       const message = `${username} has accepted your challenge`;
+      console.log(gameInfo)
       sendChallengeAcceptance(challengerPeerId, message, game_code);
 
       console.log(game_code);
       // Store the game info to be used later in the local storage
+
       localStorage.setItem('game-party', JSON.stringify(gameInfo));
     }
 
@@ -333,11 +339,14 @@
         } else if (message.type === 'acceptance') {
           // Info to be used during game play
           const gameInfo = {
-            challengerName: username,
             serverId: serverId,
-            level: level,
-            game_code: message.game_code
+            game_code: game_code,
+            username: myInfo.username,
+            password: myInfo.password,
+            level: myInfo.level,
+            category: myInfo.category
           };
+          console.log(gameInfo)
           console.log(message.game_code);
           // Store the game info to be used later in the local storage
           localStorage.setItem('game-party', JSON.stringify(gameInfo));

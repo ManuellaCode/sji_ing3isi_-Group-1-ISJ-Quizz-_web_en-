@@ -4,19 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <!-- <link rel="stylesheet" href="./index.css"> -->
   <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
-  <!-- <link rel="stylesheet" href="./Home.css"> -->
+  <style>
+    .card {
+      height: 100%; /* Make all cards the same height */
+      transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover */
+      border: none; /* Remove default border */
+    }
+
+    .card-img-top {
+      width: 100%; /* Ensure the image takes the full width */
+      height: 200px; /* Set a fixed height for all images */
+      object-fit: cover; /* Cover the area while maintaining aspect ratio */
+    }
+
+    .card:hover {
+      transform: scale(1.05); /* Scale up on hover */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+    }
+
+    .btn-play {
+      transition: background-color 0.3s, transform 0.3s; /* Animation for button */
+    }
+
+    .btn-play:hover {
+      background-color: #0056b3; /* Darker shade on hover */
+      transform: scale(1.1); /* Scale up button on hover */
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <!-- Greeting Section --> <!-- Header Section (Player Info) -->
         <div class="player-info">
-          <div class="greeting">Hello, Player!</div> <!-- Dynamic greeting based on time -->
-          <div class="username">Username: JohnDoe</div> <!-- Dynamically insert username -->
-          <div class="difficulty-level">Difficulty Level: Hard</div> <!-- Dynamically insert difficulty level -->
+          <div class="greeting">Hello, Player!</div>
+          <div class="username">Username: JohnDoe</div>
+          <div class="difficulty-level">Difficulty Level: Hard</div>
         </div>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
@@ -61,73 +85,104 @@
       </div>
     </div>
   </nav>
- <div class="content" style="padding-top: 150px;">
-  <div class="row row-cols-1 row-cols-md-6 g-4">
-    <div class="col">
-      <div class="card" h-150>
-        <img src="./images/football1.JPG" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
+  <div class="content" style="padding-top: 150px;">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card">
+          <img src="./images/football1.JPG" class="card-img-top" alt="Football">
+          <div class="card-body">
+            <h5 class="card-title">Football</h5>
+            <p class="card-text">Explore the world of football with in-depth articles and quizzes.</p>
+            <a href="player.html" class="btn btn-primary btn-play" onclick="setCategory('Football')">Play</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="./images/culture.JPG" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <div class="col">
+        <div class="card">
+          <img src="./images/culture.JPG" class="card-img-top" alt="Culture">
+          <div class="card-body">
+            <h5 class="card-title">Culture</h5>
+            <p class="card-text">Dive into cultural topics and discussions around the globe.</p>
+            <a href="player.html" class="btn btn-primary btn-play" onclick="setCategory('Culture')">Play</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card" h-150>
-        <img src="./images/black-model-posing-with-headphones.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+      <div class="col">
+        <div class="card">
+          <img src="./images/black-model-posing-with-headphones.jpg" class="card-img-top" alt="Music">
+          <div class="card-body">
+            <h5 class="card-title">Music</h5>
+            <p class="card-text">Discover new music trends and artists in this vibrant category.</p>
+            <a href="player.html" class="btn btn-primary btn-play" onclick="setCategory('Music')">Play</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card" h-150>
-        <img src="./images/forex-stock-crisis-venture.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <a href="#" class="btn btn-primary"><p class="card-text">Economics</p></a>
+      <div class="col">
+        <div class="card">
+          <img src="./images/forex-stock-crisis-venture.jpg" class="card-img-top" alt="Economics">
+          <div class="card-body">
+            <h5 class="card-title">Economics</h5>
+            <p class="card-text">Learn about economic principles and current financial trends.</p>
+            <a href="player.html" class="btn btn-primary btn-play" onclick="setCategory('Economics')">Play</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card" h-150>
-        <img src="./images/binoculars-magnifying-glass-map.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <a href="#" class="btn btn-primary">Geography</a>
+      <div class="col">
+        <div class="card">
+          <img src="./images/binoculars-magnifying-glass-map.jpg" class="card-img-top" alt="Geography">
+          <div class="card-body">
+            <h5 class="card-title">Geography</h5>
+            <p class="card-text">Explore geographical facts and challenges faced worldwide.</p>
+            <a href="player.html" class="btn btn-primary btn-play" onclick="setCategory('Geography')">Play</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card" h-150>
-        <img src="./images/international-day-education-futuristic-style.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Computer science</h5>
-          <a href="#" class="btn btn-primary">Computer science</a>
+      <div class="col">
+        <div class="card">
+          <img src="./images/international-day-education-futuristic-style.jpg" class="card-img-top" alt="Computer Science">
+          <div class="card-body">
+            <h5 class="card-title">Computer Science</h5>
+            <p class="card-text">Delve into the latest trends and innovations in computer science.</p>
+            <a href="player.html" class="btn btn-primary btn-play" onclick="setCategory('Computer Science')">Play</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
- </div>
 
   <script src="./bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
   <script>
-    // Retrieve player info from local storage
-    const user = JSON.parse(localStorage.getItem("player"));
-    console.log(user)
-    const u = document.getElementsByClassName("username");
-    const d = document.getElementsByClassName("difficulty-level");
-    u.textContent = `username: ${user.username}`
-    d.textContent = `Difficulty Level: ${user.level}`
+    // Function to set the category in user object and navigate to player.html
+    function setCategory(category) {
+      // Retrieve player info from local storage
+      let user = JSON.parse(localStorage.getItem("player"));
 
+      if (user) {
+        // Add category to user object
+        user.category = category;
+        // Save the updated user object back to local storage
+        localStorage.setItem("player", JSON.stringify(user));
+      } else {
+        console.log("No user found in local storage.");
+      }
+
+      // Navigate to player.html after setting the category
+      window.location.href = 'player.html';
+    }
+
+    // Populate player info from local storage
+    const user = JSON.parse(localStorage.getItem("player"));
+
+    if (user) {
+      const usernameElement = document.getElementsByClassName("username")[0];
+      const difficultyLevelElement = document.getElementsByClassName("difficulty-level")[0];
+
+      usernameElement.textContent = `Username: ${user.username}`;
+      difficultyLevelElement.textContent = `Difficulty Level: ${user.level}`;
+    } else {
+      console.log("No user found in local storage.");
+    }
   </script>
 </body>
 </html>

@@ -1,11 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizz Game</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Info Display</title>
+  <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+  <style>
+    body {
+      background-color: #1c1c2e; /* Match the background color */
+      color: white;
+      font-family: 'Roboto', sans-serif; /* Changed font style */
+    }
+    header {
+      background-color: #2a2a3e; /* Darker header background */
+      padding: 20px;
+      display: flex; /* Use flexbox for horizontal alignment */
+      align-items: center; /* Center items vertically */
+      border-bottom: 5px solid #ffc107; /* Yellow border */
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+    .logo {
+      width: 150px; /* Increased width of the logo */
+      height: auto; /* Maintain aspect ratio */
+      margin-right: 40px; /* Increased space between logo and profile section */
+      transition: transform 0.3s ease; /* Smooth transition for hover effect */
+    }
+    .logo:hover {
+      transform: scale(1.1) rotate(5deg); /* Scale and rotate on hover */
+    }
+    .profile-container {
+      display: flex;
+      align-items: center;
+    }
+    .profile-picture {
+      border-radius: 50%;
+      width: 100px; /* Profile picture size */
+      height: 100px; /* Profile picture size */
+      border: 3px solid #ffc107; /* Yellow border around profile picture */
+      margin-right: 20px; /* Space between image and text */
+    }
+    .user-info {
+      display: flex; /* Use flexbox for horizontal layout */
+      align-items: flex-start; /* Align items to the start */
+      text-align: left;
+    }
+    .user-info .username {
+      margin-right: 30px; /* Space between username and level/category */
+      margin-top: 22px; /* Adjusted margin to center with profile picture */
+    }
+    .user-info .level-category {
+      display: flex;
+      flex-direction: column; /* Stack level and category vertically */
+    }
+    .user-info .level-category p {
+      margin-bottom: 15px; /* Increased space between level and category */
+    }
+    .user-info div {
+      transition: transform 0.3s, color 0.3s; /* Transition for smooth animation */
+    }
+    .user-info div:hover {
+      transform: scale(1.05); /* Scale up slightly on hover */
+      color: #ffc107; /* Change color on hover */
+    }
+    .user-info h4 {
+      font-size: 24px; /* Increased font size */
+      margin: 0; /* Remove default margin */
+    }
+    .user-info p {
+      font-size: 18px; /* Increased font size */
+      margin: 0; /* Remove default margin */
+    }
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 40px; /* Increased font size */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <img src="./logo.png" alt="Logo" class="logo"> <!-- Replace with your logo path -->
 
+    <div class="profile-container">
+      <img src="./Avatars/M.jpeg" alt="Profile Picture" class="profile-picture"> <!-- Replace with user's profile picture path -->
+      <div class="user-info">
+        <div class="username">
+          <h4 id="user">Username: N/A</h4>
+        </div>
+        <div class="level-category">
+          <p id="user-level">Level: N/A</p>
+          <p id="user-category">Category: N/A</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container mt-5">
+    <h2>Welcome to the Game!</h2>
+    <p>Enjoy your gaming experience!</p>
+  </div>
+
+  <script>
+    // Fetch the gameInfo object from local storage
+    const gameInfo = JSON.parse(localStorage.getItem("game-party"));
+    console.log(gameInfo)
+
+    // Check if gameInfo exists and populate the header
+    if (gameInfo) {
+      document.getElementById("user").textContent = `Username: ${gameInfo.username || "N/A"}`;
+      document.getElementById("user-level").textContent = `Level: ${gameInfo.level || "N/A"}`;
+      document.getElementById("user-category").textContent = `Category: ${gameInfo.category || "N/A"}`;
+    } else {
+      console.log("No gameInfo found in local storage.");
+    }
+  </script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
