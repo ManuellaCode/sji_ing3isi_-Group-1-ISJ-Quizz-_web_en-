@@ -141,24 +141,6 @@
       background: #950170;
       border-color: #950170;
     }
-    .start-quiz-btn {
-      margin-top: 20px;
-      font-size: 18px;
-      padding: 10px 20px; /* Add padding for better clickability */
-      border-radius: 5px; /* Rounded corners */
-      background-color: #ffc107; /* Bright background color */
-      color: black; /* Text color */
-      border: none; /* Remove default border */
-      transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
-    }
-    .start-quiz-btn:hover {
-      background-color: #e0a800; /* Darker shade on hover */
-      transform: scale(1.05); /* Slightly enlarge button on hover */
-      cursor: pointer; /* Change cursor to pointer */
-    }
-    .start-quiz-btn:active {
-      transform: scale(0.95); /* Slightly shrink button when clicked */
-    }
   </style>
 </head>
 <body>
@@ -191,7 +173,7 @@
   <div class="container mt-5">
     <h2 id="welcome-message">Welcome to the Game!</h2>
     <p id="game-instruction">Enjoy your gaming experience!</p>
-    <button class="btn start-quiz-btn" id="start-quiz">Start Quiz</button> <!-- Start Quiz Button -->
+    <div id="countdown-message" style="text-align: center; font-size: 24px; margin-top: 20px;"></div>
   </div>
 
   <section class="quizz-section" id="quizz-section">
@@ -232,11 +214,13 @@
     let gameCode;
     let oponentId;
 
+
     // Fetch the gameInfo object from local storage
     const gameInfo = JSON.parse(localStorage.getItem("game-party"));
     console.log(gameInfo);
 
     let category = gameInfo.category;
+    let level = gameInfo.level;
 
     // Check if gameInfo exists and populate the header
     if (gameInfo) {
@@ -360,12 +344,59 @@
       console.error(err);
     });
 
-    // Start Quiz Button Functionality
-    document.getElementById("start-quiz").addEventListener("click", function() {
-      document.getElementById("quizz-section").style.display = "flex"; // Show quiz section
-      document.getElementById("welcome-message").style.display = "none"; // Hide welcome message
-      document.getElementById("game-instruction").style.display = "none"; // Hide game instructions
-      this.style.display = "none"; // Hide start quiz button
+    // Countdown functionality
+    document.getElementById("countdown-message").style.display = "none"; // Initially hide the countdown message
+    setTimeout(() => {
+        document.getElementById("countdown-message").style.display = "block"; // Show countdown message
+        let countdown = 5;
+        const countdownInterval = setInterval(() => {
+            document.getElementById("countdown-message").textContent = `The game will begin in ${countdown}...`;
+            countdown--;
+            if (countdown < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown-message").style.display = "none"; // Hide countdown message
+                document.getElementById("quizz-section").style.display = "flex"; // Show quiz section
+                document.getElementById("welcome-message").style.display = "none"; // Hide welcome message
+                document.getElementById("game-instruction").style.display = "none"; // Hide game instructions
+            }
+        }, 1000); // Update every second
+    }, 2000); // Start after 2 seconds
+
+    // Function to load questions from the JSON file
+    function loadQuestions() {
+     fetch('questions.json')
+        .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parse the JSON data
+        })
+        .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        return null; // Return null in case of an error
+        });
+    }
+
+    // Function to extract questions based on level and category
+    function getQuestions(data, level, category) {
+    if (data && data[level]) {
+        if (data[level][category]) {
+        return data[level][category]; // Return the array of questions
+        } else {
+        console.error(`Category "${category}" does not exist for level "${level}".`);
+        return []; // Return an empty array if the category doesn't exist
+        }
+    } else {
+        console.error(`Level "${level}" does not exist.`);
+        return []; // Return an empty array if the level doesn't exist
+    }
+    }
+
+    loadQuestions().then(data => {
+    const questions = getQuestions(data, level, category);
+
+    // Display the extracted questions
+    console.log(questions);
     });
   </script>
 
