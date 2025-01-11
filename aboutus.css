@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('./images/pexels-felixmittermeier-956999.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(51, 51, 51, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 36px;
+    color: #ff4081; /* Bright pink for the header */
+}
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.service {
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+}
+
+.service h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.service p {
+    color: #e0e0e0; /* Lighter text for reading */
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #fff;
+    opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .services {
+        grid-template-columns: 1fr; /* Stack services on small screens */
+    }
+}
+.container-eg-btn-4 {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto 10px;
+    padding: .5em;
+    line-height: normal;
+}
+.container-eg-btn-4 .button {
+    background: #0d0d0e10;
+    margin: 15px;
+    padding: 18px 22px;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    transition: .3s;
+    z-index: 1;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 12px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-weight: 700;
+}
+.container-eg-btn-4 .button-7{
+    background: #fff;
+    box-shadow: 0px 6px 16px 0px #8d7bb187;
+    overflow: hidden;
+}
+.container-eg-btn-4 .button-7:after{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 12px;
+    background-color: #10130d;
+    transition: all 0.3s ease;
+    background-image: linear-gradient(to right, #d7e0e2, #0b090f56);
+}
+.container-eg-btn-4 .button-7:hover{
+    color: #02020f81;
+}
+.container-eg-btn-4 .button-7:hover:after{
+    height: 5px;
+}
+.container-eg-btn-4 .button-7:active{
+    box-shadow: 0px 4px 8px 0px #8d7bb187;
+}

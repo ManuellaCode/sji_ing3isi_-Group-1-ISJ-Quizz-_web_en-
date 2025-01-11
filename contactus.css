@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+.wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 550px;
+  background: rgba(0,0,0,0.8);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+
+.wrapper .title h1{
+  color: #c5ecfd;
+  text-align: center;
+  margin-bottom: 25px;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body {
+  animation: fadeIn 1s ease-in-out; /* Fade in for body */
+  background-size: cover;
+    background-position: center;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+}
+
+.wrapper {
+  max-width: 600px; /* Limit the width of the form */
+  margin: auto; /* Center the form */
+  padding: 20px; /* Add some padding around the form */
+}
+
+.input {
+  width: 100%; /* Fill the width of the parent */
+  padding: 10px; /* Space inside the input */
+  margin: 10px 0; /* Space between inputs */
+  border: 1px solid #ccc; /* Border style */
+  border-radius: 5px; /* Rounded corners */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.input:focus {
+  border-color: #007BFF; /* Change border color on focus */
+  box-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF; /* Glowing effect */
+  outline: none; /* Remove default outline */
+}
+
+.error {
+  color: red; /* Error message color */
+  font-size: 0.9em; /* Font size for error messages */
+}
+
+
+.contact-form{
+  display: flex;
+}
+
+.input-fields{
+  display: flex;
+  flex-direction: column;
+  margin-right: 40%;
+}
+
+.input-fields,
+.msg{
+  width: 48%;
+}
+
+.input-fields .input,
+.msg textarea{
+  margin: 10px 0;
+  background: transparent;
+  border: 0px;
+  border-bottom: 2px solid #c5ecfd;
+  padding: 10px;
+  color: #c5ecfd;
+  width: 100%;
+}
+
+.msg textarea{
+  height: 152px;
+}
+
+::-webkit-input-placeholder {
+  color: #c5ecfd;
+}
+::-moz-placeholder {
+  color: #c5ecfd;
+}
+:-ms-input-placeholder {
+  color: #c5ecfd;
+}
+
+@media screen and (max-width: 600px){
+  .contact-form{
+    flex-direction: column;
+  }
+  .msg textarea{
+    height: 80px;
+  }
+  .input-fields,
+  .msg{
+    width: 80%;
+  }
+}
+.container-eg-btn-4 {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto 10px;
+  padding: .5em;
+  line-height: normal;
+}
+.container-eg-btn-4 .button {
+  background: #0d0c0ec7;
+  margin: 15px;
+  padding: 18px 22px;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  transition: .3s;
+  z-index: 1;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 12px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-weight: 700;
+}
+.container-eg-btn-4 .button-7{
+  background: #fff;
+  box-shadow: 0px 6px 16px 0px #8d7bb187;
+  overflow: hidden;
+}
+.container-eg-btn-4 .button-7:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 12px;
+  background-color: #8BC34A;
+  transition: all 0.3s ease;
+  background-image: linear-gradient(to right, #d7e0e2, #141316c4);
+}
+.container-eg-btn-4 .button-7:hover{
+  color: #5f6095;
+}
+.container-eg-btn-4 .button-7:hover:after{
+  height: 5px;
+}
+.container-eg-btn-4 .button-7:active{
+  box-shadow: 0px 4px 8px 0px #8d7bb187;
+}
