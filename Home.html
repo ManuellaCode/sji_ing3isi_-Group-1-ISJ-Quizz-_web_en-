@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./Home.css">
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./Home.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./signup.html">Start Quiz</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero-section text-center text-white">
+    <!-- <div class="container"> -->
+    <div class="home-container">
+      <h1><strong>Welcome to the Quiz Platform!</strong></h1>
+      <p style="font-size: larger;">Test your knowledge in various categories and earn points!</p>
+      <a href="./signup.html" class="btn btn-primary btn-lg">Start Quiz</a>
+    </div>
+  </header>
+
+  <div class="container my-5" style="padding-top: 10px;">
+    <h2 class="text-center">How It Works</h2>
+    <div class="row text-center my-4">
+      <div class="col-md-4">
+        <div class="image-container">
+          <img src="./images/selectcateory.jpeg" alt="Select a category" class="image">
+          <div class="text-overlay">
+            <h2>Choose a Category</h2>
+            <p>Select from a wide range of topics.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="image-container">
+          <img src="./images/answer questions.jpeg" alt="Answer Questions" class="image">
+          <div class="text-overlay">
+            <h2>Answer Questions</h2>
+            <p>Test your knowledge with exciting questions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="image-container">
+          <div class="image-container shadow">
+            <img src="./images/earn points.jpg" alt="Earn Rewards" class="image" style="max-height: 1000;" >
+            <div class="text-overlay">
+              <h2>Earn Rewards</h2>
+              <p>Gain points and climb the leaderboard!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center text-white py-4" style="background-color: #333;">
+    <p>&copy; 2024 Quiz Platform. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="./Home.html" class="text-white mx-2">Home</a>
+      <a href="#" class="text-white mx-2">Contact us</a>
+    </div>
+  </footer>
+
+  <script src="./bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
+</body>
+</html>

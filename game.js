@@ -219,6 +219,8 @@ function startQuiz(questions, ) {
 
         // Show the result section
         document.querySelector('.result-section').style.display = 'flex';
+
+        
     }
     // Peer connection setup for receiving opponent's score updates
 peer.on('connection', conn => {

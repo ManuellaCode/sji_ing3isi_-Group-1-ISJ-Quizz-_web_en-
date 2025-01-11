@@ -33,16 +33,17 @@
     }
 
     body {
-      background-color: #1c1c2e; /* Match the background color */
+      background-color:#262121; /* Match the background color */
+      background-image: url("images/Newbg2.png");
       color: white;
-      font-family: 'Roboto', sans-serif; /* Changed font style */
+      font-family: 'Roboto', sans-serif; /*Changed font style*/
     }
     header {
-      background-color: #2a2a3e; /* Darker header background */
+      /* background-color: #2a2a3e; Darker header background */
       padding: 20px;
       display: flex; /* Use flexbox for horizontal alignment */
       align-items: center; /* Center items vertically */
-      border-bottom: 5px solid #ffc107; /* Yellow border */
+      border-bottom: 5px solid #e6d49e; /* Yellow border */
       margin-bottom: 20px;
       border-radius: 10px;
     }
@@ -63,7 +64,7 @@
       border-radius: 50%;
       width: 100px; /* Profile picture size */
       height: 100px; /* Profile picture size */
-      border: 3px solid #ffc107; /* Yellow border around profile picture */
+      border: 3px solid #e8d59d; /* Yellow border around profile picture */
       margin-right: 20px; /* Space between image and text */
     }
     .user-info {
@@ -87,7 +88,7 @@
     }
     .user-info div:hover {
       transform: scale(1.05); /* Scale up slightly on hover */
-      color: #ffc107; /* Change color on hover */
+      color: #a08b4c; /* Change color on hover */
     }
     .user-info h4 {
       font-size: 24px; /* Increased font size */
@@ -122,10 +123,12 @@
         </div>
       </div>
     </div>
+
   </header>
 
-  <div class="content" style="padding-top: 150px;">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="content">
+    <h1 class="text-center">Select Your Quiz Category</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="padding-top: 20px;">
       <div class="col">
         <div class="card">
           <img src="./images/football1.JPG" class="card-img-top" alt="Football">

@@ -1,0 +1,248 @@
+/* Body Styling */
+body {
+  background-color: #262121; /* Dark background for contrast */
+  font-family: 'Arial', sans-serif; /* Clean, modern font */
+  margin: 0;
+  padding: 0;
+  color: #ffffff; /* Default text color for contrast */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Points Card (Home Page) */
+.points-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff; /* Light background for readability */
+  border-radius: 15px; /* Smooth rounded corners */
+  padding: 15px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+  max-width: 350px; /* Wider for better content fit */
+  margin: 20px auto; /* Center horizontally and add spacing */
+  border: 1px solid #e0e0e0; /* Subtle border for elegance */
+  color: #343a40; /* Darker text */
+}
+.points-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Sections within Points Card */
+.points-section, .rewards-section {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
+  flex: 1; /* Equal width for both sections */
+}
+
+/* Icons */
+.icon {
+  width: 40px; /* Larger icons for better visibility */
+  height: 40px;
+  border-radius: 50%; /* Circular icons */
+  background-color: #ececec; /* Light gray placeholder */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px; /* Icon size */
+  color: #6c757d; /* Subtle gray */
+}
+
+/* Text Styling for Points Card */
+.text p {
+  margin: 0;
+  font-size: 14px; /* Subtle label text */
+  color: #6c757d; /* Secondary gray text */
+}
+
+.text h4 {
+  margin: 0;
+  font-size: 18px; /* Larger value text */
+  color: #343a40; /* Darker text for emphasis */
+  font-weight: bold;
+}
+
+/* Highlight for Titles */
+h5 {
+  text-decoration: underline;
+  text-decoration-color: aquamarine;
+  color: aquamarine; /* Bright and noticeable */
+  font-size: 1.2rem; /* Larger title */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Category Page Styling */
+.category-container {
+  max-width: 600px;
+  margin: 20px auto; /* Center the container */
+  background-color: #343a40; /* Slightly lighter than the body background */
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Depth effect */
+  text-align: center;
+}
+
+.category-container h1 {
+  font-size: 1.8rem;
+  color: aquamarine; /* Bright and engaging title color */
+  margin-bottom: 20px;
+}
+
+.category-button {
+  display: inline-block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 15px;
+  background-color: #ffffff; /* White for contrast */
+  color: #343a40; /* Dark text for readability */
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Depth effect */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.category-button:hover {
+  background-color: aquamarine; /* Engaging hover effect */
+  color: #ffffff; /* White text for contrast */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.category-button:focus {
+  outline: 2px solid aquamarine;
+  outline-offset: 4px;
+}
+.category-button:active {
+  background-color: #0056b3;
+  color: #ffffff;
+  transform: scale(0.95);
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .points-card, .category-container {
+    padding: 15px;
+    max-width: 90%; /* Use most of the screen width */
+  }
+
+  .points-card {
+    flex-direction: column; /* Stack sections vertically */
+    text-align: center; /* Center-align text */
+  }
+
+  .points-section, .rewards-section {
+    justify-content: center; /* Center content on small screens */
+    margin-bottom: 10px; /* Add spacing between stacked sections */
+  }
+
+  .category-button {
+    font-size: 1rem; /* Adjust button size for smaller screens */
+  }
+}
+
+.hero-section {
+  color: white; /* Text color for readability */
+  padding: 100px 20px; /* Add padding for spacing */
+  width: 100%; /* Make sure it's full width */
+  box-sizing: border-box; /* Include padding in width calculations */
+}
+
+/* General Text Styling for Header */
+.home-container {
+  /* background-color: #d5e7f8; */
+  color: #dcc8c8; /* Set text color to black */
+  padding: 200px;
+  width: 100%; /* Ensure it takes up the full width */
+  box-sizing: border-box; /* Include padding in width calculations */
+}
+
+/* Adjust heading and paragraph colors */
+.home-container h1, .home-container h2, .home-container p {
+  color: #d3afaf !important; /* Ensure headings and paragraphs use black */
+}
+
+/* Adjust link colors */
+.home-container a {
+  color: #007bff; /* A contrasting blue for links */
+}
+
+.home-container a:hover {
+  color: #0056b3; /* Darker blue for hover state */
+}
+
+/* Button text color */
+.home-container .btn {
+  color: #fff; /* Ensure button text is always white */
+  border: none; /* No border */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+/* Container for the image and text */
+.image-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;  /* Ensures no image sticks out when scaled */
+}
+
+/* Image styling */
+.image {
+  width: 100%;  /* Full width of the container */
+  transition: transform 0.3s ease, filter 0.3s ease;  /* Smooth scaling and shadow transition */
+}
+
+/* Text overlay styling */
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  opacity: 0;  /* Initially hidden */
+  transition: opacity 0.3s ease, transform 0.3s ease;  /* Smooth fade and movement */
+  background-color: rgba(0, 0, 0, 0.6); /* Optional: dark background for text */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);  /* Soft shadow for depth */
+}
+
+/* Hover effect */
+.image-container:hover .image {
+  transform: scale(1.1);  /* Image zoom effect */
+  filter: brightness(80%);  /* Optional: dim the image */
+}
+
+.image-container:hover .text-overlay {
+  opacity: 1;  /* Show text */
+  transform: translate(-50%, -50%) scale(1);  /* Ensure text remains centered */
+  transition-delay: 0.2s;  /* Delay the appearance of the text */
+  animation: fadeIn 0.3s ease forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.footer-links a:hover {
+  color: aquamarine;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+
