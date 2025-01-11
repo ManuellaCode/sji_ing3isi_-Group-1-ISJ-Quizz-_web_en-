@@ -128,3 +128,37 @@ body {
     border-radius: 10px;
     background-color: rgba(0, 128, 0, 0.1);
   }
+  .result-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.percentage-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 8px solid #ccc;
+    position: relative;
+    overflow: hidden;
+}
+
+.percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+@keyframes fill {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.filled {
+    border-color: green;
+    animation: fill 1s linear forwards;
+}

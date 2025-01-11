@@ -64,8 +64,7 @@ let playerScore = 0; // Initialize player score
 let opponentScore = 0; // Initialize opponent score
 let isPlayerTurn = true; // Track whose turn it is
 
-function startQuiz(questions, conn) {
-    console.log(conn)
+function startQuiz(questions, ) {
     let currentIndex = 0; // Start with the first question
     const totalQuestions = questions.length;
     const timerElement = document.querySelector('.timer');
@@ -75,7 +74,7 @@ function startQuiz(questions, conn) {
     let correctSound = new Audio('./correct.mp3'); // Path to correct answer sound
     let incorrectSound = new Audio('./wrong.mp3'); // Path to incorrect answer sound
 
-    function displayQuestion(conn) {
+    function displayQuestion() {
         if (currentIndex < totalQuestions) {
             const question = questions[currentIndex];
 
@@ -123,7 +122,7 @@ function startQuiz(questions, conn) {
             }, 1000);
 
             optionElements.forEach((optionElement, index) => {
-                optionElement.onclick = (conn) => {
+                optionElement.onclick = () => {
                     clearInterval(countdownInterval); // Stop timer when an option is clicked
                     tickingSound.pause(); // Stop ticking sound on answer selection
 
@@ -134,11 +133,12 @@ function startQuiz(questions, conn) {
                         correctSound.play(); // Play correct answer sound
                         optionElement.style.border = '2px solid green';
                         playerScore += 5; // Update player score by 5 points
-                        sendScoreUpdateToOpponent(conn); // Send score update to opponent
+                        sendScoreUpdateToOpponent(); // Send score update to opponent
                     } else {
                         incorrectSound.play(); // Play incorrect answer sound
                         optionElement.style.border = '2px solid red';
                         showCorrectAnswer(); // Show the correct answer
+                        sendScoreUpdateToOpponent(); // Send score update to opponent
                     }
 
                     proceedToNextQuestion(); // Move to the next question
@@ -170,28 +170,57 @@ function startQuiz(questions, conn) {
         }, 300); // Wait for 0.3 seconds before showing the next question
     }
 
-    function sendScoreUpdateToOpponent(conn) {
-        console.log(conn)
+    function sendScoreUpdateToOpponent() {
         const scoreUpdateMessage = {
             type: "score-update",
             score: playerScore,
             currentIndex: currentIndex // Send the current question index as well
         };
         // Send the score update to the opponent
-        conn.send(JSON.stringify(scoreUpdateMessage));
+        const connection = peer.connect(opponentId)
+        connection.on("open", ()=>{
+            connection.send(JSON.stringify(scoreUpdateMessage));
+        })
         console.log("sending my success")
     }
 
     function endQuiz() {
         console.log('All questions have been displayed.');
         document.querySelector('.quizz-section').style.display = 'none';
-        alert(`Quiz completed! Your score: ${playerScore}, Opponent's score: ${opponentScore}`);
+
+        // Display final scores
+        document.getElementById("final-user-score").textContent = playerScore;
+        document.getElementById("final-opponent-score").textContent = opponentScore;
+
+        // Calculate percentages
+        const totalScore = Math.max(playerScore, opponentScore); // Assume maximum score is the highest player score
+        const userPercentage = (playerScore / totalScore) * 100 || 0; // Avoid division by zero
+        const opponentPercentage = (opponentScore / totalScore) * 100 || 0;
+
+        // Update percentage circles
+        document.getElementById("user-percentage").textContent = `${userPercentage.toFixed(0)}%`;
+        document.getElementById("opponent-percentage").textContent = `${opponentPercentage.toFixed(0)}%`;
+
+        // Add filled class for animation
+        document.getElementById("user-circle").classList.add("filled");
+        document.getElementById("opponent-circle").classList.add("filled");
+
+        // Determine result message
+        let resultMessage;
+        if (playerScore > opponentScore) {
+            resultMessage = "You Win!";
+        } else if (playerScore < opponentScore) {
+            resultMessage = "You Lose!";
+        } else {
+            resultMessage = "It's a Draw!";
+        }
+
+        document.getElementById("result-message").textContent = resultMessage;
+
+        // Show the result section
+        document.querySelector('.result-section').style.display = 'flex';
     }
-
-    displayQuestion();
-}
-
-// Peer connection setup for receiving opponent's score updates
+    // Peer connection setup for receiving opponent's score updates
 peer.on('connection', conn => {
     conn.on('data', data => {
         const message = JSON.parse(data);
@@ -204,16 +233,16 @@ peer.on('connection', conn => {
         }
     });
 });
+    displayQuestion();
+}
+
 
 // Load questions and start the game
 loadQuestions(level, category).then(loadedQuestions => {
     questions = loadedQuestions;
     const conn = peer.connect(opponentId);
+    startQuiz(questions);
 
-    conn.on('open', conn => {
-        console.log(`Connected to opponent: ${opponentId}`);
-        startQuiz(questions, conn);
-    });
 }).catch(error => {
     console.error('Error loading questions:', error);
 });
@@ -255,6 +284,7 @@ peer.on('open', id => {
 
         conn.on('data', data => {
             const rec_games = JSON.parse(data);
+            console.log(rec_games)
             gameCode = gameInfo.game_code || "N/A";
             matchingGame = rec_games.find(game => game.gameCode === gameCode);
             if (matchingGame) {

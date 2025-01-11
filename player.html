@@ -285,7 +285,7 @@
 
       // Generate game code to help them connect later to actually play the game
       const game_code = `Game-${challengerName}-${username}`;
-      game = {
+      const game = {
         game_code: game_code,
         category: myInfo.category
       }
@@ -304,7 +304,7 @@
       const message = `${username} has accepted your challenge`;
       console.log(gameInfo)
       console.log("Challenge accepted")
-      sendChallengeAcceptance(challengerPeerId, message, game_code);
+      sendChallengeAcceptance(challengerPeerId, message, myInfo.category, game_code);
 
       console.log(game_code);
       // Store the game info to be used later in the local storage
@@ -323,10 +323,10 @@
       }, 10000); // Example: 10 seconds
     }
 
-    function sendChallengeAcceptance(challengerPeerId, message, game_code) {
+    function sendChallengeAcceptance(challengerPeerId, message, category, game_code) {
       const conn = peer.connect(challengerPeerId);
       conn.on('open', () => {
-        conn.send(JSON.stringify({ type: 'acceptance', message, challengerName: username, game_code }));
+        conn.send(JSON.stringify({ type: 'acceptance', message, challengerName: username, game_code: game_code, category:category }));
         console.log("send challenge acceptance")
       });
     }
@@ -353,11 +353,11 @@
             username: myInfo.username,
             password: myInfo.password,
             level: myInfo.level,
-            category: myInfo.category
+            category: message.category
           };
           console.log("recived challenge acceptance")
           console.log(gameInfo)
-          console.log(message.game_code);
+          console.log(message.game);
           // Store the game info to be used later in the local storage
           localStorage.setItem('game-party', JSON.stringify(gameInfo));
           // Display message to the challenger
