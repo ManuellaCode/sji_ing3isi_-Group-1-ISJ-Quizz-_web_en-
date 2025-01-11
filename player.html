@@ -285,7 +285,12 @@
 
       // Generate game code to help them connect later to actually play the game
       const game_code = `Game-${challengerName}-${username}`;
+      game = {
+        game_code: game_code,
+        category: myInfo.category
+      }
       // This object stores all the information needed during the actual game play
+      console.log(myInfo)
       const gameInfo = {
             me: "receiver",
             serverId: serverId,

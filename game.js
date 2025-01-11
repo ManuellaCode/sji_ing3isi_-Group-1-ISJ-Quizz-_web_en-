@@ -60,15 +60,22 @@ function loadQuestions(level, category) {
 }
 
 // Function to start the quiz
-function startQuiz(questions) {
+let playerScore = 0; // Initialize player score
+let opponentScore = 0; // Initialize opponent score
+let isPlayerTurn = true; // Track whose turn it is
+
+function startQuiz(questions, conn) {
+    console.log(conn)
     let currentIndex = 0; // Start with the first question
     const totalQuestions = questions.length;
     const timerElement = document.querySelector('.timer');
     const questionCounterElement = document.querySelector('.question-total');
     let tickingSound;
     let warningSound;
+    let correctSound = new Audio('./correct.mp3'); // Path to correct answer sound
+    let incorrectSound = new Audio('./wrong.mp3'); // Path to incorrect answer sound
 
-    function displayQuestion() {
+    function displayQuestion(conn) {
         if (currentIndex < totalQuestions) {
             const question = questions[currentIndex];
 
@@ -80,6 +87,7 @@ function startQuiz(questions) {
                     optionElement.textContent = question.proposed_answers[index];
                     optionElement.style.display = 'block';
                     optionElement.style.border = '2px solid rgba(255, 255, 255, .2)';
+                    optionElement.style.pointerEvents = 'auto'; // Enable clicking
                 } else {
                     optionElement.style.display = 'none';
                 }
@@ -108,51 +116,103 @@ function startQuiz(questions) {
                 if (timeLeft < 0) {
                     clearInterval(countdownInterval);
                     tickingSound.pause(); // Stop ticking sound on timeout
-                    currentIndex++; // Move to the next question on timeout
-                    displayQuestion();
+                    showCorrectAnswer(); // Show the correct answer
+                    proceedToNextQuestion(); // Automatically proceed to the next question
                 }
                 timeLeft--;
             }, 1000);
 
             optionElements.forEach((optionElement, index) => {
-                optionElement.addEventListener('click', () => {
+                optionElement.onclick = (conn) => {
                     clearInterval(countdownInterval); // Stop timer when an option is clicked
                     tickingSound.pause(); // Stop ticking sound on answer selection
 
+                    // Disable further interactions while transitioning
+                    optionElements.forEach(el => el.style.pointerEvents = 'none');
+
                     if (question.correct_answer === question.proposed_answers[index]) {
+                        correctSound.play(); // Play correct answer sound
                         optionElement.style.border = '2px solid green';
-                        currentIndex++;
-                        setTimeout(displayQuestion, 1000); // Wait before displaying the next question
+                        playerScore += 5; // Update player score by 5 points
+                        sendScoreUpdateToOpponent(conn); // Send score update to opponent
                     } else {
+                        incorrectSound.play(); // Play incorrect answer sound
                         optionElement.style.border = '2px solid red';
-                        optionElements.forEach((el, i) => {
-                            if (question.correct_answer === question.proposed_answers[i]) {
-                                el.style.border = '2px solid green';
-                            }
-                        });
-                        currentIndex++;
-                        setTimeout(displayQuestion, 2000); // Wait before displaying the next question
+                        showCorrectAnswer(); // Show the correct answer
                     }
-                });
+
+                    proceedToNextQuestion(); // Move to the next question
+                };
             });
         } else {
-            console.log('All questions have been displayed.');
-            document.querySelector('.quizz-section').style.display = 'none';
-            alert('Quiz completed!');
+            endQuiz(); // Handle quiz completion
         }
+    }
+
+    function showCorrectAnswer() {
+        const question = questions[currentIndex];
+        const optionElements = document.querySelectorAll('.option');
+        optionElements.forEach((el, i) => {
+            if (question.correct_answer === question.proposed_answers[i]) {
+                el.style.border = '2px solid green'; // Show correct answer
+            }
+        });
+    }
+
+    function proceedToNextQuestion() {
+        setTimeout(() => {
+            currentIndex++; // Increment question index
+            if (currentIndex < totalQuestions) {
+                displayQuestion(); // Show next question
+            } else {
+                endQuiz(); // Handle quiz completion
+            }
+        }, 300); // Wait for 0.3 seconds before showing the next question
+    }
+
+    function sendScoreUpdateToOpponent(conn) {
+        console.log(conn)
+        const scoreUpdateMessage = {
+            type: "score-update",
+            score: playerScore,
+            currentIndex: currentIndex // Send the current question index as well
+        };
+        // Send the score update to the opponent
+        conn.send(JSON.stringify(scoreUpdateMessage));
+        console.log("sending my success")
+    }
+
+    function endQuiz() {
+        console.log('All questions have been displayed.');
+        document.querySelector('.quizz-section').style.display = 'none';
+        alert(`Quiz completed! Your score: ${playerScore}, Opponent's score: ${opponentScore}`);
     }
 
     displayQuestion();
 }
+
+// Peer connection setup for receiving opponent's score updates
+peer.on('connection', conn => {
+    conn.on('data', data => {
+        const message = JSON.parse(data);
+        if (message.type === "score-update") {
+            opponentScore = message.score; // Update opponent's score
+            currentIndex = message.currentIndex; // Update to the opponent's current question index
+            console.log(`Opponent's score updated to: ${opponentScore}`);
+            // Optionally, you could call displayQuestion() here if you want to move the opponent to the next question
+            proceedToNextQuestion(); // Proceed to the next question for the player
+        }
+    });
+});
 
 // Load questions and start the game
 loadQuestions(level, category).then(loadedQuestions => {
     questions = loadedQuestions;
     const conn = peer.connect(opponentId);
 
-    conn.on('open', () => {
+    conn.on('open', conn => {
         console.log(`Connected to opponent: ${opponentId}`);
-        startQuiz(questions);
+        startQuiz(questions, conn);
     });
 }).catch(error => {
     console.error('Error loading questions:', error);
@@ -201,11 +261,11 @@ peer.on('open', id => {
                 opponentId = matchingGame.peerId;
                 const userPicElement = document.querySelector('.profile-container:nth-child(2) .profile-picture');
                 const picpath = userPicElement.src;
-                const conn = peer.connect(opponentId);
-                conn.on('open', () => {
-                    conn.send(JSON.stringify({ type: "send-user-info", username: username, picpath: picpath }));
+                const connec = peer.connect(opponentId);
+                connec.on('open', () => {
+                    connec.send(JSON.stringify({ type: "send-user-info", username: username, picpath: picpath }));
                 });
-                conn.on('data', data => {
+                connec.on('data', data => {
                     const message = JSON.parse(data);
                     if (message.type === "reply-with-user-info") {
                         document.getElementById("opponent-user").textContent = `Opponent: ${message.username}`;
