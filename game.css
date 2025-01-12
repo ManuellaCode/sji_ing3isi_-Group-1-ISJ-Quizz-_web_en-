@@ -104,6 +104,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     border-top: 2px solid #c40094;
     padding: 20px;
     margin-top: 30px;
@@ -129,36 +130,89 @@ body {
     background-color: rgba(0, 128, 0, 0.1);
   }
   .result-section {
-    display: flex;
-    justify-content: space-around;
+    display: none; /* Initially hidden */
+    justify-content: space-evenly;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute; /* Position it to overlay */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+}
+.player-result{
+  box-shadow: 0px 0px 10px gray;
+  border: 1px solid;
+  border-radius: 10px ;
+  padding: 10px;
+  width: 40%;
 }
 
 .percentage-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 8px solid #ccc;
-    position: relative;
-    overflow: hidden;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 8px solid #ccc;
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px; /* Space between score and circle */
+}
+
+.percentage-circle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+      green var(--percentage),
+      #ccc var(--percentage)
+  );
+  transform: translateX(-50%);
+  transition: background 0.5s ease;
 }
 
 .percentage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5em;
-    font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white; /* Color for percentage text */
 }
 
-@keyframes fill {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+
 
 .filled {
     border-color: green;
     animation: fill 1s linear forwards;
+}
+#result-message {
+  margin: 20px 0; /* Margin around the outcome message */
+  font-size: 28px; /* Larger font size for emphasis */
+  color: #ffc107; /* Outcome message color */
+  text-align: center; /* Center the outcome message */
+  width: 100%;
+}
+.score {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffc107; /* Color for score */
+}
+.toast {
+  transition: opacity 0.5s ease;
+  position : fixed;
+  bottom : 20px;
+  right : 20px;
+  background-color: #333;
+  color : #fff;
+  padding :10px 20px;
+  border-radius: 5px;
+  z-index : 1000;
+  opacity : 0.9;
 }

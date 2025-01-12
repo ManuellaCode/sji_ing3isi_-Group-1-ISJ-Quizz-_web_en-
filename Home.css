@@ -150,12 +150,44 @@ h5 {
   }
 }
 
-.hero-section {
-  color: white; /* Text color for readability */
-  padding: 100px 20px; /* Add padding for spacing */
-  width: 100%; /* Make sure it's full width */
-  box-sizing: border-box; /* Include padding in width calculations */
+h3{
+color:  #dcc8c8;
+padding-top: 10px;
 }
+
+/* Ensure the container holds the title and instructions side by side */
+#game-rules-container {
+  display: flex;
+  justify-content: space-between; /* Push title to left, instructions to right */
+  align-items: flex-start; /* Align items at the top */
+  gap: 20px; /* Optional: Adds space between the title and instructions */
+  padding: 20px; /* Add some padding for spacing */
+}
+
+/* Style the title on the left */
+#game-title {
+  flex: 1; /* Takes up only the necessary space */
+  text-align: left;
+  margin: 0;
+}
+
+/* Style the instructions on the right */
+#game-instructions {
+  flex: 2; /* Takes up more space for longer text */
+  text-align: left;
+  margin: 0;
+  padding-left: 20px; /* Adds some spacing for readability */
+}
+
+/* Optional: Style the container to give visual clarity */
+#game-rules-container {
+padding-top: 3px;
+  border: 1px solid #ddd; /* Adds a light border */
+  border-radius: 8px; /* Smooth corners */
+  background-color: #443f3f; /* Light background color */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+}
+
 
 /* General Text Styling for Header */
 .home-container {
@@ -196,7 +228,9 @@ h5 {
 
 /* Image styling */
 .image {
+  border-radius: 3px;
   width: 100%;  /* Full width of the container */
+  height: 10%;
   transition: transform 0.3s ease, filter 0.3s ease;  /* Smooth scaling and shadow transition */
 }
 
@@ -243,6 +277,11 @@ h5 {
   color: aquamarine;
   text-decoration: underline;
   transition: color 0.3s;
+}
+.imag{
+  border-radius: 3px;
+  width: 100%;  /* Full width of the container */
+  height: 500px;
 }
 
 

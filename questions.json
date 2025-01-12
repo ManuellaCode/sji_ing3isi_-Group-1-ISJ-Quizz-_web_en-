@@ -17,22 +17,42 @@
           "correct_answer": "Long shot"
         },
         {
-          "question": "What shape is a football pitch?",
-          "proposed_answers": ["Circular", "Square", "Rectangular", "Triangular"],
-          "correct_answer": "Rectangular"
-        },
-        {
           "question": "How long is a standard football match?",
           "proposed_answers": ["60 minutes", "90 minutes", "120 minutes", "45 minutes"],
           "correct_answer": "90 minutes"
+        },
+        {
+          "question": "Who holds the record for the most goals in a single World Cup?",
+          "proposed_answers": ["Pele", "Just Fontaine", "Ronaldo", "Gerd Müller"],
+          "correct_answer": "Just Fontaine"
+        },
+        {
+          "question": "What is the duration of each half in a professional football match?",
+          "proposed_answers": ["30 minutes", "45 minutes", "60 minutes", "90 minutes"],
+          "correct_answer": "45 minutes"
+        },
+        {
+          "question": "In what year did the first FIFA World Cup take place?",
+          "proposed_answers": ["1930", "1940", "1950", "1960"],
+          "correct_answer": "1930"
+        },
+        {
+          "question": "Which country has the most FIFA World Cup titles?",
+          "proposed_answers": ["Germany", "Brazil", "Italy", "Argentina"],
+          "correct_answer": "Brazil"
+        },
+        {
+          "question": "What is VAR in football?",
+          "proposed_answers": ["Video Assistant Referee", "Virtual Assistant Referee", "Video Analysis Review", "Variable Assessment Review"],
+          "correct_answer": "Video Assistant Referee"
+        },
+        {
+          "question": "What is the offside rule in football?",
+          "proposed_answers": ["Being ahead of the ball", "Being ahead of the last defender", "Being behind the last defender", "None of the above"],
+          "correct_answer": "Being ahead of the last defender"
         }
       ],
       "Music": [
-        {
-          "question": "What is the name of the musical symbol that indicates a note's pitch?",
-          "proposed_answers": ["Clef", "Staff", "Note", "Bar"],
-          "correct_answer": "Staff"
-        },
         {
           "question": "Who is known as the King of Pop?",
           "proposed_answers": ["Elvis Presley", "Michael Jackson", "Prince", "Madonna"],
@@ -52,6 +72,36 @@
           "question": "Which famous band was known for the song 'Hey Jude'?",
           "proposed_answers": ["The Rolling Stones", "The Beatles", "Led Zeppelin", "Pink Floyd"],
           "correct_answer": "The Beatles"
+        },
+        {
+          "question": "What is the term for a group of musicians playing together?",
+          "proposed_answers": ["Orchestra", "Band", "Ensemble", "Choir"],
+          "correct_answer": "Band"
+        },
+        {
+          "question": "Who is known for the hit song 'Rolling in the Deep'?",
+          "proposed_answers": ["Beyoncé", "Adele", "Rihanna", "Taylor Swift"],
+          "correct_answer": "Adele"
+        },
+        {
+          "question": "What genre of music did Elvis Presley popularize?",
+          "proposed_answers": ["Jazz", "Blues", "Rock and Roll", "Pop"],
+          "correct_answer": "Rock and Roll"
+        },
+        {
+          "question": "Which artist is known for the song 'Shape of You'?",
+          "proposed_answers": ["Ed Sheeran", "Justin Bieber", "Drake", "Sam Smith"],
+          "correct_answer": "Ed Sheeran"
+        },
+        {
+          "question": "What is the primary focus of a conductor?",
+          "proposed_answers": ["Playing an instrument", "Directing musicians", "Composing music", "Singing"],
+          "correct_answer": "Directing musicians"
+        },
+        {
+          "question": "Who is known as the Queen of Soul?",
+          "proposed_answers": ["Whitney Houston", "Aretha Franklin", "Adele", "Tina Turner"],
+          "correct_answer": "Aretha Franklin"
         }
       ],
       "Computer_science": [
@@ -79,146 +129,7 @@
           "question": "What does 'www' stand for in a website address?",
           "proposed_answers": ["World Wide Web", "Web World Wide", "Web Wide World", "None of the above"],
           "correct_answer": "World Wide Web"
-        }
-      ],
-      "Geography": [
-        {
-          "question": "What is the capital of France?",
-          "proposed_answers": ["Berlin", "Madrid", "Paris", "Rome"],
-          "correct_answer": "Paris"
         },
-        {
-          "question": "Which continent is known as the 'Dark Continent'?",
-          "proposed_answers": ["Asia", "Africa", "South America", "Australia"],
-          "correct_answer": "Africa"
-        },
-        {
-          "question": "What is the longest river in the world?",
-          "proposed_answers": ["Amazon", "Nile", "Yangtze", "Mississippi"],
-          "correct_answer": "Nile"
-        },
-        {
-          "question": "Which ocean is the largest?",
-          "proposed_answers": ["Atlantic", "Indian", "Arctic", "Pacific"],
-          "correct_answer": "Pacific"
-        },
-        {
-          "question": "What is the name of the mountain range that separates Europe and Asia?",
-          "proposed_answers": ["Himalayas", "Andes", "Rockies", "Ural Mountains"],
-          "correct_answer": "Ural Mountains"
-        }
-      ],
-      "Culture": [
-        {
-          "question": "What is the traditional clothing of Japan called?",
-          "proposed_answers": ["Kimono", "Sari", "Hanbok", "Cheongsam"],
-          "correct_answer": "Kimono"
-        },
-        {
-          "question": "In which country did the Olympic Games originate?",
-          "proposed_answers": ["Greece", "Italy", "Egypt", "China"],
-          "correct_answer": "Greece"
-        },
-        {
-          "question": "What is the main ingredient in sushi?",
-          "proposed_answers": ["Noodles", "Rice", "Fish", "Seaweed"],
-          "correct_answer": "Rice"
-        },
-        {
-          "question": "What dance is often associated with Argentina?",
-          "proposed_answers": ["Samba", "Ballet", "Tango", "Flamenco"],
-          "correct_answer": "Tango"
-        },
-        {
-          "question": "What is the most widely spoken language in the world?",
-          "proposed_answers": ["English", "Spanish", "Mandarin Chinese", "Hindi"],
-          "correct_answer": "Mandarin Chinese"
-        }
-      ],
-      "Economics": [
-        {
-          "question": "What is the term for the total value of all goods and services produced in a country?",
-          "proposed_answers": ["Gross Domestic Product (GDP)", "National Income", "Net Worth", "Total Revenue"],
-          "correct_answer": "Gross Domestic Product (GDP)"
-        },
-        {
-          "question": "What is the basic economic problem?",
-          "proposed_answers": ["Inflation", "Unemployment", "Scarcity", "Recession"],
-          "correct_answer": "Scarcity"
-        },
-        {
-          "question": "What do you call a market structure with only one seller?",
-          "proposed_answers": ["Oligopoly", "Monopoly", "Perfect Competition", "Duopoly"],
-          "correct_answer": "Monopoly"
-        },
-        {
-          "question": "What is the currency of the United States?",
-          "proposed_answers": ["Dollar", "Euro", "Yen", "Pound"],
-          "correct_answer": "Dollar"
-        },
-        {
-          "question": "What economic system is based on private ownership and free markets?",
-          "proposed_answers": ["Socialism", "Communism", "Capitalism", "Feudalism"],
-          "correct_answer": "Capitalism"
-        }
-      ]
-    },
-    "Don_man": {
-      "Football": [
-        {
-          "question": "Who holds the record for the most goals in a single World Cup?",
-          "proposed_answers": ["Pele", "Just Fontaine", "Ronaldo", "Gerd Müller"],
-          "correct_answer": "Just Fontaine"
-        },
-        {
-          "question": "What is the duration of each half in a professional football match?",
-          "proposed_answers": ["30 minutes", "45 minutes", "60 minutes", "90 minutes"],
-          "correct_answer": "45 minutes"
-        },
-        {
-          "question": "In what year did the first FIFA World Cup take place?",
-          "proposed_answers": ["1930", "1940", "1950", "1960"],
-          "correct_answer": "1930"
-        },
-        {
-          "question": "What is the name of the trophy awarded to the FIFA World Cup winners?",
-          "proposed_answers": ["Champions Trophy", "World Cup Trophy", "Golden Boot", "FIFA Cup"],
-          "correct_answer": "FIFA World Cup Trophy"
-        },
-        {
-          "question": "Which country has the most FIFA World Cup titles?",
-          "proposed_answers": ["Germany", "Brazil", "Italy", "Argentina"],
-          "correct_answer": "Brazil"
-        }
-      ],
-      "Music": [
-        {
-          "question": "What is the term for a group of musicians playing together?",
-          "proposed_answers": ["Orchestra", "Band", "Ensemble", "Choir"],
-          "correct_answer": "Band"
-        },
-        {
-          "question": "Which famous singer is known for the song 'I Will Always Love You'?",
-          "proposed_answers": ["Celine Dion", "Whitney Houston", "Mariah Carey", "Adele"],
-          "correct_answer": "Whitney Houston"
-        },
-        {
-          "question": "What is the name of the music genre that originated in Jamaica?",
-          "proposed_answers": ["Reggae", "Hip-Hop", "Blues", "Rock"],
-          "correct_answer": "Reggae"
-        },
-        {
-          "question": "Who is known for the hit song 'Rolling in the Deep'?",
-          "proposed_answers": ["Beyoncé", "Adele", "Rihanna", "Taylor Swift"],
-          "correct_answer": "Adele"
-        },
-        {
-          "question": "What musical instrument is associated with jazz music?",
-          "proposed_answers": ["Piano", "Saxophone", "Violin", "Guitar"],
-          "correct_answer": "Saxophone"
-        }
-      ],
-      "Computer_science": [
         {
           "question": "What does 'RAM' stand for?",
           "proposed_answers": ["Read Access Memory", "Random Access Memory", "Real Access Memory", "Rapid Access Memory"],
@@ -230,53 +141,78 @@
           "correct_answer": "To perform tasks on a computer"
         },
         {
-          "question": "What is a common programming language used for web development?",
-          "proposed_answers": ["Java", "Python", "JavaScript", "C++"],
-          "correct_answer": "JavaScript"
+          "question": "Which programming language is known for its use in web development?",
+          "proposed_answers": ["Python", "Java", "HTML", "C++"],
+          "correct_answer": "HTML"
         },
         {
-          "question": "What does 'URL' stand for?",
-          "proposed_answers": ["Universal Resource Locator", "Uniform Resource Locator", "Uniform Routing Locator", "Universal Routing Locator"],
-          "correct_answer": "Uniform Resource Locator"
+          "question": "What is an algorithm?",
+          "proposed_answers": ["A set of instructions", "A programming language", "A type of software", "None of the above"],
+          "correct_answer": "A set of instructions"
         },
         {
-          "question": "What is the name of the first computer programmer?",
-          "proposed_answers": ["Alan Turing", "Ada Lovelace", "Charles Babbage", "Bill Gates"],
-          "correct_answer": "Ada Lovelace"
+          "question": "What does 'API' stand for?",
+          "proposed_answers": ["Application Programming Interface", "Application Protocol Interface", "Applied Programming Interface", "None of the above"],
+          "correct_answer": "Application Programming Interface"
         }
       ],
       "Geography": [
         {
+          "question": "What is the capital of France?",
+          "proposed_answers": ["Berlin", "Madrid", "Paris", "Rome"],
+          "correct_answer": "Paris"
+        },
+        {
+          "question": "Which is the largest continent?",
+          "proposed_answers": ["Africa", "Asia", "Europe", "North America"],
+          "correct_answer": "Asia"
+        },
+        {
+          "question": "What is the longest river in the world?",
+          "proposed_answers": ["Amazon", "Nile", "Yangtze", "Mississippi"],
+          "correct_answer": "Nile"
+        },
+        {
           "question": "Which country is known as the Land of the Rising Sun?",
-          "proposed_answers": ["China", "Japan", "Korea", "Thailand"],
+          "proposed_answers": ["China", "Japan", "Thailand", "India"],
           "correct_answer": "Japan"
         },
         {
-          "question": "What is the capital city of Canada?",
-          "proposed_answers": ["Toronto", "Ottawa", "Vancouver", "Montreal"],
-          "correct_answer": "Ottawa"
+          "question": "What is the smallest country in the world?",
+          "proposed_answers": ["Monaco", "Nauru", "Vatican City", "San Marino"],
+          "correct_answer": "Vatican City"
         },
         {
-          "question": "Which desert is the largest in the world?",
-          "proposed_answers": ["Gobi", "Sahara", "Kalahari", "Atacama"],
-          "correct_answer": "Sahara"
+          "question": "Which ocean is the largest?",
+          "proposed_answers": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+          "correct_answer": "Pacific Ocean"
         },
         {
-          "question": "What is the official language of Brazil?",
-          "proposed_answers": ["Spanish", "Portuguese", "English", "French"],
-          "correct_answer": "Portuguese"
+          "question": "What is the capital of Australia?",
+          "proposed_answers": ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+          "correct_answer": "Canberra"
         },
         {
-          "question": "Which mountain is known as the highest peak in the world?",
+          "question": "Which mountain is the highest in the world?",
           "proposed_answers": ["K2", "Kangchenjunga", "Mount Everest", "Lhotse"],
           "correct_answer": "Mount Everest"
+        },
+        {
+          "question": "What is the largest desert in the world?",
+          "proposed_answers": ["Sahara", "Arabian", "Gobi", "Antarctic"],
+          "correct_answer": "Antarctic"
+        },
+        {
+          "question": "Which river flows through London?",
+          "proposed_answers": ["Thames", "Seine", "Danube", "Rhine"],
+          "correct_answer": "Thames"
         }
       ],
       "Culture": [
         {
-          "question": "What is the name of the famous festival celebrated in Rio de Janeiro?",
-          "proposed_answers": ["Carnival", "Diwali", "Oktoberfest", "Mardi Gras"],
-          "correct_answer": "Carnival"
+          "question": "What is the traditional dance of Spain?",
+          "proposed_answers": ["Samba", "Flamenco", "Ballet", "Tango"],
+          "correct_answer": "Flamenco"
         },
         {
           "question": "Which country is famous for its pyramids?",
@@ -284,211 +220,725 @@
           "correct_answer": "Egypt"
         },
         {
-          "question": "What is the traditional dance of India?",
-          "proposed_answers": ["Kathak", "Samba", "Ballet", "Tango"],
-          "correct_answer": "Kathak"
+          "question": "What is the national dish of Japan?",
+          "proposed_answers": ["Sushi", "Tacos", "Pasta", "Curry"],
+          "correct_answer": "Sushi"
         },
         {
-          "question": "Which painting is considered the most famous artwork in the world?",
-          "proposed_answers": ["Starry Night", "The Last Supper", "Mona Lisa", "The Scream"],
-          "correct_answer": "Mona Lisa"
+          "question": "In which country did the Renaissance begin?",
+          "proposed_answers": ["France", "Italy", "Germany", "Spain"],
+          "correct_answer": "Italy"
         },
         {
-          "question": "What is the main religion practiced in the Middle East?",
-          "proposed_answers": ["Buddhism", "Hinduism", "Christianity", "Islam"],
-          "correct_answer": "Islam"
+          "question": "Which festival is celebrated with fireworks and parades in India?",
+          "proposed_answers": ["Holi", "Diwali", "Eid", "Christmas"],
+          "correct_answer": "Diwali"
+        },
+        {
+          "question": "What is the traditional clothing worn in Scotland?",
+          "proposed_answers": ["Kimono", "Kilt", "Sari", "Toga"],
+          "correct_answer": "Kilt"
+        },
+        {
+          "question": "Which country is known for the tango dance?",
+          "proposed_answers": ["Brazil", "Argentina", "Chile", "Colombia"],
+          "correct_answer": "Argentina"
+        },
+        {
+          "question": "What is the primary religion in India?",
+          "proposed_answers": ["Hinduism", "Buddhism", "Islam", "Christianity"],
+          "correct_answer": "Hinduism"
+        },
+        {
+          "question": "Which city is known as the Big Apple?",
+          "proposed_answers": ["Los Angeles", "Chicago", "New York City", "San Francisco"],
+          "correct_answer": "New York City"
+        },
+        {
+          "question": "What is the official language of Brazil?",
+          "proposed_answers": ["Spanish", "Portuguese", "English", "French"],
+          "correct_answer": "Portuguese"
         }
       ],
       "Economics": [
         {
-          "question": "What is the term for the relationship between supply and demand?",
-          "proposed_answers": ["Market Equilibrium", "Market Failure", "Market Economy", "Market Structure"],
-          "correct_answer": "Market Equilibrium"
+          "question": "What is the study of how people manage resources?",
+          "proposed_answers": ["Sociology", "Psychology", "Economics", "Political Science"],
+          "correct_answer": "Economics"
+        },
+        {
+          "question": "What is GDP an abbreviation for?",
+          "proposed_answers": ["Gross Domestic Product", "General Domestic Product", "Gross Development Product", "General Development Product"],
+          "correct_answer": "Gross Domestic Product"
         },
         {
           "question": "What is inflation?",
-          "proposed_answers": ["Decrease in prices", "Increase in prices", "Stability of prices", "None of the above"],
+          "proposed_answers": ["Decrease in prices", "Increase in prices", "Stability in prices", "None of the above"],
           "correct_answer": "Increase in prices"
         },
         {
-          "question": "What is the term for a person who starts and runs a business?",
-          "proposed_answers": ["Manager", "Entrepreneur", "Employee", "Investor"],
-          "correct_answer": "Entrepreneur"
+          "question": "What is the term for a market with many buyers and sellers?",
+          "proposed_answers": ["Monopoly", "Oligopoly", "Perfect competition", "Monopsony"],
+          "correct_answer": "Perfect competition"
         },
         {
           "question": "What is a budget?",
-          "proposed_answers": ["Financial plan", "Bank statement", "Investment report", "Income statement"],
-          "correct_answer": "Financial plan"
+          "proposed_answers": ["A plan for spending", "A type of tax", "A government policy", "None of the above"],
+          "correct_answer": "A plan for spending"
         },
         {
-          "question": "What is the primary role of the Federal Reserve in the US?",
-          "proposed_answers": ["To collect taxes", "To regulate the money supply", "To issue currency", "To manage trade"],
-          "correct_answer": "To regulate the money supply"
+          "question": "What does supply and demand refer to?",
+          "proposed_answers": ["Market trends", "Consumer preferences", "Price determination", "All of the above"],
+          "correct_answer": "All of the above"
+        },
+        {
+          "question": "What is a recession?",
+          "proposed_answers": ["A period of economic growth", "A period of economic decline", "Stable economic conditions", "None of the above"],
+          "correct_answer": "A period of economic decline"
+        },
+        {
+          "question": "What is the role of the central bank?",
+          "proposed_answers": ["Control inflation", "Regulate money supply", "Set interest rates", "All of the above"],
+          "correct_answer": "All of the above"
+        },
+        {
+          "question": "What is a stock market?",
+          "proposed_answers": ["Place to buy and sell goods", "Place to buy and sell stocks", "Place to exchange currencies", "None of the above"],
+          "correct_answer": "Place to buy and sell stocks"
+        },
+        {
+          "question": "What is a trade deficit?",
+          "proposed_answers": ["Exporting more than importing", "Importing more than exporting", "Equal imports and exports", "None of the above"],
+          "correct_answer": "Importing more than exporting"
         }
       ]
     },
-   "Tara": {
-    "Football": [
-      {
-        "question": "Who is regarded as one of the greatest football players of all time, known for his time at Barcelona?",
-        "proposed_answers": ["Cristiano Ronaldo", "Lionel Messi", "Pele", "Diego Maradona"],
-        "correct_answer": "Lionel Messi"
-      },
-      {
-        "question": "What is the name of the first woman to referee a men's professional football match?",
-        "proposed_answers": ["Frappart", "Steinhaus", "D'Angelo", "Baldwin"],
-        "correct_answer": "Frappart"
-      },
-      {
-        "question": "Which country hosted the 1994 FIFA World Cup?",
-        "proposed_answers": ["USA", "Italy", "Germany", "Brazil"],
-        "correct_answer": "USA"
-      },
-      {
-        "question": "What is the average size of a football pitch in meters?",
-        "proposed_answers": ["80 to 90", "100 to 110", "110 to 120", "90 to 100"],
-        "correct_answer": "100 to 110"
-      },
-      {
-        "question": "What is VAR in football?",
-        "proposed_answers": ["Video Assistant Referee", "Virtual Assistant Referee", "Video Analysis Review", "Variable Assessment Review"],
-        "correct_answer": "Video Assistant Referee"
+    "Don_Man": {
+        "Football": [
+          {
+            "question": "What is the maximum number of substitutions allowed in a professional football match (FIFA rules)?",
+            "proposed_answers": ["3", "5", "7", "9"],
+            "correct_answer": "5"
+          },
+          {
+            "question": "Which player holds the record for the most goals in UEFA Champions League history?",
+            "proposed_answers": ["Lionel Messi", "Cristiano Ronaldo", "Raúl", "Robert Lewandowski"],
+            "correct_answer": "Cristiano Ronaldo"
+          },
+          {
+            "question": "What is the maximum height of the goalpost in professional football?",
+            "proposed_answers": ["8 feet", "8.5 feet", "9 feet", "10 feet"],
+            "correct_answer": "8 feet"
+          },
+          {
+            "question": "What term is used to describe a player who scores in three consecutive matches?",
+            "proposed_answers": ["Hat-trick", "Brace", "Trickster", "Streak"],
+            "correct_answer": "Hat-trick"
+          },
+          {
+            "question": "Which country hosted the 2006 FIFA World Cup?",
+            "proposed_answers": ["South Africa", "Germany", "Brazil", "Italy"],
+            "correct_answer": "Germany"
+          },
+          {
+            "question": "What does the acronym 'FIFA' stand for?",
+            "proposed_answers": ["Federation Internationale de Football Association", "Fédération Internationale de Football Association", "Football International Federation Association", "None of the above"],
+            "correct_answer": "Fédération Internationale de Football Association"
+          },
+          {
+            "question": "Which player won the Ballon d'Or in 2021?",
+            "proposed_answers": ["Lionel Messi", "Cristiano Ronaldo", "Robert Lewandowski", "Jorginho"],
+            "correct_answer": "Lionel Messi"
+          },
+          {
+            "question": "What is the official match ball used in the FIFA World Cup?",
+            "proposed_answers": ["Brazuca", "Telstar", "Jabulani", "Fevernova"],
+            "correct_answer": "Telstar"
+          },
+          {
+            "question": "What is the primary governing body of football in Europe?",
+            "proposed_answers": ["FIFA", "UEFA", "CONCACAF", "CAF"],
+            "correct_answer": "UEFA"
+          },
+          {
+            "question": "Which football club has the most UEFA Champions League titles?",
+            "proposed_answers": ["AC Milan", "Liverpool", "Real Madrid", "Barcelona"],
+            "correct_answer": "Real Madrid"
+          }
+        ],
+        "Music": [
+          {
+            "question": "Who composed the famous classical piece 'Boléro'?",
+            "proposed_answers": ["Beethoven", "Ravel", "Bach", "Mozart"],
+            "correct_answer": "Ravel"
+          },
+          {
+            "question": "What is the best-selling album of all time?",
+            "proposed_answers": ["Back in Black", "Thriller", "The Dark Side of the Moon", "Rumours"],
+            "correct_answer": "Thriller"
+          },
+          {
+            "question": "Which artist is known for the album 'The Chronic'?",
+            "proposed_answers": ["Dr. Dre", "Snoop Dogg", "Eminem", "50 Cent"],
+            "correct_answer": "Dr. Dre"
+          },
+          {
+            "question": "What year did the first Woodstock festival take place?",
+            "proposed_answers": ["1967", "1969", "1971", "1973"],
+            "correct_answer": "1969"
+          },
+          {
+            "question": "Which genre of music is characterized by improvisation and syncopation?",
+            "proposed_answers": ["Classical", "Jazz", "Rock", "Country"],
+            "correct_answer": "Jazz"
+          },
+          {
+            "question": "What is the primary instrument used in a symphony orchestra's string section?",
+            "proposed_answers": ["Violin", "Clarinet", "Trumpet", "Flute"],
+            "correct_answer": "Violin"
+          },
+          {
+            "question": "Who was the lead singer of the band Queen?",
+            "proposed_answers": ["Roger Taylor", "Freddie Mercury", "Brian May", "John Deacon"],
+            "correct_answer": "Freddie Mercury"
+          },
+          {
+            "question": "Which musical term indicates a gradual increase in volume?",
+            "proposed_answers": ["Crescendo", "Diminuendo", "Forte", "Piano"],
+            "correct_answer": "Crescendo"
+          },
+          {
+            "question": "What is the name of the music festival held annually in Coachella Valley, California?",
+            "proposed_answers": ["Lollapalooza", "Coachella", "Glastonbury", "Burning Man"],
+            "correct_answer": "Coachella"
+          },
+          {
+            "question": "Which famous musician is known for the song 'Purple Rain'?",
+            "proposed_answers": ["Prince", "Michael Jackson", "Stevie Wonder", "Marvin Gaye"],
+            "correct_answer": "Prince"
+          }
+        ],
+        "Computer_science": [
+          {
+            "question": "What does 'SQL' stand for?",
+            "proposed_answers": ["Structured Query Language", "Sequential Query Language", "Simple Query Language", "Standard Query Language"],
+            "correct_answer": "Structured Query Language"
+          },
+          {
+            "question": "Which programming paradigm focuses on objects and classes?",
+            "proposed_answers": ["Functional Programming", "Procedural Programming", "Object-Oriented Programming", "Logic Programming"],
+            "correct_answer": "Object-Oriented Programming"
+          },
+          {
+            "question": "What is the primary purpose of an operating system?",
+            "proposed_answers": ["Run applications", "Manage hardware and software resources", "Provide internet access", "None of the above"],
+            "correct_answer": "Manage hardware and software resources"
+          },
+          {
+            "question": "Which algorithm is commonly used for searching data in a sorted array?",
+            "proposed_answers": ["Linear Search", "Binary Search", "Depth-First Search", "Breadth-First Search"],
+            "correct_answer": "Binary Search"
+          },
+          {
+            "question": "What is the term for a software vulnerability that allows unauthorized access?",
+            "proposed_answers": ["Backdoor", "Trojan", "Virus", "Worm"],
+            "correct_answer": "Backdoor"
+          },
+          {
+            "question": "Which data structure uses a Last In First Out (LIFO) method?",
+            "proposed_answers": ["Queue", "Stack", "Array", "Linked List"],
+            "correct_answer": "Stack"
+          },
+          {
+            "question": "What is the main purpose of a firewall?",
+            "proposed_answers": ["To speed up the internet", "To protect networks from unauthorized access", "To store data", "To improve website design"],
+            "correct_answer": "To protect networks from unauthorized access"
+          },
+          {
+            "question": "What does 'HTTP' stand for?",
+            "proposed_answers": ["HyperText Transfer Protocol", "HyperText Transmission Protocol", "High Transfer Text Protocol", "Hyperlink Transfer Protocol"],
+            "correct_answer": "HyperText Transfer Protocol"
+          },
+          {
+            "question": "Which language is primarily used for web development?",
+            "proposed_answers": ["Java", "Python", "JavaScript", "C#"],
+            "correct_answer": "JavaScript"
+          },
+          {
+            "question": "What is the purpose of version control systems?",
+            "proposed_answers": ["To manage changes to source code", "To optimize performance", "To automate testing", "To enhance security"],
+            "correct_answer": "To manage changes to source code"
+          }
+        ],
+        "Geography": [
+          {
+            "question": "What is the capital city of Kazakhstan?",
+            "proposed_answers": ["Almaty", "Astana", "Bishkek", "Tashkent"],
+            "correct_answer": "Astana"
+          },
+          {
+            "question": "Which river flows through both Germany and Austria?",
+            "proposed_answers": ["Danube", "Rhine", "Elbe", "Seine"],
+            "correct_answer": "Danube"
+          },
+          {
+            "question": "What mountain range separates Europe from Asia?",
+            "proposed_answers": ["Andes", "Himalayas", "Ural", "Rockies"],
+            "correct_answer": "Ural"
+          },
+          {
+            "question": "Which country has the most natural lakes?",
+            "proposed_answers": ["Canada", "Russia", "United States", "Brazil"],
+            "correct_answer": "Canada"
+          },
+          {
+            "question": "What is the world's largest island?",
+            "proposed_answers": ["Greenland", "New Guinea", "Borneo", "Madagascar"],
+            "correct_answer": "Greenland"
+          },
+          {
+            "question": "Which desert is the largest hot desert in the world?",
+            "proposed_answers": ["Gobi", "Sahara", "Kalahari", "Sonoran"],
+            "correct_answer": "Sahara"
+          },
+          {
+            "question": "What is the capital of Iceland?",
+            "proposed_answers": ["Reykjavik", "Oslo", "Copenhagen", "Helsinki"],
+            "correct_answer": "Reykjavik"
+          },
+          {
+            "question": "Which continent is known as the 'Dark Continent'?",
+            "proposed_answers": ["Asia", "Africa", "South America", "Australia"],
+            "correct_answer": "Africa"
+          },
+          {
+            "question": "Which country is the smallest by land area?",
+            "proposed_answers": ["Monaco", "Vatican City", "Nauru", "San Marino"],
+            "correct_answer": "Vatican City"
+          },
+          {
+            "question": "What is the only continent without a desert?",
+            "proposed_answers": ["Asia", "Europe", "Antarctica", "Australia"],
+            "correct_answer": "Europe"
+          }
+        ],
+        "Culture": [
+          {
+            "question": "What is the traditional Japanese art of folding paper called?",
+            "proposed_answers": ["Ikebana", "Origami", "Calligraphy", "Sumi-e"],
+            "correct_answer": "Origami"
+          },
+          {
+            "question": "Which country is known for the tradition of 'siesta'?",
+            "proposed_answers": ["Spain", "Italy", "Greece", "Brazil"],
+            "correct_answer": "Spain"
+          },
+          {
+            "question": "What is the primary language spoken in Brazil?",
+            "proposed_answers": ["Spanish", "Portuguese", "English", "French"],
+            "correct_answer": "Portuguese"
+          },
+          {
+            "question": "Which festival celebrates the Jewish New Year?",
+            "proposed_answers": ["Passover", "Rosh Hashanah", "Hanukkah", "Yom Kippur"],
+            "correct_answer": "Rosh Hashanah"
+          },
+          {
+            "question": "What is the traditional form of storytelling in West African culture?",
+            "proposed_answers": ["Griot", "Djembe", "Kora", "Sankofa"],
+            "correct_answer": "Griot"
+          },
+          {
+            "question": "Which South American country is famous for its tango dance?",
+            "proposed_answers": ["Chile", "Colombia", "Argentina", "Peru"],
+            "correct_answer": "Argentina"
+          },
+          {
+            "question": "What is the national dish of Scotland?",
+            "proposed_answers": ["Haggis", "Bangers and Mash", "Cullen Skink", "Fish and Chips"],
+            "correct_answer": "Haggis"
+          },
+          {
+            "question": "In which country did the Olympic Games originate?",
+            "proposed_answers": ["Greece", "Rome", "Egypt", "China"],
+            "correct_answer": "Greece"
+          },
+          {
+            "question": "What is the traditional dance of the Maori people of New Zealand?",
+            "proposed_answers": ["Haka", "Samba", "Bharatanatyam", "Flamenco"],
+            "correct_answer": "Haka"
+          },
+          {
+            "question": "Which ancient civilization is known for creating pyramids?",
+            "proposed_answers": ["Inca", "Aztec", "Egyptian", "Minoan"],
+            "correct_answer": "Egyptian"
+          }
+        ],
+        "Economics": [
+          {
+            "question": "What is the term for the total value of goods and services produced in a country?",
+            "proposed_answers": ["Net National Product", "Gross Domestic Product", "National Income", "Per Capita Income"],
+            "correct_answer": "Gross Domestic Product"
+          },
+          {
+            "question": "What does 'monetary policy' refer to?",
+            "proposed_answers": ["Government spending", "Taxation policies", "Control of the money supply", "International trade policies"],
+            "correct_answer": "Control of the money supply"
+          },
+          {
+            "question": "What is the purpose of tariffs?",
+            "proposed_answers": ["To increase exports", "To protect domestic industries", "To lower prices", "To control inflation"],
+            "correct_answer": "To protect domestic industries"
+          },
+          {
+            "question": "What is a bear market?",
+            "proposed_answers": ["A market in decline", "A market in growth", "A stable market", "A volatile market"],
+            "correct_answer": "A market in decline"
+          },
+          {
+            "question": "What does the term 'capitalism' refer to?",
+            "proposed_answers": ["Government control of production", "Private ownership of production", "Cooperative ownership", "Social ownership"],
+            "correct_answer": "Private ownership of production"
+          },
+          {
+            "question": "Which economic system is characterized by collective or governmental ownership?",
+            "proposed_answers": ["Capitalism", "Socialism", "Feudalism", "Mercantilism"],
+            "correct_answer": "Socialism"
+          },
+          {
+            "question": "What is the term for economic growth that occurs in the long term?",
+            "proposed_answers": ["Cyclical growth", "Structural growth", "Trend growth", "Temporary growth"],
+            "correct_answer": "Trend growth"
+          },
+          {
+            "question": "What is the concept of 'opportunity cost'?",
+            "proposed_answers": ["The cost of production", "The cost of the next best alternative foregone", "The cost of labor", "The total cost of a project"],
+            "correct_answer": "The cost of the next best alternative foregone"
+          },
+          {
+            "question": "What is the economic term for a prolonged period of high unemployment and low economic activity?",
+            "proposed_answers": ["Recession", "Depression", "Boom", "Recovery"],
+            "correct_answer": "Depression"
+          },
+          {
+            "question": "What is the primary goal of fiscal policy?",
+            "proposed_answers": ["Control inflation", "Manage government spending and taxation", "Regulate the banking system", "Promote international trade"],
+            "correct_answer": "Manage government spending and taxation"
+          }
+        ]
+    },
+      "Tara": {
+        "Football": [
+          {
+            "question": "Which country has won the most UEFA European Championships?",
+            "proposed_answers": ["Germany", "France", "Italy", "Spain"],
+            "correct_answer": "Germany"
+          },
+          {
+            "question": "Who is the only player to have won the Ballon d'Or while playing for a club outside Europe?",
+            "proposed_answers": ["George Weah", "Ronaldo Nazário", "Pelé", "Lionel Messi"],
+            "correct_answer": "George Weah"
+          },
+          {
+            "question": "What is the official distance of a football penalty kick?",
+            "proposed_answers": ["10 yards", "12 yards", "11 meters", "9 meters"],
+            "correct_answer": "12 yards"
+          },
+          {
+            "question": "Which club has the most domestic league titles in England?",
+            "proposed_answers": ["Liverpool", "Manchester United", "Arsenal", "Chelsea"],
+            "correct_answer": "Manchester United"
+          },
+          {
+            "question": "What is the name of the trophy awarded to the winner of the Copa América?",
+            "proposed_answers": ["Libertadores Trophy", "Copa del Rey", "Copa América Trophy", "Centenario Trophy"],
+            "correct_answer": "Copa América Trophy"
+          },
+          {
+            "question": "Which player scored the famous 'Hand of God' goal?",
+            "proposed_answers": ["Diego Maradona", "Lionel Messi", "Pelé", "Franco Baresi"],
+            "correct_answer": "Diego Maradona"
+          },
+          {
+            "question": "What is the maximum number of players allowed on the pitch for one team in a football match?",
+            "proposed_answers": ["10", "11", "12", "13"],
+            "correct_answer": "11"
+          },
+          {
+            "question": "Which country was the first to host the FIFA World Cup twice?",
+            "proposed_answers": ["France", "Italy", "Brazil", "Germany"],
+            "correct_answer": "Italy"
+          },
+          {
+            "question": "What is the name of the competition for clubs in South America?",
+            "proposed_answers": ["UEFA Champions League", "Copa Libertadores", "CONCACAF Gold Cup", "African Cup of Nations"],
+            "correct_answer": "Copa Libertadores"
+          },
+          {
+            "question": "Which famous footballer is known for his 'Panenka' penalty kick technique?",
+            "proposed_answers": ["Zinedine Zidane", "Andrés Iniesta", "Antonín Panenka", "Cristiano Ronaldo"],
+            "correct_answer": "Antonín Panenka"
+          }
+        ],
+        "Music": [
+          {
+            "question": "What is the name of the musical scale that consists of seven notes?",
+            "proposed_answers": ["Chromatic scale", "Diatonic scale", "Pentatonic scale", "Whole tone scale"],
+            "correct_answer": "Diatonic scale"
+          },
+          {
+            "question": "Which composer is known for the 'Four Seasons' concertos?",
+            "proposed_answers": ["Vivaldi", "Bach", "Beethoven", "Mozart"],
+            "correct_answer": "Vivaldi"
+          },
+          {
+            "question": "What genre of music is characterized by its improvisational style and originated in African American communities?",
+            "proposed_answers": ["Jazz", "Blues", "Rock", "Reggae"],
+            "correct_answer": "Jazz"
+          },
+          {
+            "question": "Who is the artist behind the concept album 'The Wall'?",
+            "proposed_answers": ["The Who", "Pink Floyd", "Led Zeppelin", "Queen"],
+            "correct_answer": "Pink Floyd"
+          },
+          {
+            "question": "What is the term for a piece of music composed for a solo instrument and orchestra?",
+            "proposed_answers": ["Sonata", "Concerto", "Symphony", "Suite"],
+            "correct_answer": "Concerto"
+          },
+          {
+            "question": "Which singer is known for the hit song 'I Will Always Love You'?",
+            "proposed_answers": ["Celine Dion", "Whitney Houston", "Mariah Carey", "Tina Turner"],
+            "correct_answer": "Whitney Houston"
+          },
+          {
+            "question": "What is the primary instrument featured in a sitar?",
+            "proposed_answers": ["String", "Percussion", "Wind", "Brass"],
+            "correct_answer": "String"
+          },
+          {
+            "question": "Which music festival is held annually in Indio, California?",
+            "proposed_answers": ["Lollapalooza", "Coachella", "Glastonbury", "Burning Man"],
+            "correct_answer": "Coachella"
+          },
+          {
+            "question": "What is the name of the famous British rock band that released the album 'Sgt. Pepper's Lonely Hearts Club Band'?",
+            "proposed_answers": ["The Beatles", "The Rolling Stones", "Queen", "Led Zeppelin"],
+            "correct_answer": "The Beatles"
+          },
+          {
+            "question": "Which artist is known for the song 'Born to Run'?",
+            "proposed_answers": ["Bob Dylan", "Bruce Springsteen", "Neil Young", "Johnny Cash"],
+            "correct_answer": "Bruce Springsteen"
+          }
+        ],
+        "Computer_science": [
+          {
+            "question": "What is the main purpose of a compiler?",
+            "proposed_answers": ["Translate high-level code to machine code", "Execute code", "Debug code", "Manage memory"],
+            "correct_answer": "Translate high-level code to machine code"
+          },
+          {
+            "question": "Which data structure uses a First In, First Out (FIFO) method?",
+            "proposed_answers": ["Queue", "Stack", "Linked List", "Array"],
+            "correct_answer": "Queue"
+          },
+          {
+            "question": "What does 'Big O' notation describe?",
+            "proposed_answers": ["Algorithm efficiency", "Data structure size", "Programming language syntax", "Memory allocation"],
+            "correct_answer": "Algorithm efficiency"
+          },
+          {
+            "question": "Which language is primarily used for web front-end development?",
+            "proposed_answers": ["Python", "Java", "JavaScript", "C++"],
+            "correct_answer": "JavaScript"
+          },
+          {
+            "question": "What is a common use for a hash table?",
+            "proposed_answers": ["Storing ordered data", "Storing key-value pairs", "Sorting data", "Storing binary data"],
+            "correct_answer": "Storing key-value pairs"
+          },
+          {
+            "question": "What is the primary function of an operating system?",
+            "proposed_answers": ["Run applications", "Control hardware resources", "Manage user accounts", "All of the above"],
+            "correct_answer": "All of the above"
+          },
+          {
+            "question": "Which of the following is a NoSQL database?",
+            "proposed_answers": ["MySQL", "PostgreSQL", "MongoDB", "Oracle"],
+            "correct_answer": "MongoDB"
+          },
+          {
+            "question": "What does 'URL' stand for?",
+            "proposed_answers": ["Uniform Resource Locator", "Universal Resource Locator", "Uniform Reference Locator", "Universal Reference Locator"],
+            "correct_answer": "Uniform Resource Locator"
+          },
+          {
+            "question": "What is the purpose of a VPN?",
+            "proposed_answers": ["Increase download speed", "Secure internet connection", "Block ads", "Improve search results"],
+            "correct_answer": "Secure internet connection"
+          },
+          {
+            "question": "Which of the following is not a programming language?",
+            "proposed_answers": ["Python", "HTML", "Java", "C#"],
+            "correct_answer": "HTML"
+          }
+        ],
+        "Geography": [
+          {
+            "question": "Which is the largest country in the world by land area?",
+            "proposed_answers": ["Canada", "United States", "China", "Russia"],
+            "correct_answer": "Russia"
+          },
+          {
+            "question": "What is the capital of Bhutan?",
+            "proposed_answers": ["Thimphu", "Kathmandu", "Dhaka", "Paro"],
+            "correct_answer": "Thimphu"
+          },
+          {
+            "question": "Which desert is the largest cold desert in the world?",
+            "proposed_answers": ["Sahara", "Gobi", "Antarctic", "Arctic"],
+            "correct_answer": "Antarctic"
+          },
+          {
+            "question": "What is the longest mountain range in the world?",
+            "proposed_answers": ["Rocky Mountains", "Andes", "Himalayas", "Alps"],
+            "correct_answer": "Andes"
+          },
+          {
+            "question": "Which country is known for having the most UNESCO World Heritage Sites?",
+            "proposed_answers": ["Italy", "China", "Spain", "India"],
+            "correct_answer": "Italy"
+          },
+          {
+            "question": "What is the name of the world's largest rainforest?",
+            "proposed_answers": ["Amazon Rainforest", "Congo Rainforest", "Taiga", "Valdivian Temperate Rainforest"],
+            "correct_answer": "Amazon Rainforest"
+          },
+          {
+            "question": "Which mountain is considered the highest peak in North America?",
+            "proposed_answers": ["Mount Rainier", "Denali", "Mount Elbert", "Mount Whitney"],
+            "correct_answer": "Denali"
+          },
+          {
+            "question": "Which river is the longest in South America?",
+            "proposed_answers": ["Amazon", "Paraná", "Orinoco", "São Francisco"],
+            "correct_answer": "Amazon"
+          },
+          {
+            "question": "What is the capital city of Australia?",
+            "proposed_answers": ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+            "correct_answer": "Canberra"
+          },
+          {
+            "question": "Which country is entirely landlocked?",
+            "proposed_answers": ["Switzerland", "Austria", "Mongolia", "Kazakhstan"],
+            "correct_answer": "Kazakhstan"
+          }
+        ],
+        "Culture": [
+          {
+            "question": "What is the traditional art of Japanese flower arrangement called?",
+            "proposed_answers": ["Ikebana", "Origami", "Calligraphy", "Sumi-e"],
+            "correct_answer": "Ikebana"
+          },
+          {
+            "question": "Which festival is known as the Festival of Lights in Hindu culture?",
+            "proposed_answers": ["Navratri", "Holi", "Diwali", "Eid"],
+            "correct_answer": "Diwali"
+          },
+          {
+            "question": "What is the primary language spoken in Argentina?",
+            "proposed_answers": ["Spanish", "Italian", "Portuguese", "French"],
+            "correct_answer": "Spanish"
+          },
+          {
+            "question": "Which ancient civilization is known for its pyramids?",
+            "proposed_answers": ["Maya", "Aztec", "Egyptian", "Inca"],
+            "correct_answer": "Egyptian"
+          },
+          {
+            "question": "What is the traditional dance of the Maori people of New Zealand?",
+            "proposed_answers": ["Haka", "Samba", "Flamenco", "Bharatanatyam"],
+            "correct_answer": "Haka"
+          },
+          {
+            "question": "Which country is famous for the tradition of tea ceremonies?",
+            "proposed_answers": ["China", "Japan", "India", "England"],
+            "correct_answer": "Japan"
+          },
+          {
+            "question": "What is the name of the famous ancient Greek philosopher who taught Alexander the Great?",
+            "proposed_answers": ["Plato", "Aristotle", "Socrates", "Epicurus"],
+            "correct_answer": "Aristotle"
+          },
+          {
+            "question": "Which country is known for its tango dance?",
+            "proposed_answers": ["Brazil", "Argentina", "Chile", "Colombia"],
+            "correct_answer": "Argentina"
+          },
+          {
+            "question": "What is the term for a traditional storytelling form in West African culture?",
+            "proposed_answers": ["Griot", "Sankofa", "Kora", "Djembe"],
+            "correct_answer": "Griot"
+          },
+          {
+            "question": "What is the name of the famous British rock band known for 'Stairway to Heaven'?",
+            "proposed_answers": ["The Who", "Pink Floyd", "Led Zeppelin", "The Beatles"],
+            "correct_answer": "Led Zeppelin"
+          }
+        ],
+        "Economics": [
+          {
+            "question": "What is the term for a period of temporary economic decline during which trade and industrial activity are reduced?",
+            "proposed_answers": ["Recession", "Depression", "Boom", "Stagnation"],
+            "correct_answer": "Recession"
+          },
+          {
+            "question": "What does 'GDP per capita' measure?",
+            "proposed_answers": ["Total economic output", "Economic output per person", "Total income", "Government spending"],
+            "correct_answer": "Economic output per person"
+          },
+          {
+            "question": "What is the main purpose of monetary policy?",
+            "proposed_answers": ["Control inflation", "Manage government spending", "Regulate trade", "Increase taxes"],
+            "correct_answer": "Control inflation"
+          },
+          {
+            "question": "Which economic theory advocates for minimal government intervention in the economy?",
+            "proposed_answers": ["Keynesian economics", "Monetarism", "Supply-side economics", "Classical economics"],
+            "correct_answer": "Classical economics"
+          },
+          {
+            "question": "What is the term for a market structure with only one seller?",
+            "proposed_answers": ["Oligopoly", "Monopoly", "Perfect competition", "Monopsony"],
+            "correct_answer": "Monopoly"
+          },
+          {
+            "question": "What is the primary goal of fiscal policy?",
+            "proposed_answers": ["Control inflation", "Manage government spending and taxation", "Regulate the banking system", "Promote international trade"],
+            "correct_answer": "Manage government spending and taxation"
+          },
+          {
+            "question": "What does 'inflation' typically refer to?",
+            "proposed_answers": ["Decrease in prices", "Increase in prices", "Stability in prices", "None of the above"],
+            "correct_answer": "Increase in prices"
+          },
+          {
+            "question": "What is a bear market?",
+            "proposed_answers": ["A market in decline", "A market in growth", "A stable market", "A volatile market"],
+            "correct_answer": "A market in decline"
+          },
+          {
+            "question": "Which term describes the relationship between the quantity of a good that producers are willing to sell and its price?",
+            "proposed_answers": ["Demand", "Supply", "Equilibrium", "Market price"],
+            "correct_answer": "Supply"
+          },
+          {
+            "question": "What is the economic term for the cost of the next best alternative foregone?",
+            "proposed_answers": ["Sunk cost", "Opportunity cost", "Fixed cost", "Variable cost"],
+            "correct_answer": "Opportunity cost"
+          }
+        ]
       }
-    ],
-    "Music": [
-      {
-        "question": "What is the term used for the speed of a piece of music?",
-        "proposed_answers": ["Rhythm", "Tempo", "Beat", "Melody"],
-        "correct_answer": "Tempo"
-      },
-      {
-        "question": "Which artist is known for the albums 'Lemonade' and 'Beyoncé'?",
-        "proposed_answers": ["Rihanna", "Beyoncé", "Ariana Grande", "Taylor Swift"],
-        "correct_answer": "Beyoncé"
-      },
-      {
-        "question": "What is the name of the symphony that Beethoven is famous for?",
-        "proposed_answers": ["Symphony No. 5", "Symphony No. 9", "Symphony No. 7", "Symphony No. 3"],
-        "correct_answer": "Symphony No. 9"
-      },
-      {
-        "question": "What genre of music did Elvis Presley popularize?",
-        "proposed_answers": ["Jazz", "Blues", "Rock and Roll", "Pop"],
-        "correct_answer": "Rock and Roll"
-      },
-      {
-        "question": "Which artist is known for the song 'Shape of You'?",
-        "proposed_answers": ["Ed Sheeran", "Justin Bieber", "Drake", "Sam Smith"],
-        "correct_answer": "Ed Sheeran"
-      }
-    ],
-    "Computer_science": [
-      {
-        "question": "What is the purpose of an API?",
-        "proposed_answers": ["To allow different software applications to communicate", "To store data", "To increase processing speed", "To provide user interfaces"],
-        "correct_answer": "To allow different software applications to communicate"
-      },
-      {
-        "question": "What is machine learning?",
-        "proposed_answers": ["A type of AI that enables systems to learn from data", "A programming language", "A database technology", "A type of hardware"],
-        "correct_answer": "A type of AI that enables systems to learn from data"
-      },
-      {
-        "question": "What is the main difference between a compiler and an interpreter?",
-        "proposed_answers": ["Compilers translate the entire code at once", "Interpreters run the code faster", "Compilers are used only for C language", "Interpreters show errors after execution"],
-        "correct_answer": "Compilers translate the entire code at once"
-      },
-      {
-        "question": "What is blockchain technology primarily used for?",
-        "proposed_answers": ["Data storage", "Cryptocurrency transactions", "Cloud computing", "Artificial Intelligence"],
-        "correct_answer": "Cryptocurrency transactions"
-      },
-      {
-        "question": "What is cybersecurity?",
-        "proposed_answers": ["Protection of internet-connected systems from cyber threats", "A type of software", "A method of data storage", "A programming language"],
-        "correct_answer": "Protection of internet-connected systems from cyber threats"
-      }
-    ],
-    "Geography": [
-      {
-        "question": "What is the smallest country in the world?",
-        "proposed_answers": ["Vatican City", "Monaco", "Nauru", "Malta"],
-        "correct_answer": "Vatican City"
-      },
-      {
-        "question": "Which river flows through London?",
-        "proposed_answers": ["Thames", "Seine", "Danube", "Nile"],
-        "correct_answer": "Thames"
-      },
-      {
-        "question": "What is the capital of Australia?",
-        "proposed_answers": ["Sydney", "Melbourne", "Canberra", "Brisbane"],
-        "correct_answer": "Canberra"
-      },
-      {
-        "question": "Which country is known for the Great Wall?",
-        "proposed_answers": ["China", "India", "Iran", "Japan"],
-        "correct_answer": "China"
-      },
-      {
-        "question": "What is the name of the largest ocean on Earth?",
-        "proposed_answers": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
-        "correct_answer": "Pacific Ocean"
-      }
-    ],
-    "Culture": [
-      {
-        "question": "What is the traditional food of Italy?",
-        "proposed_answers": ["Sushi", "Tacos", "Pizza", "Curry"],
-        "correct_answer": "Pizza"
-      },
-      {
-        "question": "Which country celebrates Thanksgiving?",
-        "proposed_answers": ["Canada", "USA", "Mexico", "Australia"],
-        "correct_answer": "USA"
-      },
-      {
-        "question": "What is the most famous ballet performance?",
-        "proposed_answers": ["Swan Lake", "The Nutcracker", "Giselle", "Romeo and Juliet"],
-        "correct_answer": "Swan Lake"
-      },
-      {
-        "question": "In which country did the Renaissance begin?",
-        "proposed_answers": ["France", "Italy", "Germany", "Spain"],
-        "correct_answer": "Italy"
-      },
-      {
-        "question": "What is the traditional music of Ireland called?",
-        "proposed_answers": ["Irish Folk Music", "Bluegrass", "Jazz", "Classical"],
-        "correct_answer": "Irish Folk Music"
-      }
-    ],
-    "Economics": [
-      {
-        "question": "What is the difference between microeconomics and macroeconomics?",
-        "proposed_answers": ["Microeconomics focuses on individual markets", "Macroeconomics focuses on one market", "Both are the same", "Microeconomics is broader"],
-        "correct_answer": "Microeconomics focuses on individual markets"
-      },
-      {
-        "question": "What is a recession?",
-        "proposed_answers": ["A period of economic growth", "A period of economic decline", "A steady economy", "None of the above"],
-        "correct_answer": "A period of economic decline"
-      },
-      {
-        "question": "What does the term 'bull market' refer to?",
-        "proposed_answers": ["A period of falling stock prices", "A period of rising stock prices", "A stable market", "None of the above"],
-        "correct_answer": "A period of rising stock prices"
-      },
-      {
-        "question": "What is the Keynesian economic theory?",
-        "proposed_answers": ["A theory that advocates for increased government spending", "A theory of supply-side economics", "A free market theory", "None of the above"],
-        "correct_answer": "A theory that advocates for increased government spending"
-      },
-      {
-        "question": "What is the role of the International Monetary Fund (IMF)?",
-        "proposed_answers": ["To promote global financial stability", "To regulate stock markets", "To issue currencies", "To control inflation"],
-        "correct_answer": "To promote global financial stability"
-      }
-    ]
-  }
 }

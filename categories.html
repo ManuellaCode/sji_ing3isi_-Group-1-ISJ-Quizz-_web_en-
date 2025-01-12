@@ -7,123 +7,133 @@
   <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
   <style>
     .card {
-      height: 100%; /* Make all cards the same height */
-      transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover */
-      border: none; /* Remove default border */
+      height: 100%;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
     }
 
     .card-img-top {
-      width: 100%; /* Ensure the image takes the full width */
-      height: 200px; /* Set a fixed height for all images */
-      object-fit: cover; /* Cover the area while maintaining aspect ratio */
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
     }
 
     .card:hover {
-      transform: scale(1.05); /* Scale up on hover */
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
     .btn-play {
-      transition: background-color 0.3s, transform 0.3s; /* Animation for button */
+      transition: background-color 0.3s, transform 0.3s;
     }
 
     .btn-play:hover {
-      background-color: #0056b3; /* Darker shade on hover */
-      transform: scale(1.1); /* Scale up button on hover */
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+
+    .btn-view-history {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #e6d49e; /* Match the yellow border color */
+      color: #262121; /* Dark text for contrast */
+      border: none; /* Remove default border */
+      border-radius: 5px; /* Slightly rounded corners */
+      padding: 10px 15px; /* Add some padding */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+      transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+    }
+
+    .btn-view-history:hover {
+      background-color: #d9c68a; /* Lighter shade on hover */
+      transform: scale(1.05); /* Slightly scale up on hover */
     }
 
     body {
-      background-color:#262121; /* Match the background color */
+      background-color: #262121;
       background-image: url("images/Newbg2.png");
       color: white;
-      font-family: 'Roboto', sans-serif; /*Changed font style*/
+      font-family: 'Roboto', sans-serif;
     }
+
     header {
-      /* background-color: #2a2a3e; Darker header background */
       padding: 20px;
-      display: flex; /* Use flexbox for horizontal alignment */
-      align-items: center; /* Center items vertically */
-      border-bottom: 5px solid #e6d49e; /* Yellow border */
+      display: flex;
+      align-items: center;
+      border-bottom: 5px solid #e6d49e;
       margin-bottom: 20px;
       border-radius: 10px;
+      position: relative; /* Allow absolute positioning of the button */
     }
+
     .logo {
-      width: 150px; /* Increased width of the logo */
-      height: auto; /* Maintain aspect ratio */
-      margin-right: 40px; /* Increased space between logo and profile section */
-      transition: transform 0.3s ease; /* Smooth transition for hover effect */
+      width: 150px;
+      height: auto;
+      margin-right: 40px;
+      transition: transform 0.3s ease;
     }
+
     .logo:hover {
-      transform: scale(1.1) rotate(5deg); /* Scale and rotate on hover */
+      transform: scale(1.1) rotate(5deg);
     }
+
     .profile-container {
       display: flex;
       align-items: center;
     }
+
     .profile-picture {
       border-radius: 50%;
-      width: 100px; /* Profile picture size */
-      height: 100px; /* Profile picture size */
-      border: 3px solid #e8d59d; /* Yellow border around profile picture */
-      margin-right: 20px; /* Space between image and text */
+      width: 100px;
+      height: 100px;
+      border: 3px solid #e8d59d;
+      margin-right: 20px;
     }
+
     .user-info {
-      display: flex; /* Use flexbox for horizontal layout */
-      align-items: flex-start; /* Align items to the start */
+      display: flex;
+      align-items: flex-start;
       text-align: left;
     }
+
     .user-info .username {
-      margin-right: 30px; /* Space between username and level/category */
-      margin-top: 22px; /* Adjusted margin to center with profile picture */
+      margin-right: 30px;
+      margin-top: 22px;
     }
+
     .user-info .level-category {
       display: flex;
-      flex-direction: column; /* Stack level and category vertically */
+      flex-direction: column;
     }
+
     .user-info .level-category p {
-      margin-bottom: 15px; /* Increased space between level and category */
+      margin-bottom: 15px;
     }
-    .user-info div {
-      transition: transform 0.3s, color 0.3s; /* Transition for smooth animation */
-    }
-    .user-info div:hover {
-      transform: scale(1.05); /* Scale up slightly on hover */
-      color: #a08b4c; /* Change color on hover */
-    }
-    .user-info h4 {
-      font-size: 24px; /* Increased font size */
-      margin: 0; /* Remove default margin */
-    }
-    .user-info p {
-      font-size: 18px; /* Increased font size */
-      margin: 0; /* Remove default margin */
-    }
+
     h2 {
       text-align: center;
       margin-top: 20px;
-      font-size: 40px; /* Increased font size */
+      font-size: 40px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
-
   </style>
 </head>
 <body>
   <header>
-    <img src="./logo.png" alt="Logo" class="logo"> <!-- Replace with your logo path -->
-
+    <img src="./logo.png" alt="Logo" class="logo">
     <div class="profile-container">
-      <img src="./Avatars/M.jpeg" alt="Profile Picture" class="profile-picture"> <!-- Replace with user's profile picture path -->
+      <img src="./Avatars/M.jpeg" alt="Profile Picture" class="profile-picture">
       <div class="user-info">
         <div class="username">
           <h4 id="user">Username: N/A</h4>
         </div>
         <div class="level-category">
           <p id="user-level">Level: N/A</p>
-          <p id="user-category">Category: N/A</p>
         </div>
       </div>
     </div>
-
+    <button class="btn btn-info btn-view-history" data-bs-toggle="offcanvas" data-bs-target="#offcanvasHistory">View History</button>
   </header>
 
   <div class="content">
@@ -192,38 +202,52 @@
     </div>
   </div>
 
+  <!-- Offcanvas for History -->
+  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasHistory" aria-labelledby="offcanvasHistoryLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasHistoryLabel">History</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" id="historyList">
+      <!-- History content will be populated here -->
+      <p>No history available.</p>
+    </div>
+  </div>
+
   <script src="./bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
   <script>
     // Function to set the category in user object and navigate to player.html
     function setCategory(category) {
-      // Retrieve player info from local storage
       let user = JSON.parse(localStorage.getItem("player"));
 
       if (user) {
-        // Add category to user object
         user.category = category;
-        // Save the updated user object back to local storage
         localStorage.setItem("player", JSON.stringify(user));
       } else {
         console.log("No user found in local storage.");
       }
 
-      // Navigate to player.html after setting the category
       window.location.href = 'player.html';
     }
 
     // Populate player info from local storage
     const user = JSON.parse(localStorage.getItem("player"));
+    console.log(user)
 
     if (user) {
       const usernameElement = document.getElementsByClassName("username")[0];
-      const difficultyLevelElement = document.getElementsByClassName("difficulty-level")[0];
+      const difficultyLevel = document.getElementsByClassName("level-category")[0];
 
       usernameElement.textContent = `Username: ${user.username}`;
-      difficultyLevelElement.textContent = `Difficulty Level: ${user.level}`;
+      difficultyLevel.textContent = `Difficulty Level: ${user.level}`;
     } else {
       console.log("No user found in local storage.");
     }
+    name = user.username
+    let users = JSON.parse(localStorage.getItem("users"));
+    console.log(users)
+    let currentuser = users.find(user => user.username === name);
+
   </script>
 </body>
 </html>

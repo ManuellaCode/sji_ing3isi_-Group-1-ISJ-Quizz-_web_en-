@@ -152,6 +152,9 @@
         <div id="peerIdDisplay" class="mb-3">Generating Peer ID...</div>
         <h4>Available Players</h4>
         <div id="playerList">No players connected yet.</div>
+        <!-- Back to Category Choice Button -->
+        <a href="categories.html" class="btn btn-secondary position-fixed" style="position: fixed; bottom: 20px; left: 20px; z-index: 1050;">
+        ⬅Back to Category Choice</a>
       </div>
     </div>
   </div>
@@ -175,8 +178,8 @@
 
     peer.on('open', id => {
       document.getElementById('peerIdDisplay').textContent = `Your Peer ID: ${id}`;
-      username = prompt("Enter your username:") || "Anonymous";
-      level = prompt("Enter your level:") || "1"; // New prompt for level
+      username = myInfo.username;
+      level = myInfo.level;
       usernameDisplay.textContent = `${username} (Level: ${level})`; // Display username and level
       usernameDisplay.style.display = 'block';
       sendPlayerInfo(id, username, level); // Pass level to the function

@@ -10,12 +10,13 @@
 <body>
   <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">ISJ QUIZ</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+          <h4 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h4>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -35,11 +36,57 @@
   <header class="hero-section text-center text-white">
     <!-- <div class="container"> -->
     <div class="home-container">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img src="./images/freepik_the-style-is-candid-image-photography-with-natural_33828.jpg" class="d-block w-100 imag" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="./images/freepik_the-style-is-candid-image-photography-with-natural_33829.jpg" class="d-block w-100 imag" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="./images/freepik_the-style-is-candid-image-photography-with-natural_33832.jpg" class="d-block w-100 imag" alt="">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
       <h1><strong>Welcome to the Quiz Platform!</strong></h1>
-      <p style="font-size: larger;">Test your knowledge in various categories and earn points!</p>
-      <a href="./signup.html" class="btn btn-primary btn-lg">Start Quiz</a>
+      <p style="font-size: larger;"><i>Test your knowledge in various categories and earn points!</i></p>
     </div>
   </header>
+
+  <div id="game-rules-container">
+    <h3 id="game-title"><strong>Game Rules:</strong></h3>
+    <ol id="game-instructions">
+      <li>Click on <strong>Start</strong> to begin.</li>
+      <li>You will be directed to a login or sign-up page. Log in or sign up to continue.</li>
+      <li>After logging in or signing up, you will be redirected to the category page to select your preferred category.</li>
+      <li>Once you select a category, choose the player you want to compete against.</li>
+      <li>To select a player, retrieve their ID from the group chat and provide additional details on the player selection page.</li>
+      <li>The quiz will then begin.</li>
+      <li>Each correct answer awards <strong>3 points</strong> to the first player who answers correctly.</li>
+      <li>Incorrect answers will skip the question and move on to the next.</li>
+      <li>Each question has a timer, which varies based on the chosen difficulty level.</li>
+      <li>You can stop the game at any time, but doing so will result in losing the match.</li>
+      <li>At the end of the match:
+        <ul>
+          <li>The winning player is congratulated and advances to the next difficulty level.</li>
+          <li>The losing player is moved back to the previous level.</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <div style="padding-top: 20px;">
+    <a href="./signup.html" class="btn btn-primary btn-lg">Start Quiz</a>
+  </div>
 
   <div class="container my-5" style="padding-top: 10px;">
     <h2 class="text-center">How It Works</h2>
@@ -65,7 +112,7 @@
       <div class="col-md-4">
         <div class="image-container">
           <div class="image-container shadow">
-            <img src="./images/earn points.jpg" alt="Earn Rewards" class="image" style="max-height: 1000;" >
+            <img src="./images/earn_points.jpg" alt="Earn Rewards" class="image" style="max-height: 1000;" >
             <div class="text-overlay">
               <h2>Earn Rewards</h2>
               <p>Gain points and climb the leaderboard!</p>
@@ -80,7 +127,7 @@
     <p>&copy; 2024 Quiz Platform. All rights reserved.</p>
     <div class="footer-links">
       <a href="./Home.html" class="text-white mx-2">Home</a>
-      <a href="#" class="text-white mx-2">Contact us</a>
+      <a href="./aboutus.html" class="text-white mx-2">Contact us</a>
     </div>
   </footer>
 

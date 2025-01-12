@@ -58,6 +58,7 @@
       <div class="quizz-footer">
         <div class="timer">10 seconds left</div>
         <div class="question-total">1 out of 5</div>
+        <button id="leave-game-button" class="btn btn-danger mt-3">Leave Game</button>
       </div>
     </div>
   </section>
@@ -75,7 +76,8 @@
         </div>
     </div>
     <h2 id="result-message"></h2>
-  </div>
+    <button id="proceed-button" class="btn btn-primary mt-3" onclick="proceedToPlayerPage()">Proceed</button>
+</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js"></script>
   <script src="game.js"></script> <!-- Link to external JavaScript file -->
