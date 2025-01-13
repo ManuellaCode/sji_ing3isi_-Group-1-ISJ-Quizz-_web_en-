@@ -426,8 +426,8 @@ function startQuiz(questions) {
         localStorage.setItem("player", JSON.stringify(playerData));
 
         // Update CSS variable for percentage circle
-        document.getElementById("user-circle").style.setProperty('--percentage', `${userPercentage}deg`);
-        document.getElementById("opponent-circle").style.setProperty('--percentage', `${opponentPercentage}deg`);
+        document.getElementById("user-circle").style.setProperty('--percentage', `${userPercentage*3.6}deg`);
+        document.getElementById("opponent-circle").style.setProperty('--percentage', `${opponentPercentage*3.6}deg`);
 
         // Show the result section
         document.querySelector('.result-section').style.display = 'flex';

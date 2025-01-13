@@ -66,7 +66,7 @@ document.getElementById("createAccountForm")?.addEventListener("submit", (event)
       password: password,
       level: "Mougou",
       category: "Music",
-      gamesHistory: []
+      gameHistory: []
     };
     // Save user information in local storage
     users.push(user);

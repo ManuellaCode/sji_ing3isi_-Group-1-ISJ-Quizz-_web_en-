@@ -6,117 +6,192 @@
   <title>Document</title>
   <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
   <style>
-    .card {
-      height: 100%;
-      transition: transform 0.3s, box-shadow 0.3s;
-      border: none;
-    }
+    /* General Body Styles */
+body {
+  background-color: #262121;
+  background-image: url("images/Newbg2.png");
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-    .card-img-top {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+/* Header Styles */
+header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distributes space between items */
+  border-bottom: 5px solid #e6d49e;
+  margin-bottom: 20px;
+  background: rgba(38, 33, 33, 0.8); /* Semi-transparent background */
+  border-radius: 10px;
+}
 
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
+/* Logo Styles */
+.logo {
+  width: 150px;
+  height: auto;
+  margin-right: 40px;
+  transition: transform 0.3s ease;
+}
 
-    .btn-play {
-      transition: background-color 0.3s, transform 0.3s;
-    }
+.logo:hover {
+  transform: scale(1.1) rotate(5deg);
+}
 
-    .btn-play:hover {
-      background-color: #0056b3;
-      transform: scale(1.1);
-    }
+/* Profile Container */
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Aligns items to the left */
+}
 
-    .btn-view-history {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background-color: #e6d49e; /* Match the yellow border color */
-      color: #262121; /* Dark text for contrast */
-      border: none; /* Remove default border */
-      border-radius: 5px; /* Slightly rounded corners */
-      padding: 10px 15px; /* Add some padding */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
-      transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
-    }
+/* Profile Picture Styles */
+.profile-picture {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 3px solid #e8d59d;
+  margin-right: 20px;
+}
 
-    .btn-view-history:hover {
-      background-color: #d9c68a; /* Lighter shade on hover */
-      transform: scale(1.05); /* Slightly scale up on hover */
-    }
+/* User Info Styles */
+.user-info {
+  display: flex;
+  flex-direction: column; /* Stack username and level vertically */
+  align-items: flex-start;
+}
 
-    body {
-      background-color: #262121;
-      background-image: url("images/Newbg2.png");
-      color: white;
-      font-family: 'Roboto', sans-serif;
-    }
+.user-info .username {
+  margin-right: 30px;
+  font-size: 18px; /* Increased font size for better readability */
+  font-weight: bold; /* Make username bold */
+}
 
-    header {
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      border-bottom: 5px solid #e6d49e;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      position: relative; /* Allow absolute positioning of the button */
-    }
+.user-info .level-category {
+  display: flex;
+  flex-direction: column;
+}
 
-    .logo {
-      width: 150px;
-      height: auto;
-      margin-right: 40px;
-      transition: transform 0.3s ease;
-    }
+.user-info .level-category p {
+  margin-bottom: 5px; /* Reduced margin for better spacing */
+  color: #e6d49e; /* Gold color for level text */
+}
 
-    .logo:hover {
-      transform: scale(1.1) rotate(5deg);
-    }
+/* Title Styles */
+h1, h2 {
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 
-    .profile-container {
-      display: flex;
-      align-items: center;
-    }
+/* Card Styles */
+.card {
+  height: 100%;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: none;
+  border-radius: 10px; /* Rounded corners for cards */
+  overflow: hidden; /* Prevent overflow */
+}
 
-    .profile-picture {
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      border: 3px solid #e8d59d;
-      margin-right: 20px;
-    }
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
 
-    .user-info {
-      display: flex;
-      align-items: flex-start;
-      text-align: left;
-    }
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
 
-    .user-info .username {
-      margin-right: 30px;
-      margin-top: 22px;
-    }
+/* Button Styles */
+.btn-play, .btn-view-history {
+  transition: background-color 0.3s, transform 0.3s;
+}
 
-    .user-info .level-category {
-      display: flex;
-      flex-direction: column;
-    }
+.btn-play:hover, .btn-view-history:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
 
-    .user-info .level-category p {
-      margin-bottom: 15px;
-    }
+.btn-view-history {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #e6d49e;
+  color: #262121;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
 
-    h2 {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 40px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
+.btn-view-history:hover {
+  background-color: #d9c68a;
+  transform: scale(1.05);
+}
+
+/* Offcanvas Styles */
+.offcanvas {
+  background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.offcanvas-header {
+  border-bottom: 2px solid #e6d49e;
+}
+
+.offcanvas-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Button Link Styles */
+.btn-link {
+  color: #e6d49e;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.btn-link:hover {
+  color: #ffd700;
+  transform: scale(1.05);
+}
+
+/* Game Info Styles */
+.game-info {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+  transition: background 0.3s;
+}
+
+.game-info:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.game-info p {
+  margin: 5px 0;
+}
+
+/* Horizontal Rule Styles */
+hr {
+  border-top: 1px solid #e6d49e;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 20px; /* Add space between cards on small screens */
+  }
+}
   </style>
 </head>
 <body>
@@ -215,39 +290,114 @@
   </div>
 
   <script src="./bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
-  <script>
-    // Function to set the category in user object and navigate to player.html
-    function setCategory(category) {
-      let user = JSON.parse(localStorage.getItem("player"));
+  <!-- Offcanvas for History -->
+<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasHistory" aria-labelledby="offcanvasHistoryLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasHistoryLabel">Game History</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" id="historyList">
+    <!-- History content will be populated here -->
+    <p>No history available.</p>
+  </div>
+</div>
 
-      if (user) {
-        user.category = category;
-        localStorage.setItem("player", JSON.stringify(user));
-      } else {
-        console.log("No user found in local storage.");
-      }
+<!-- Offcanvas for History -->
+<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasHistory" aria-labelledby="offcanvasHistoryLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasHistoryLabel">Game History</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" id="historyList">
+    <!-- History content will be populated here -->
+    <p>No history available.</p>
+  </div>
+</div>
 
-      window.location.href = 'player.html';
-    }
-
-    // Populate player info from local storage
-    const user = JSON.parse(localStorage.getItem("player"));
-    console.log(user)
+<script>
+  // Function to set the category in user object and navigate to player.html
+  function setCategory(category) {
+    let user = JSON.parse(localStorage.getItem("player"));
 
     if (user) {
-      const usernameElement = document.getElementsByClassName("username")[0];
-      const difficultyLevel = document.getElementsByClassName("level-category")[0];
-
-      usernameElement.textContent = `Username: ${user.username}`;
-      difficultyLevel.textContent = `Difficulty Level: ${user.level}`;
+      user.category = category;
+      localStorage.setItem("player", JSON.stringify(user));
     } else {
       console.log("No user found in local storage.");
     }
-    name = user.username
-    let users = JSON.parse(localStorage.getItem("users"));
-    console.log(users)
-    let currentuser = users.find(user => user.username === name);
 
-  </script>
+    window.location.href = 'player.html';
+  }
+
+  // Populate player info from local storage
+  const user = JSON.parse(localStorage.getItem("player"));
+  console.log(user);
+
+  if (user) {
+    const usernameElement = document.getElementsByClassName("username")[0];
+    const difficultyLevel = document.getElementsByClassName("level-category")[0];
+
+    usernameElement.textContent = `Username: ${user.username}`;
+    difficultyLevel.textContent = `Difficulty Level: ${user.level}`;
+  } else {
+    console.log("No user found in local storage.");
+  }
+
+  // Fetching the current user
+  const name = user.username;
+  let users = JSON.parse(localStorage.getItem("users"));
+  console.log(users);
+  let currentUser = users.find(user => user.username === name);
+  console.log(currentUser);
+
+  // Display categories in the offcanvas
+  const historyList = document.getElementById("historyList");
+
+  function displayCategories() {
+    const categories = [...new Set(currentUser.gameHistory.map(game => game.category))]; // Unique categories
+    historyList.innerHTML = ""; // Clear previous content
+
+    categories.forEach(category => {
+      const categoryItem = document.createElement("div");
+      categoryItem.className = "category-item";
+      categoryItem.innerHTML = `<button class="btn btn-link text-white" onclick="showHistoryForCategory('${category}')">${category}</button>`;
+      historyList.appendChild(categoryItem);
+    });
+
+    if (categories.length === 0) {
+      historyList.innerHTML = "<p>No game history available.</p>";
+    }
+  }
+
+  // Show game history for a selected category
+  function showHistoryForCategory(category) {
+    const gamesInCategory = currentUser.gameHistory.filter(game => game.category === category);
+    historyList.innerHTML = ""; // Clear previous content
+
+    if (gamesInCategory.length > 0) {
+      gamesInCategory.forEach(game => {
+        const gameInfo = document.createElement("div");
+        gameInfo.className = "game-info";
+        gameInfo.innerHTML = `
+          <p><strong>Opponent:</strong> ${game.opponent}</p>
+          <p><strong>Level:</strong> ${game.level}</p>
+          <p><strong>Score:</strong> ${game.userScore}</p>
+          <p><strong>Won:</strong> ${game.won ? "Yes" : "No"}</p>
+          <p><strong>Date:</strong> ${game.date}</p>
+          <hr>
+        `;
+        historyList.appendChild(gameInfo);
+      });
+    } else {
+      historyList.innerHTML = "<p>No game history available for this category.</p>";
+    }
+  }
+
+  // Populate the categories when the offcanvas is opened
+  document.addEventListener('DOMContentLoaded', () => {
+    const viewHistoryButton = document.querySelector('.btn-view-history');
+    viewHistoryButton.addEventListener('click', displayCategories);
+  });
+</script>
 </body>
 </html>
