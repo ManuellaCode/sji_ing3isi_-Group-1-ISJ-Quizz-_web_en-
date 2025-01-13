@@ -64,21 +64,22 @@
     .challenge-button:hover, .accept-button:hover {
       background-color: #0056b3;
     }
-    .notification-button {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .notification-button:hover {
-      background-color: #218838;
-    }
+    .notification-button{
+  position: absolute;
+  top: 60px;
+  right: 50%;
+  background-color: #e6d49e;
+  color: #262121;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.notification-button{
+  background-color: #d9c68a;
+  transform: scale(1.05);
+}
     .offcanvas-body {
       background-color: #2a2a3e;
       border-radius: 10px;
@@ -113,13 +114,93 @@
       width: 3rem;
       height: 3rem;
     }
+
+    header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distributes space between items */
+  border-bottom: 5px solid #e6d49e;
+  margin-bottom: 20px;
+  background: rgba(38, 33, 33, 0.8); /* Semi-transparent background */
+  border-radius: 10px;
+}
+
+/* Logo Styles */
+.logo {
+  width: 150px;
+  height: auto;
+  margin-right: 40px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Profile Container */
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Aligns items to the left */
+}
+
+/* Profile Picture Styles */
+.profile-picture {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 3px solid #e8d59d;
+  margin-right: 20px;
+}
+
+/* User Info Styles */
+.user-info {
+  display: flex;
+  flex-direction: column; /* Stack username and level vertically */
+  align-items: flex-start;
+}
+
+.user-info .username {
+  margin-right: 30px;
+  font-size: 18px; /* Increased font size for better readability */
+  font-weight: bold; /* Make username bold */
+}
+
+.user-info .level,.user-info .category {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info .level p, .user-info .level p {
+  margin-bottom: 5px; /* Reduced margin for better spacing */
+  color: #e6d49e; /* Gold color for level text */
+}
   </style>
 </head>
 <body>
-  <!-- Notification Button with Badge -->
+  <header>
+    <img src="./logo.png" alt="Logo" class="logo">
+    <div class="profile-container">
+      <img src="./Avatars/M.jpeg" alt="Profile Picture" class="profile-picture">
+      <div class="user-info">
+        <div class="username">
+          <h4 id="user">Username: N/A</h4>
+        </div>
+        <div class="level">
+          <p id="user-level">Level: N/A</p>
+        </div>
+        <div class="category ">
+          <p id="user-level">Category: N/A</p>
+        </div>
+      </div>
+    </div>
+    <!-- Notification Button with Badge -->
   <button class="notification-button" aria-label="Open notifications" onclick="toggleOffcanvas()">
     Notifications <span class="badge bg-danger" id="notificationCount">0</span>
   </button>
+  </header>
+
 
   <!-- Offcanvas for Notifications -->
   <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNotifications" aria-labelledby="offcanvasNotificationsLabel">
@@ -163,6 +244,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script>
     let myInfo = JSON.parse(localStorage.getItem("player"));
+    const profilePicture = document.querySelector('.profile-picture');
+
+    // Set the profile picture based on the first letter of the username
+    const firstLetter = myInfo.username.charAt(0).toUpperCase();
+    profilePicture.src = `./Avatars/${firstLetter}.jpeg`;
     console.log(myInfo)
     const peer = new Peer();
     const playerListDiv = document.getElementById('playerList');
@@ -180,8 +266,13 @@
       document.getElementById('peerIdDisplay').textContent = `Your Peer ID: ${id}`;
       username = myInfo.username;
       level = myInfo.level;
-      usernameDisplay.textContent = `${username} (Level: ${level})`; // Display username and level
-      usernameDisplay.style.display = 'block';
+      categ = myInfo.category
+      const usernameElement = document.getElementsByClassName("username")[0];
+      usernameElement.textContent = `Username: ${username}`
+      const difficultyLevel = document.getElementsByClassName("level")[0];
+      difficultyLevel.textContent = `Level: ${level}`
+      const category = document.getElementsByClassName("category")[0];
+      category.textContent = `Category: ${categ}`
       sendPlayerInfo(id, username, level); // Pass level to the function
     });
 

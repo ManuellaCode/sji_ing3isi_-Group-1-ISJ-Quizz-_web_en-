@@ -13,6 +13,12 @@ let questions;
 let play = false;
 username = gameInfo.username;
 
+const profilePicture = document.querySelector('.profile-picture');
+
+// Set the profile picture based on the first letter of the username
+const firstLetter = user.username.charAt(0).toUpperCase();
+profilePicture.src = `./Avatars/${firstLetter}.jpeg`;
+
 // Check if gameInfo exists and populate the header
 if (gameInfo) {
     const userName = gameInfo.username || "N/A";

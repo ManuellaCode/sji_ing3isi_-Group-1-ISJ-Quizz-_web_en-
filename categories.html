@@ -92,6 +92,7 @@ h1, h2 {
   border: none;
   border-radius: 10px; /* Rounded corners for cards */
   overflow: hidden; /* Prevent overflow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Default shadow */
 }
 
 .card-img-top {
@@ -117,8 +118,8 @@ h1, h2 {
 
 .btn-view-history {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 60px;
+  right: 50%;
   background-color: #e6d49e;
   color: #262121;
   border: none;
@@ -336,6 +337,11 @@ hr {
   if (user) {
     const usernameElement = document.getElementsByClassName("username")[0];
     const difficultyLevel = document.getElementsByClassName("level-category")[0];
+    const profilePicture = document.querySelector('.profile-picture');
+
+    // Set the profile picture based on the first letter of the username
+    const firstLetter = user.username.charAt(0).toUpperCase();
+    profilePicture.src = `./Avatars/${firstLetter}.jpeg`;
 
     usernameElement.textContent = `Username: ${user.username}`;
     difficultyLevel.textContent = `Difficulty Level: ${user.level}`;

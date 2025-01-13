@@ -150,9 +150,9 @@ h5 {
   }
 }
 
-h3{
-color:  #dcc8c8;
-padding-top: 10px;
+h3 {
+  color: #dcc8c8;
+  padding-top: 10px;
 }
 
 /* Ensure the container holds the title and instructions side by side */
@@ -181,17 +181,15 @@ padding-top: 10px;
 
 /* Optional: Style the container to give visual clarity */
 #game-rules-container {
-padding-top: 3px;
+  padding-top: 3px;
   border: 1px solid #ddd; /* Adds a light border */
   border-radius: 8px; /* Smooth corners */
   background-color: #443f3f; /* Light background color */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
 }
 
-
 /* General Text Styling for Header */
 .home-container {
-  /* background-color: #d5e7f8; */
   color: #dcc8c8; /* Set text color to black */
   padding: 200px;
   width: 100%; /* Ensure it takes up the full width */
@@ -278,10 +276,30 @@ padding-top: 3px;
   text-decoration: underline;
   transition: color 0.3s;
 }
-.imag{
+
+.imag {
   border-radius: 3px;
   width: 100%;  /* Full width of the container */
   height: 500px;
 }
 
+/* Carousel Image Styles */
+.carousel-inner .carousel-item img {
+  max-height: 400px; /* Set a maximum height for the carousel images */
+  object-fit: cover; /* Ensure the image covers the container without distortion */
+  width: 100%; /* Maintain full width */
+  height: auto; /* Maintain aspect ratio */
+}
 
+.carousel {
+  max-height: 400px; /* Set the maximum height for the carousel itself */
+  overflow: hidden; /* Hide any overflow */
+  width: 100%; /* Set width to 100% of its container */
+  max-width: 1200px; /* Set a maximum width for the carousel */
+  margin: 0 auto; /* Center the carousel */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  filter: brightness(0) invert(1); /* Adjust controls for better visibility */
+}
