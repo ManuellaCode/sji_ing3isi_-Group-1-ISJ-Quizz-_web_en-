@@ -16,7 +16,7 @@ username = gameInfo.username;
 const profilePicture = document.querySelector('.profile-picture');
 
 // Set the profile picture based on the first letter of the username
-const firstLetter = user.username.charAt(0).toUpperCase();
+const firstLetter = username.charAt(0).toUpperCase();
 profilePicture.src = `./Avatars/${firstLetter}.jpeg`;
 
 // Check if gameInfo exists and populate the header
@@ -325,7 +325,7 @@ function startQuiz(questions) {
     }
 
     function endGameWithForfeit() {
-        opponentScore = 25; //opponent wins by forfeit
+        opponentScore = questions.length*5; //opponent wins by forfeit
         updateScoreDisplay();
         currentIndex = questions.length + 1
         endQuiz("forfeit")
@@ -382,7 +382,10 @@ function startQuiz(questions) {
         if (!currentuser.gameHistory) {
             currentuser.gameHistory = []; // Initialize if it doesn't exist
         }
-        currentuser.gameHistory.push(gameResult); // Add the new entry to the game history
+
+        if(opponentName){
+            currentuser.gameHistory.push(gameResult); // Add the new entry to the game history
+        }
         console.log(currentuser)
         users.filter(user => { user.username === username })
         users.push(currentuser)
@@ -476,7 +479,7 @@ peer.on('connection', conn => {
         }
         if (message.type === "forfeit") {
             opponentScore = 0; // Update opponent score
-            playerScore = 25
+            playerScore = questions.length*5
             updateScoreDisplay();
             currentIndex = questions.length + 1//end the game
             endQuiz("forfeit")

@@ -6,7 +6,86 @@
     <title>Quizz Signup</title>
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
-</head>
+    <style>
+      /* Style for input fields */
+      .form-control {
+        background-color: #fff;
+        color: #000;
+        border: 1px solid #ccc;
+        transition: all 0.5s ease; /* Smooth transition for hover effect */
+      }
+
+      /* Hover effect for input fields */
+      .form-control:hover {
+        background-color: #f0f8ff; /* Light blue background on hover */
+        border-color: #007bff; /* Change border to primary color */
+        box-shadow: 0 0 12px rgba(0, 123, 255, 0.6); /* Add a subtle shadow for focus */
+        transform: scale(1.05); /* Slight zoom effect */
+      }
+
+      /* Focus effect for accessibility (when user clicks inside the input field) */
+      .form-control:focus {
+        background-color: #e6f7ff; /* Slightly darker blue for focus */
+        border-color: #0056b3; /* Darker blue border */
+        box-shadow: 0 0 15px rgba(0, 86, 179, 0.7); /* Stronger shadow for focus */
+        transform: scale(1.1); /* More pronounced zoom effect */
+        outline: none; /* Remove default outline */
+      }
+
+      /* Base style for the button */
+      #createAccountButton {
+        background-color: #007bff; /* Primary blue background */
+        color: #fff; /* White text */
+        border: none; /* Remove default border */
+        padding: 10px 20px; /* Add padding for a comfortable click area */
+        font-size: 16px; /* Adjust font size */
+        border-radius: 5px; /* Smooth corners */
+        transition: all 0.3s ease; /* Smooth transition for hover effects */
+        cursor: pointer; /* Pointer cursor for buttons */
+        width: 100%; /* Make the button full-width */
+      }
+
+      /* Hover effect for the button */
+      #createAccountButton:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        box-shadow: 0 0 15px rgba(0, 86, 179, 0.6); /* Glowing effect */
+        transform: scale(1.1); /* Slight zoom effect */
+      }
+
+      /* Focus effect for the button */
+      #createAccountButton:focus {
+        background-color: #004080; /* Even darker blue for focus */
+        box-shadow: 0 0 20px rgba(0, 64, 128, 0.7); /* Stronger glow */
+        transform: scale(1.1); /* Maintain zoom effect */
+        outline: none; /* Remove default outline */
+      }
+
+      /* Style for the already have an account link */
+      a.text-primary {
+        color: #007bff; /* Primary blue color */
+        text-decoration: none; /* Remove underline */
+        transition: all 0.3s ease; /* Smooth transition for hover and focus */
+      }
+
+      /* Hover effect for the already have an account link */
+      a.text-primary:hover {
+        color: #0056b3; /* Darker blue color */
+        text-decoration: underline; /* Underline on hover */
+        transform: scale(1.1); /* Slight zoom effect */
+        box-shadow: 0 0 8px rgba(0, 86, 179, 0.5); /* Glowing shadow effect */
+      }
+
+      /* Focus effect for the already have an account link */
+      a.text-primary:focus {
+        color: #003f80; /* Even darker blue for focus */
+        outline: none; /* Remove default outline */
+        text-decoration: underline; /* Maintain underline */
+        box-shadow: 0 0 10px rgba(0, 64, 128, 0.7); /* Stronger glowing shadow */
+        transform: scale(1.1); /* Slight zoom effect */
+      }
+
+    </style>
+  </head>
 <body background="./images/Newbg3.png">
   <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
     <div class="row w-100 shadow-lg" style="max-width: 1000px;">

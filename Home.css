@@ -12,149 +12,6 @@ body {
   min-height: 100vh;
 }
 
-/* Points Card (Home Page) */
-.points-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ffffff; /* Light background for readability */
-  border-radius: 15px; /* Smooth rounded corners */
-  padding: 15px 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
-  max-width: 350px; /* Wider for better content fit */
-  margin: 20px auto; /* Center horizontally and add spacing */
-  border: 1px solid #e0e0e0; /* Subtle border for elegance */
-  color: #343a40; /* Darker text */
-}
-.points-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-/* Sections within Points Card */
-.points-section, .rewards-section {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Space between icon and text */
-  flex: 1; /* Equal width for both sections */
-}
-
-/* Icons */
-.icon {
-  width: 40px; /* Larger icons for better visibility */
-  height: 40px;
-  border-radius: 50%; /* Circular icons */
-  background-color: #ececec; /* Light gray placeholder */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px; /* Icon size */
-  color: #6c757d; /* Subtle gray */
-}
-
-/* Text Styling for Points Card */
-.text p {
-  margin: 0;
-  font-size: 14px; /* Subtle label text */
-  color: #6c757d; /* Secondary gray text */
-}
-
-.text h4 {
-  margin: 0;
-  font-size: 18px; /* Larger value text */
-  color: #343a40; /* Darker text for emphasis */
-  font-weight: bold;
-}
-
-/* Highlight for Titles */
-h5 {
-  text-decoration: underline;
-  text-decoration-color: aquamarine;
-  color: aquamarine; /* Bright and noticeable */
-  font-size: 1.2rem; /* Larger title */
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Category Page Styling */
-.category-container {
-  max-width: 600px;
-  margin: 20px auto; /* Center the container */
-  background-color: #343a40; /* Slightly lighter than the body background */
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Depth effect */
-  text-align: center;
-}
-
-.category-container h1 {
-  font-size: 1.8rem;
-  color: aquamarine; /* Bright and engaging title color */
-  margin-bottom: 20px;
-}
-
-.category-button {
-  display: inline-block;
-  width: 100%;
-  margin: 10px 0;
-  padding: 15px;
-  background-color: #ffffff; /* White for contrast */
-  color: #343a40; /* Dark text for readability */
-  font-size: 1.1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Depth effect */
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.category-button:hover {
-  background-color: aquamarine; /* Engaging hover effect */
-  color: #ffffff; /* White text for contrast */
-  transform: scale(1.05); /* Slight zoom effect */
-}
-
-.category-button:focus {
-  outline: 2px solid aquamarine;
-  outline-offset: 4px;
-}
-.category-button:active {
-  background-color: #0056b3;
-  color: #ffffff;
-  transform: scale(0.95);
-}
-
-
-/* Responsive Adjustments */
-@media (max-width: 480px) {
-  .points-card, .category-container {
-    padding: 15px;
-    max-width: 90%; /* Use most of the screen width */
-  }
-
-  .points-card {
-    flex-direction: column; /* Stack sections vertically */
-    text-align: center; /* Center-align text */
-  }
-
-  .points-section, .rewards-section {
-    justify-content: center; /* Center content on small screens */
-    margin-bottom: 10px; /* Add spacing between stacked sections */
-  }
-
-  .category-button {
-    font-size: 1rem; /* Adjust button size for smaller screens */
-  }
-}
-
-h3 {
-  color: #dcc8c8;
-  padding-top: 10px;
-}
-
 /* Ensure the container holds the title and instructions side by side */
 #game-rules-container {
   display: flex;
@@ -181,24 +38,38 @@ h3 {
 
 /* Optional: Style the container to give visual clarity */
 #game-rules-container {
-  padding-top: 3px;
   border: 1px solid #ddd; /* Adds a light border */
   border-radius: 8px; /* Smooth corners */
-  background-color: #443f3f; /* Light background color */
+  background-color: #453c3c; /* Light background color */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+}
+
+
+.navbar-nav .nav-link i {
+  margin-right: 8px; /* Add spacing between the icon and text */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #007bff; /* Change link color on hover */
+}
+
+.hero-section {
+  color: white; /* Text color for readability */
+  width: 100%; /*To make sure it's full width */
+  box-sizing: border-box; /* Include padding in width calculations */
 }
 
 /* General Text Styling for Header */
 .home-container {
-  color: #dcc8c8; /* Set text color to black */
-  padding: 200px;
-  width: 100%; /* Ensure it takes up the full width */
-  box-sizing: border-box; /* Include padding in width calculations */
+  /* background-color: #d5e7f8; */
+  color: #dcc8c8; /* Set text color to light red */
+  padding: 100px;
+  box-sizing: border-box;/* Include padding in width calculations */
 }
 
 /* Adjust heading and paragraph colors */
 .home-container h1, .home-container h2, .home-container p {
-  color: #d3afaf !important; /* Ensure headings and paragraphs use black */
+  color: #d3afaf !important; /* Ensure headings and paragraphs use light red */
 }
 
 /* Adjust link colors */
@@ -226,9 +97,7 @@ h3 {
 
 /* Image styling */
 .image {
-  border-radius: 3px;
   width: 100%;  /* Full width of the container */
-  height: 10%;
   transition: transform 0.3s ease, filter 0.3s ease;  /* Smooth scaling and shadow transition */
 }
 
@@ -277,29 +146,4 @@ h3 {
   transition: color 0.3s;
 }
 
-.imag {
-  border-radius: 3px;
-  width: 100%;  /* Full width of the container */
-  height: 500px;
-}
 
-/* Carousel Image Styles */
-.carousel-inner .carousel-item img {
-  max-height: 400px; /* Set a maximum height for the carousel images */
-  object-fit: cover; /* Ensure the image covers the container without distortion */
-  width: 100%; /* Maintain full width */
-  height: auto; /* Maintain aspect ratio */
-}
-
-.carousel {
-  max-height: 400px; /* Set the maximum height for the carousel itself */
-  overflow: hidden; /* Hide any overflow */
-  width: 100%; /* Set width to 100% of its container */
-  max-width: 1200px; /* Set a maximum width for the carousel */
-  margin: 0 auto; /* Center the carousel */
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-  filter: brightness(0) invert(1); /* Adjust controls for better visibility */
-}
