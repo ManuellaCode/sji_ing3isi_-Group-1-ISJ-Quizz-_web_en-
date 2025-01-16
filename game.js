@@ -47,6 +47,7 @@ peer.on('open', id => {
     const conn = peer.connect(gameInfo.serverId);
     if (gameInfo.me === "receiver") {
         conn.on('open', () => {
+            console.log("sent my info")
             conn.send(JSON.stringify(playerInfo));
         });
     } else if (gameInfo.me === "challenger") {
@@ -167,6 +168,7 @@ function loadQuestions(level, category) {
 // Function to start the quiz
 let playerScore = 0; // Initialize player score
 let opponentScore = 0; // Initialize opponent score
+let opponentended = false;
 let countdownInterval; // Declare this globally
 let timefor //seconds for each question
 if(level == "Mougou"){
@@ -293,8 +295,7 @@ function startQuiz(questions) {
         const scoreUpdateMessage = {
             reason: reason,
             type: "score-update",
-            score: playerScore,
-            currentIndex: currentIndex // Send the current question index as well
+            score: playerScore
         };
         const connection = peer.connect(opponentId);
         connection.on("open", () => {
@@ -330,7 +331,24 @@ function startQuiz(questions) {
         endQuiz("forfeit")
     }
 
-    function endQuiz(reason) {
+function endQuiz(reason) {
+        const connection = peer.connect(opponentId);
+        connection.on("open", () => {
+            console.log("send game ended signal")
+            console.log(opponentScore)
+            connection.send(JSON.stringify({type:"end", score:playerScore}));
+        });
+
+        // Show the waiting overlay
+    const waitingOverlay = document.getElementById("waiting-overlay");
+    waitingOverlay.style.display = "flex"; // Show the overlay
+        // Wait for the opponent to end the quiz
+    const checkOpponentEnd = setInterval(() => {
+        if (opponentended) {
+            clearInterval(checkOpponentEnd); // Clear the interval
+            waitingOverlay.style.display = "none"; // Hide the overlay
+            // Continue with the rest of the endQuiz function logic
+        console.log("sending my success");
         tickingSound.pause(); // Stop ticking sound on timeout
         warningSound.pause();
         console.log('All questions have been displayed.');
@@ -439,7 +457,9 @@ function startQuiz(questions) {
 
         // Show the result section
         document.querySelector('.result-section').style.display = 'flex';
-    }
+      }
+    }, 100)
+}
     // Function to create and display a toast notification
 function showToast(reason) {
     // Create toast element
@@ -468,11 +488,8 @@ peer.on('connection', conn => {
         const message = JSON.parse(data);
         if (message.type === "score-update") {
             opponentScore = message.score; // Update opponent's score
-            currentIndex = message.currentIndex; // Update to the opponent's current question index
             console.log(`Opponent's score updated to: ${opponentScore}`);
             updateScoreDisplay();
-            proceedToNextQuestion(); // Proceed to the next question for the player
-
             // Show toast notification based on the reason
             showToast(message.reason);
         }
@@ -482,6 +499,12 @@ peer.on('connection', conn => {
             updateScoreDisplay();
             currentIndex = questions.length + 1//end the game
             endQuiz("forfeit")
+        }
+        if(message.type == "end"){
+            opponentended = true;
+            console.log("opponent ended");
+            opponentScore = message.score; // Update opponent score
+
         }
     });
 });
