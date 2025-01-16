@@ -235,7 +235,6 @@ function startQuiz(questions) {
             incorrectSound.play(); // Play incorrect answer sound
             selectedOption.style.border = '2px solid red';
             showCorrectAnswer(); // Show the correct answer
-            sendScoreUpdateToOpponent("wrong"); // Send score update to opponent
         }
         setTimeout(proceedToNextQuestion, 1500); // Move to the next question after 1 second
     }
